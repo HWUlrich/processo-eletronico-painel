@@ -2,7 +2,9 @@ import React from 'react'
 
 const disp3 = () => {
   return (
-    <div>disp3</div>
+    <div>
+      disp3
+    </div>
   )
 }
 
