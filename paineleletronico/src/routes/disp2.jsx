@@ -1,6 +1,6 @@
 import React from 'react'
 
-const disp2 = () => {
+const Disp2 = () => {
   return (
     <div>
       disp2
@@ -8,4 +8,4 @@ const disp2 = () => {
   )
 }
 
-export default disp2
+export default Disp2

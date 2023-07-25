@@ -5,15 +5,15 @@ import blogFetchPar from '../axios/config';
 
 const Disp1 = () => {
 
-  const [posts, setPosts] = useState([]);
+  const [parl, setParl] = useState([]);
 
-  const getPosts = async() => {
+  const getParl = async() => {
     
     try {
       const response = await blogFetchPar.get('/parlamentar');
       
       const data = response.results;
-      setPosts(data);
+      setParl(data);
 
     } catch (error) {
       console.log(error);
@@ -23,17 +23,17 @@ const Disp1 = () => {
   }
 
   useEffect(() => {
-    getPosts();
+    getParl();
   }, [])
 
 const disp1 = () => {
   return (
     <div className='par'>
       <h1>Parlamentares - CMNF</h1>
-      {parlamentar.length === 0 ? (<p>Carregando...</p>) : (
+      {parl.length === 0 ? (<p>Carregando...</p>) : (
   
-        parlamentar.map((parl) => (
-          <div className="post" key={parl.id}>
+        parl.map((parl) => (
+          <div className="parl" key={parl.id}>
             <h2>{parl.nome_parlamentar}</h2>
             <h1>{parl.partido}</h1>
             <p>{parl.ativo}</p>            

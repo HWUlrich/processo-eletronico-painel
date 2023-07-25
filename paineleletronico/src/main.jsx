@@ -2,13 +2,13 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
-import {createBrowserRouter, RouterProvider} from 'react-router-dom'
+import {createBrowserRouter, RouterProvider, Route} from 'react-router-dom'
 
 // Páginas
-import Disp1 from './routes/disp1.jsx';
-import Disp2 from './routes/disp2.jsx';
-import Disp3 from './routes/disp3.jsx';
-import Disp4 from './routes/disp4.jsx';
+import Disp1 from './routes/disp1';
+import Disp2 from './routes/Disp2';
+import Disp3 from './routes/Disp3';
+import Disp4 from './routes/Disp4';
 
 
 const router = createBrowserRouter([
@@ -16,20 +16,20 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       {
-        path: '/disp1',
+        path: 'Disp1',
         element: <Disp1 />
       },
       {
-        path: '/disp2',
+        path: 'Disp2',
         element: <Disp2 />
       },
       {
-        path: '/disp3',
+        path: 'Disp3',
         element: <Disp3 />
 
       },
       {
-        path: '/disp4',
+        path: 'Disp4',
         element: <Disp4 />
       }
     ]

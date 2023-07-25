@@ -6,20 +6,20 @@ const NavBar = () => {
         <nav className='navbar'>
             <ul>
                 <li>
-                    <Link to={'/'} className='par'>1</Link>
+                    <Link to={'/Disp1'} className='par'>1</Link>
                 </li>
                 <li>
-                    <Link to={'/disp2'} className='par'>2</Link>
+                    <Link to={'/Disp2'} className='par'>2</Link>
                 </li>
                 <li>
-                    <Link to={'/disp3'} className='par'>3</Link>
+                    <Link to={'/Disp3'} className='par'>3</Link>
                 </li>
                 <li>
-                    <Link to={'/disp3'} className='mat'>3</Link>
+                    <Link to={'/Disp3'} className='mat'>3</Link>
                 </li>
             </ul>
         </nav>
     )
 }
 
-export default Navbar;
+export default NavBar;
