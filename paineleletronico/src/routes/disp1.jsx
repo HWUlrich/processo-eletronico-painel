@@ -1,49 +1,48 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
 import './Disp.css';
-import blogFetchPar from '../axios/config';
+import blogFetchPar from '../axios/configPar';
 
 const Disp1 = () => {
 
   const [parl, setParl] = useState([]);
 
-  const getParl = async() => {
+  const getParl = async () => {
     
     try {
-      const response = await blogFetchPar.get('/parlamentar');
+      const response = await blogFetchPar.get("/parlamentar");
       
       const data = response.results;
       setParl(data);
 
     } catch (error) {
       console.log(error);
-      alert ("Falta de conxão com o Banco de Dados");
+      alert ("Falta de conxão com o SAPL");
     }
 
   }
 
   useEffect(() => {
     getParl();
-  }, [])
+  }, []);
 
-const disp1 = () => {
   return (
     <div className='par'>
       <h1>Parlamentares - CMNF</h1>
       {parl.length === 0 ? (<p>Carregando...</p>) : (
   
-        parl.map((parl) => (
-          <div className="parl" key={parl.id}>
-            <h2>{parl.nome_parlamentar}</h2>
-            <h1>{parl.partido}</h1>
-            <p>{parl.ativo}</p>            
+        parl.map((parla) => (
+          <div className="parl" key={parla.id}>
+            <h2>{parla.nome_parlamentar}</h2>
+            <h1>{parla.sigla}</h1>
+            <p>{parla.ativo}</p>            
           </div>
         )
         )
       )}
     </div>
-  )
-}
+  );
+
 }
 
 export default Disp1;

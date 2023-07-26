@@ -8,4 +8,4 @@ const Disp2 = () => {
   )
 }
 
-export default Disp2
+export default Disp2;

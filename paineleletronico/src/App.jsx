@@ -6,8 +6,9 @@ function App() {
   
   return (
    <div className='App'>
+      <Navbar />
       <div className='container'>
-        <Navbar />
+        <h1>Painel SAPL</h1>
         <Outlet />
       </div>
    </div>
