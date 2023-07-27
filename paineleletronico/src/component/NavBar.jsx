@@ -7,16 +7,16 @@ const NavBar = () => {
         <nav className='navbar'>
             <ul>
                 <li>
-                    <Link to={`/Disp1`}>Televisor 1</Link>
+                    <Link to={`/disp1`}>Televisor 1</Link>
                 </li>
                 <li>
-                    <Link to={`/Disp2`}>Televisor 2</Link>
+                    <Link to={`/disp2`}>Televisor 2</Link>
                 </li>
                 <li>
-                    <Link to={`/Disp3`}>Televisor 3</Link>
+                    <Link to={`/disp3`}>Televisor 3</Link>
                 </li>
                 <li>
-                    <Link to={`/Disp3`}>Televisor 3</Link>
+                    <Link to={`/disp3`}>Televisor 3</Link>
                 </li>
             </ul>
         </nav>

@@ -12,7 +12,7 @@ const Disp1 = () => {
     try {
       const response = await blogFetchPar.get("/parlamentar");
       
-      const data = response.results;
+      const data = response.data.results;
       setParl(data);
 
     } catch (error) {
@@ -29,9 +29,9 @@ const Disp1 = () => {
   return (
     <div className='par'>
       <h1>Parlamentares - CMNF</h1>
-      {parl.length === 0 ? (<p>Carregando...</p>) : (
+      {parl?.length === 0 ? (<p>Carregando...</p>) : (
   
-        parl.map((parla) => (
+        parl?.map((parla) => (
           <div className="parl" key={parla.id}>
             <h2>{parla.nome_parlamentar}</h2>
             <h1>{parla.sigla}</h1>

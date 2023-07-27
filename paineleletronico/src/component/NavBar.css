@@ -1,8 +1,6 @@
-:root {
-    color: blue;
-    background-color: lightsalmon;
-}
-
 .navbar {
-    color: blue;
+    width: 100%;
+    height: 100px;
+    background-color: blue;
+    color: white;
 }
