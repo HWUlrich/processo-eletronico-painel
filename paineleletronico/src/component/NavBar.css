@@ -1,6 +1,34 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
 .navbar {
     width: 100%;
-    height: 100px;
-    background-color: blue;
-    color: white;
+    height: 50px;
+    background-color: black;
 }
+
+.navbar ul {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: right;
+    gap: 2rem;
+}
+
+
+
+a {
+    font-weight: 500;
+    font-size: 1.5rem;
+    color: white;
+    text-decoration: none;
+    opacity: .7;
+    transition: .3s;
+    
+    
+  }
+  a:hover {
+    opacity: 1;
+  }

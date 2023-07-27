@@ -17,7 +17,7 @@ const Disp1 = () => {
 
     } catch (error) {
       console.log(error);
-      alert ("Falta de conxão com o SAPL");
+      alert ("Sem conexão com o SAPL");
     }
 
   }
@@ -33,8 +33,8 @@ const Disp1 = () => {
   
         parl?.map((parla) => (
           <div className="parl" key={parla.id}>
-            <h2>{parla.nome_parlamentar}</h2>
-            <h1>{parla.sigla}</h1>
+            <h1>{parla.nome_parlamentar}</h1>
+            <h2>{parla.sexo}</h2>
             <p>{parla.ativo}</p>            
           </div>
         )

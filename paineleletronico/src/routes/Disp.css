@@ -1,4 +1,18 @@
-.par {
-    color: yellow;
+.parl {
+    color: black;
+    background-color: aquamarine;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+    gap: 3rem;
+    
+}
 
+.parl h1 {
+    font-size: 3rem;
+}
+
+.parl h2 {
+    font-size: 2rem;
 }
