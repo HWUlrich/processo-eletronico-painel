@@ -26,23 +26,22 @@ const Disp1 = () => {
     getParl();
   }, []);
 
+  //if(data.ativo === true) {
   return (
-    <div className='par'>
-      
+    <div className='par'>      
       {parl?.length === 0 ? (<p>Carregando...</p>) : (
-  
         parl?.map((parla) => (
           <div className="parl" key={parla.id}>
             <h1>{parla.nome_parlamentar}</h1>
             <h2>{parla.sexo}</h2>
-            <p>{parla.id}</p>            
+            <p>{parla.ativo}</p>            
           </div>
         )
         )
-      )}
+        )}
     </div>
   );
-
+  //}
 }
 
 export default Disp1;
