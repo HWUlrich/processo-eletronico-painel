@@ -28,14 +28,14 @@ const Disp1 = () => {
 
   return (
     <div className='par'>
-      <h1>Parlamentares - CMNF</h1>
+      
       {parl?.length === 0 ? (<p>Carregando...</p>) : (
   
         parl?.map((parla) => (
           <div className="parl" key={parla.id}>
             <h1>{parla.nome_parlamentar}</h1>
             <h2>{parla.sexo}</h2>
-            <p>{parla.ativo}</p>            
+            <p>{parla.id}</p>            
           </div>
         )
         )

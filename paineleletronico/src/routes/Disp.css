@@ -1,6 +1,8 @@
 .parl {
-    color: black;
-    background-color: aquamarine;
+    width: 100%;
+    height: 100%;
+    color: white;
+    background-color: rgb(33, 143, 194);
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -10,9 +12,9 @@
 }
 
 .parl h1 {
-    font-size: 3rem;
+    font-size: 3.5rem;
 }
 
 .parl h2 {
-    font-size: 2rem;
+    font-size: 1rem;
 }

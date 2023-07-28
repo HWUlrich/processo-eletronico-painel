@@ -8,7 +8,6 @@ function App() {
    <div className='App'>
       <Navbar />
       <div className='container'>
-        <h1>Painel SAPL</h1>
         <Outlet />
       </div>
    </div>
