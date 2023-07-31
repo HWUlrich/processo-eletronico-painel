@@ -8,5 +8,3 @@ const blogFetchPar = axios.create({
 });
 
 export default blogFetchPar;
-
- 
