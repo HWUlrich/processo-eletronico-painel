@@ -6,7 +6,7 @@ const NavBar = () => {
     return (
         <nav className='navbar'>
             <div className='img'>
-                <img src='./public/images/Brasão_de_Nova_Friburgo_-_RJ.svg' alt='Logo Nova Friburgo'/>
+                <img src='../public/images/brasaoNovaFriburgo.png' alt='Logo Nova Friburgo'/>
             </div>
             <ul>
                 <li>
