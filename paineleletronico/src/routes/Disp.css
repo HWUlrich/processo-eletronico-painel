@@ -7,7 +7,6 @@
     flex-direction: row;
     align-items: center;
     justify-content: left;
-    gap: 3rem;
     
 }
 
@@ -16,9 +15,19 @@
 }
 
 .parl h2 {
-    font-size: 1rem;
+    font-size: 2rem;
+    color: yellow;
+    font-weight: 400;
 }
 
 .parl p {
     font-size: 1rem;
+}
+
+.parl-1 {
+    width: 65%;
+}
+
+.parl-2 {
+    width: 35%;
 }

@@ -1,9 +1,10 @@
 import React from 'react'
+import './Disp.css';
 
 const Disp2 = () => {
   return (
-    <div>
-      disp2
+    <div className="parl">
+      <h1>Disp2</h1>
     </div>
   )
 }

@@ -32,20 +32,24 @@ const Disp1 = () => {
   }, []);
 
   return (
-    <div className='par'>
+    <div className='par'>      
       {parl?.length === 0 ? (<p>Carregando...</p>) : (        
         parl?.map((parla) => (          
-          <div className="parl" key={parla.id}>             
-            <h1>{parla.nome_parlamentar}</h1>            
-            <h2>{parla.partido}</h2>
-            <p>{parla.ativo}</p>                  
+            (parla.ativo === true ? (         
+          <div className="parl" key={parla.id}>                         
+            <div className='parl-1'>
+              <h1>{parla.nome_parlamentar}</h1>
+            </div>            
+            <div className='parl-2'>
+              <h2>{parla.partido}</h2>
+            </div>                              
           </div>
+          ) : "")          
         )
         )
-      )}     
+      )} 
     </div>
   );
-
 }
 
 export default Disp1;
