@@ -1,8 +1,15 @@
+.par {
+    
+}
+
+
+
 .parl {
     width: 100%;
-    height: 100%;
+    height: 120px;
     color: white;
     background-color: rgb(33, 143, 194);
+    border: 1px solid white;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -21,7 +28,9 @@
 }
 
 .parl p {
-    font-size: 1rem;
+    font-size: 2rem;
+    font-weight: 400;
+    color: black;
 }
 
 .parl-1 {

@@ -5,8 +5,9 @@ import Logo from '../public/images/LogoNovaFriburgo.png';
 
 const NavBar = () => {
     return (
-        <nav className='navbar'>            
-            <img src={Logo} alt='Logo Nova Friburgo'/>            
+        <nav className='navbar'>                        
+            <img src={Logo} alt='Logo Nova Friburgo'/>
+            <h1>CMNF - Parlamentares - SAPL</h1>            
             <ul>
                 <li>
                     <Link to={`/disp1`}>1</Link>

@@ -52,4 +52,10 @@ a {
     width: 4%;
     margin-left: 20px;  
   }
+
+  h1 {
+    color: white;
+    font-size: 2rem;
+    font-weight: 400;    
+  }
   
