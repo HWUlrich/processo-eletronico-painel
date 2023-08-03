@@ -48,12 +48,8 @@ a {
     font-weight: 600;
   }
 
-  .img {
-    width: 20%;
-    height: 100%;
-    background-image: url('../public/images/brasaoNovaFriburgo.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center 90%;    
+  img {
+    width: 4%;
+    margin-left: 20px;  
   }
   
