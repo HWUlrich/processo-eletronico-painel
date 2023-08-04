@@ -7,7 +7,7 @@ const Disp1 = () => {
 
   const [parl, setParl] = useState([]);
   const [itensPerPage, setItensPerPage] = useState(7);
-  const [currentPage, setCurrentPage] = useState(3);
+  const [currentPage, setCurrentPage] = useState(0);
 
   // const pages = Math.ceil(parl.length / itensPerPage);
   const startIndex = currentPage * itensPerPage;
@@ -21,7 +21,7 @@ const Disp1 = () => {
       const response = await blogFetchPar.get("/parlamentar/search_parlamentares");
       //const response1 = await blogFetchPar.get("/partido");
 
-      const data = response.data.ativo('true');
+      const data = response.data.filter(data => data.ativo === true);
       setParl(data);
 
       //const data1 = response1.data.results;
@@ -40,9 +40,8 @@ const Disp1 = () => {
 
   return (
     <div className='par'>      
-      {currentItens?.length === 0 ? (<p>Carregando...</p>) : (        
-        currentItens?.map((parla) => (          
-            (parla.ativo === true || parla.ativo === false ? (         
+      {currentItens.length === 0 ? (<p>Carregando...</p>) : (        
+        currentItens.map((parla) => (                    
           <div className="parl" key={parla.id}>                         
             <div className='parl-1'>
               <h1>{parla.nome_parlamentar}</h1> 
@@ -50,8 +49,7 @@ const Disp1 = () => {
             <div className='parl-2'>
               <h2>{parla.partido}</h2>
             </div>                              
-          </div>
-          ) : "")          
+          </div>                    
         )
         )
       )} 
