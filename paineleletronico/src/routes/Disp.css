@@ -9,7 +9,7 @@
     height: 120px;
     color: white;
     background-color: rgb(33, 143, 194);
-    border: 1px solid white;
+    border-bottom: 1px solid white;
     display: flex;
     flex-direction: row;
     align-items: center;
