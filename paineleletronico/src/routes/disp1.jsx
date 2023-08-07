@@ -2,6 +2,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import './Disp.css';
 import blogFetchPar from '../axios/configPar';
+import blogFetchSes from '../axios/configSes';
 
 const Disp1 = () => {
 
@@ -19,7 +20,7 @@ const Disp1 = () => {
     
     try {
       const response = await blogFetchPar.get("/parlamentar/search_parlamentares");
-      //const response1 = await blogFetchPar.get("/partido");
+      const response1 = await blogFetchSes.get("/votoparlamentar");
 
       const data = response.data.filter(data => data.ativo === true);
       setParl(data);
