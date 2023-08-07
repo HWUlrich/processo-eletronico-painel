@@ -25,8 +25,8 @@ const Disp1 = () => {
       const data = response.data.filter(data => data.ativo === true);
       setParl(data);
 
-      //const data1 = response1.data.results;
-      //setParlSig(data1);
+      const data1 = response1.data.results;
+      setParlSig(data1);
 
     } catch (error) {
       console.log(error);
