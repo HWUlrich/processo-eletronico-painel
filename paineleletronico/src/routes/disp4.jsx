@@ -2,6 +2,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import './Disp.css';
 
+
 const Disp4 = () => {
 
   const [parl, setParl] = useState([]);
@@ -17,7 +18,8 @@ const Disp4 = () => {
   const getParl = async () => {
     
     try {
-      const response = await data.get('https://sapl.novafriburgo.rj.leg.br/api/sessao-plenaria');
+      const response = await data.get(
+        'https://sapl.novafriburgo.rj.leg.br/api/sessao-plenaria');
       console.log(response);
       //const response1 = await blogFetchPar.get("/partido");
 

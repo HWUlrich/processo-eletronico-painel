@@ -1,36 +1,39 @@
 .parl {
     width: 100%;
     height: 120px;
-    color: white;
-    background-color: rgb(33, 143, 194);
-    border-bottom: 1px solid white;
+    color: red;
+    
+    border-bottom: 1px solid gray;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: left;    
 }
 
-.parl h1 {
+.parl-1 h1 {
     font-size: 2.5rem;
     margin-left: 1rem;
+    color: rgb(3, 45, 100);
+    font-weight: 700;
+    letter-spacing: .5rem;
 }
 
-.parl h2 {
+.parl-2 h2 {
     font-size: 2rem;
-    color: yellow;
-    font-weight: 300;
+    color: #189583;
+    font-weight: 800;
 }
 
 .par p {
     font-size: 2rem;
-    color: yellow;
+    color: red;
     letter-spacing: 3px;
 }
 
 .parl-1 {
-    width: 70%;
+    width: 75%;
 }
 
 .parl-2 {
-    width: 30%;
+    width: 25%;
 }

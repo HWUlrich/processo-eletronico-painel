@@ -7,7 +7,7 @@ import blogFetchSes from '../axios/configSes';
 const Disp1 = () => {
 
   const [parl, setParl] = useState([]);
-  const [parlSig. setParlSig] = useState([]);
+  const [parlSig, setParlSig] = useState([]);
   const [itensPerPage, setItensPerPage] = useState(7);
   const [currentPage, setCurrentPage] = useState(0);
 
