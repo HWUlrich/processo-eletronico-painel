@@ -50,7 +50,10 @@ const Disp1 = () => {
             </div>            
             <div className='parl-2'>
               <h2>{parla.partido}</h2>
-            </div>                              
+            </div>
+            <div className='parl-3'>
+              <h2>voto</h2>
+            </div>
           </div>                    
         )
         )

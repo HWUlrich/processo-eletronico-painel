@@ -1,8 +1,7 @@
 .parl {
     width: 100%;
     height: 120px;
-    color: red;
-    
+    color: red;    
     border-bottom: 1px solid gray;
     display: flex;
     flex-direction: row;
@@ -33,9 +32,16 @@
 }
 
 .parl-1 {
-    width: 70%;
+    width: 65%;
 }
 
 .parl-2 {
     width: 30%;
+}
+
+.parl-3 h2 {
+    font-size: 1.5rem;
+    color: red;
+    padding-right: 2.5rem;
+
 }

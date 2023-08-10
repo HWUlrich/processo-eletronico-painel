@@ -50,14 +50,14 @@ a {
   }
 
   img {
-    width: 3%;
+    width: 5%;
     margin-left: 2rem;  
   }
 
   .navbar h1 {
     color: white;
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: 400;
-    letter-spacing: 1rem;    
+    letter-spacing: .5rem;    
   }
   
