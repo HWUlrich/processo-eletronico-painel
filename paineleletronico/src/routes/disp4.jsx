@@ -1,33 +1,27 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import './Disp.css';
+import axios from 'axios';
 
 
-const Disp4 = () => {
+const Disp4 = () => {  
 
-  const [parl, setParl] = useState([]);
-  const [itensPerPage, setItensPerPage] = useState(7);
-  const [currentPage, setCurrentPage] = useState(0);
-
-  // const pages = Math.ceil(parl.length / itensPerPage);
-  const startIndex = currentPage * itensPerPage;
-  const endIndex = startIndex + itensPerPage;
-  const currentItens = parl.slice(startIndex, endIndex);
-
+  const [parl, setParl] = useState([]);    
 
   const getParl = async () => {
+
+    const date = new Date().toLocaleDateString();
+    //console.log(date);
     
     try {
-      const response = await data.get(
-        'https://sapl.novafriburgo.rj.leg.br/api/sessao-plenaria');
-      console.log(response);
-      //const response1 = await blogFetchPar.get("/partido");
-
-      const data = response.data.filter(data => data.datReuniaoString === getDate());
-      setParl(data);
-
-      //const data1 = response1.data.results;
-      //setParlSig(data1);
+      const url = 'https://sapl.novafriburgo.rj.leg.br/api/sessao-plenaria';
+      const response = await axios.get(url);
+      //console.log(response);
+     
+      const data = response.data.results.filter(
+        results => results.datReuniaoString.slice(0, 10) >= date);
+      console.log(data);
+      setParl(data);  
 
     } catch (error) {
       console.log(error);
@@ -42,14 +36,14 @@ const Disp4 = () => {
 
   return (
     <div className='par'>      
-      {currentItens.length === 0 ? (<p>Carregando...</p>) : (        
-        currentItens.map((parla) => (                    
+      {parl?.length === 0 ? (<p>Carregando...</p>) : (        
+        parl?.map((parla) => (                    
           <div className="parl" key={parla.id}>                         
             <div className='parl-1'>
-              <h1>{parla.nome_parlamentar}</h1> 
+              <h1>{parla.txtTituloReuniao}</h1> 
             </div>            
             <div className='parl-2'>
-              <h2>{parla.partido}</h2>
+              <h2>{parla.datReuniaoString}</h2>
             </div>                              
           </div>                    
         )
