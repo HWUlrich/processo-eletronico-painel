@@ -20,8 +20,9 @@ const Disp4 = () => {
      
       const data = response.data.results.filter(
         results => results.datReuniaoString.slice(0, 10) >= date);
-      console.log(data);
-      setParl(data);  
+      console.log(data);      
+      setParl(data);
+      
 
     } catch (error) {
       console.log(error);
