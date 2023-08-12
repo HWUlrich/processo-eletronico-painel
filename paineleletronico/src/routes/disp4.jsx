@@ -36,14 +36,14 @@ const Disp4 = () => {
   }, []);
 
   return (
-    <div className='par'>      
-      {parl?.length === 0 ? (<p>Carregando...</p>) : (        
+    <div className='painel'>      
+      {parl?.length === 0 ? (<p>Carregando Painel...</p>) : (        
         parl?.map((parla) => (                    
-          <div className="parl" key={parla.id}>                         
-            <div className='parl-1'>
+          <div className="painel-0" key={parla.id}>                         
+            <div className='painel-1'>
               <h1>{parla.txtTituloReuniao}</h1> 
             </div>            
-            <div className='parl-2'>
+            <div className='parinel-2'>
               <h2>{parla.datReuniaoString}</h2>
             </div>                              
           </div>                    

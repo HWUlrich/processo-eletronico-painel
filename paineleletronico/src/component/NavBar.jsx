@@ -7,7 +7,7 @@ const NavBar = () => {
     return (
         <nav className='navbar'>                        
             <img src={Logo} alt='Logo Nova Friburgo'/>
-            <h1>CMNF - Parlamentares - SAPL</h1>            
+            <h1>CÂMARA MUNICIPAL DE NOVA FRIBURGO - SAPL</h1>            
             <ul>
                 <li>
                     <Link to={`/disp1`}>1</Link>
