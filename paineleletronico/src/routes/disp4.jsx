@@ -6,22 +6,26 @@ import axios from 'axios';
 
 const Disp4 = () => {  
 
-  const [parl, setParl] = useState([]);    
+  const [sess, setSess] = useState([]);    
 
-  const getParl = async () => {
+  const getSes = async () => {
 
-    const date = new Date().toLocaleDateString();
+    //const date = new Date().toLocaleDateString();
     //console.log(date);
     
     try {
-      const url = 'https://sapl.novafriburgo.rj.leg.br/api/sessao-plenaria';
+      const url = `https://sapl.novafriburgo.rj.leg.br/api/sessao-plenaria/`;
       const response = await axios.get(url);
       //console.log(response);
      
-      const data = response.data.results.filter(
+      const data = response.data.results.slice(-1);
+      
+      /*.filter(
         results => results.datReuniaoString.slice(0, 10) >= date);
+        */
+
       console.log(data);      
-      setParl(data);
+      setSess(data);
       
 
     } catch (error) {
@@ -32,19 +36,19 @@ const Disp4 = () => {
   }
 
   useEffect(() => {
-    getParl();    
+    getSes();    
   }, []);
 
   return (
     <div className='painel'>      
-      {parl?.length === 0 ? (<p>Carregando Painel...</p>) : (        
-        parl?.map((parla) => (                    
-          <div className="painel-0" key={parla.id}>                         
+      {sess?.length === 0 ? (<p>Carregando Painel...</p>) : (        
+        sess?.map((sessao) => (                    
+          <div className="painel-0" key={sessao.id}>                         
             <div className='painel-1'>
-              <h1>{parla.txtTituloReuniao}</h1> 
+              <h1>{sessao.txtTituloReuniao}</h1> 
             </div>            
             <div className='parinel-2'>
-              <h2>{parla.datReuniaoString}</h2>
+              <h2>{sessao.datReuniaoString}</h2>
             </div>                              
           </div>                    
         )
