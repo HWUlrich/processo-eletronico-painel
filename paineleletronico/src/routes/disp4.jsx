@@ -10,19 +10,21 @@ const Disp4 = () => {
 
   const getSes = async () => {
 
-    //const date = new Date().toLocaleDateString();
-    //console.log(date);
-    
+        
     try {
-      const url = `https://sapl.novafriburgo.rj.leg.br/api/sessao-plenaria/`;
+      const url = `https://sapl.novafriburgo.rj.leg.br/api/sessao-plenaria`;
       const response = await axios.get(url);
-      //console.log(response);
+      
      
+      const pag = response.data.pagination.total_pages;
+      console.log(pag);
+      const key = Object.keys(response);
+      const lastKey = key[key.length - 1];
+      
+      
       const data = response.data.results.slice(-1);
       
-      /*.filter(
-        results => results.datReuniaoString.slice(0, 10) >= date);
-        */
+     
 
       console.log(data);      
       setSess(data);
