@@ -2,14 +2,15 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import './Disp.css';
 import blogFetchPar from '../axios/configPar';
+import blogFetchVot from '../axios/configVot';
 
 const Disp3 = () => {
 
   const [parl, setParl] = useState([]);
+  const [parlSig, setParlSig] = useState([]);
   const [itensPerPage, setItensPerPage] = useState(7);
   const [currentPage, setCurrentPage] = useState(2);
 
-  // const pages = Math.ceil(parl.length / itensPerPage);
   const startIndex = currentPage * itensPerPage;
   const endIndex = startIndex + itensPerPage;
   const currentItens = parl.slice(startIndex, endIndex);
@@ -19,13 +20,13 @@ const Disp3 = () => {
     
     try {
       const response = await blogFetchPar.get("/parlamentar/search_parlamentares");
-      //const response1 = await blogFetchPar.get("/partido");
+      const response1 = await blogFetchVot.get("/votoparlamentar");
 
       const data = response.data.filter(data => data.ativo === true);
       setParl(data);
 
-      //const data1 = response1.data.results;
-      //setParlSig(data1);
+      const data1 = response1.data.results;
+      setParlSig(data1);
 
     } catch (error) {
       console.log(error);

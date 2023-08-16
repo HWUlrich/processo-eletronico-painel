@@ -13,18 +13,17 @@ const Disp4 = () => {
 
         
     try {
-      const response = await blogFetchSes.get('?page=69&page_size=10');
+      const resp = await blogFetchSes.get();
+      const page = resp.data.pagination.total_pages;
+      const date = new Date();
 
-      //  'https://sapl.novafriburgo.rj.leg.br/api/sessao-plenaria/?page=69&page_size=10'      
-     
-      const pag = response.data.pagination.total_pages;
-      //console.log(pag);
-      //const key = Object.keys(response);
-      //console.log(key);
-      //const lastKey = key[key.length - 1];
-      //console.log(lastKey);
-      //const lastItem = response[lastKey];
-      // console.log(lastItem);      
+      const response = await blogFetchSes.get(
+        
+        resp.data.results.datReuniaoString === date ? (
+          `?page=${page}&page_size=10`
+        ) : (
+          `?page=${page-1}&page_size=10`        )
+        );            
       
       const data = response.data.results;      
       setSes(data);      
