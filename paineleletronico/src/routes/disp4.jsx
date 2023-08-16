@@ -1,7 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import './Disp.css';
-import axios from 'axios';
 import blogFetchSes from '../axios/configSes';
 
 
@@ -15,14 +14,23 @@ const Disp4 = () => {
     try {
       const resp = await blogFetchSes.get();
       const page = resp.data.pagination.total_pages;
-      const date = new Date();
+      const date = new Date().toLocaleDateString();
+      const dateSis = resp.data.results.datReuniaoString;
+      
+      for (let i = 0; i < resp.data.results.length; i++) {
+
+        dateSis[i] === date;
+        break;       
+
+      } 
 
       const response = await blogFetchSes.get(
         
-        resp.data.results.datReuniaoString === date ? (
+        dateSis === date ? (
           `?page=${page}&page_size=10`
         ) : (
-          `?page=${page-1}&page_size=10`        )
+          `?page=${page-1}&page_size=10`
+        )
         );            
       
       const data = response.data.results;      
