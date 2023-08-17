@@ -9,32 +9,32 @@ const Disp4 = () => {
   const [ses, setSes] = useState([]);    
 
   const getSes = async () => {
-
         
     try {
+      
       const resp = await blogFetchSes.get();
       const page = resp.data.pagination.total_pages;
-      const date = new Date().toLocaleDateString();
-      const dateSis = resp.data.results.datReuniaoString;
+      let response = await blogFetchSes.get(`?page=${page}&page_size=10`);
+      const date = new Date().toLocaleDateString();      
+      console.log(date);
       
-      for (let i = 0; i < resp.data.results.length; i++) {
+      for(let i = 0; i < response.data.results.length; i++) {      
 
-        dateSis[i] === date;
-        break;       
+      if(response.data.results[i].datReuniaoString.slice(0,9) === date) {
 
-      } 
+        response;
+        break;         
 
-      const response = await blogFetchSes.get(
+       } else {
         
-        dateSis === date ? (
-          `?page=${page}&page_size=10`
-        ) : (
-          `?page=${page-1}&page_size=10`
-        )
-        );            
-      
-      const data = response.data.results;      
-      setSes(data);      
+        response = await blogFetchSes.get(`?page=${page-1}&page_size=10`)
+
+       }
+
+      }       
+
+      const data = response.data.results;     
+      setSes(data);            
 
     } catch (error) {
       console.log(error);
