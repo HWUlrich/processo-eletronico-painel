@@ -22,7 +22,7 @@ const Disp4 = () => {
       //console.log(date);
       
       for(let i = 0; i < response.data.results.length; i++) {      
-
+      
       if(response.data.results[i].datReuniaoString.slice(0,9) === date) {
         response;
         break;  
@@ -30,10 +30,10 @@ const Disp4 = () => {
         response = await blogFetchSes.get(`?page=${page-1}&page_size=10`)
       }
       }
-
-      // na variável data, é desejado filtrar apenas o objeto do array que tenha a data atual
+      // na variável data, é desejado procurar apenas o objeto do array que tenha a data atual
       // a fim de trazer as informações da sessão do dia
-      const data = response.data.results.find(data => data.datReuniaoString.slice(0,9) === date);
+      const data = response.data.results.find(data1 => data1.datReuniaoString.slice(0,9) === date);
+      console.log(data);
       setSes(data);            
 
     } catch (error) {
