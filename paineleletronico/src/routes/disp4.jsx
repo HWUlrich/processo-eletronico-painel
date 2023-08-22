@@ -1,4 +1,3 @@
-import React from 'react';
 import { useState, useEffect } from 'react';
 import './Disp.css';
 import blogFetchSes from '../axios/configSes';
@@ -25,14 +24,14 @@ const Disp4 = () => {
       
       if(response.data.results[i].datReuniaoString.slice(0,9) === date) {
         response;
-        break;  
       } else {        
         response = await blogFetchSes.get(`?page=${page-1}&page_size=10`)
       }
       }
       // na variável data, é desejado procurar apenas o objeto do array que tenha a data atual
       // a fim de trazer as informações da sessão do dia
-      const data = response.data.results.find(data1 => data1.datReuniaoString.slice(0,9) === date);
+      const data = response.data.results.find(data => data.datReuniaoString.slice(0,9) === date);
+
       console.log(data);
       setSes(data);            
 
