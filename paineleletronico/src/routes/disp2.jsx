@@ -19,8 +19,8 @@ const Disp2 = () => {
   const getParl = async () => {
     
     try {
-      const response = await blogFetchPar.get("/parlamentar/search_parlamentares");
-      const response1 = await blogFetchVot.get("/votoparlamentar");
+      const response = await blogFetchPar.get("parlamentar/search_parlamentares");
+      const response1 = await blogFetchVot.get("votoparlamentar");
 
       const data = response.data.filter(data => data.ativo === true);
       setParl(data);

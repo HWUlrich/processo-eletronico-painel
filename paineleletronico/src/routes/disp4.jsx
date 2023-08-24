@@ -1,55 +1,48 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import './Disp.css';
 import blogFetchSes from '../axios/configSes';
+import moment from 'moment';
 
 
 const Disp4 = () => {  
+  const [sessions, setSesssions] = useState([]);    
 
-  const [ses, setSes] = useState([]);    
+  const filterTodaySessions = (sessions = []) => {
+    const today = moment();
+    const filteredSessions = sessions.reduce((result, session) => {
+    const sessionDate = moment(session.datReuniaoString, "DD/MM/YYYY HH:mm:ss");
+    if (sessionDate.isSame(today, 'day')) {
+      result.push(session);
+    }
+    return result;
+  }, []);
+    return filteredSessions;
+  }
 
-  const getSes = async () => {
-        
+  const getSessions = useCallback(async () => {   
     try {
-      // O desejado é que o código abaixo traga as informações do arquivo JSON da sessão na data atual
-      // Estou assumindo que caso as informações não estejam no último JSON paginado, estarão no penúltimo
-      // por isso, temos: page e page-1
-      // sendo o results um array de objetos, estou fazendo um loop for a fim de encontrar a paginação correta 
-      const resp = await blogFetchSes.get();
-      const page = resp.data.pagination.total_pages;
-      let response = await blogFetchSes.get(`?page=${page}&page_size=10`);
-      const date = new Date().toLocaleDateString();      
-      //console.log(date);
-      
-      for(let i = 0; i < response.data.results.length; i++) {      
-      
-      if(response.data.results[i].datReuniaoString.slice(0,9) === date) {
-        response;
-      } else {        
-        response = await blogFetchSes.get(`?page=${page-1}&page_size=10`)
-      }
-      }
-      // na variável data, é desejado procurar apenas o objeto do array que tenha a data atual
-      // a fim de trazer as informações da sessão do dia
-      const data = response.data.results.find(data => data.datReuniaoString.slice(0,9) === date);
+      const sessionsResponse = await blogFetchSes.get();
+      const lastPage = sessionsResponse.data.pagination.total_pages;
+      const lastPageResponse = await blogFetchSes.get(`?page=${lastPage}&page_size=10`);
+      const penultimatePageResponse = await blogFetchSes.get(`?page=${lastPage -1}&page_size=10`);
 
-      console.log(data);
-      setSes(data);            
-
+      setSesssions(filterTodaySessions(lastPageResponse.data.results));
+      setSesssions((previousState)=> [...previousState, ...filterTodaySessions(penultimatePageResponse.data.results)]);
     } catch (error) {
       console.log(error);
       alert ("Sem conexão com o SAPL");
     }
 
-  }
+    }, []);
 
   useEffect(() => {
-    getSes();    
-  }, []);
+    getSessions();    
+  }, [getSessions]);
 
   return (
     <div className='painel'>      
-      {ses?.length === 0 ? (<p>Carregando Painel...</p>) : (        
-        ses?.map((sessao) => (                    
+      {sessions?.length === 0 ? (<p>Carregando Painel...</p>) : (        
+        sessions?.map((sessao) => (                    
           <div className="painel-0" key={sessao.codReuniao}>                         
             <div className='painel-1'>
               <h1>{sessao.txtTituloReuniao}</h1> 
