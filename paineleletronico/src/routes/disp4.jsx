@@ -9,8 +9,10 @@ const Disp4 = () => {
 
   const filterTodaySessions = (sessions = []) => {
     const today = moment();
+    
     const filteredSessions = sessions.reduce((result, session) => {
     const sessionDate = moment(session.datReuniaoString, "DD/MM/YYYY HH:mm:ss");
+
     if (sessionDate.isSame(today, 'day')) {
       result.push(session);
     }
