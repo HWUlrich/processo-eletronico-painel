@@ -21,7 +21,7 @@ const Disp4 = () => {
     return filteredSessions;
   }
 
-  const getSessions = useCallback(async () => {   
+  const getSessions = useCallback ( async () => {   
     try {
       const sessionsResponse = await blogFetchSes.get();
       const lastPage = sessionsResponse.data.pagination.total_pages;

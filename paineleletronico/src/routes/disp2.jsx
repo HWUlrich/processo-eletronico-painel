@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import './Disp.css';
 import blogFetchPar from '../axios/configPar';
 import blogFetchVot from '../axios/configVot';
@@ -16,7 +16,7 @@ const Disp2 = () => {
   const currentItens = parl.slice(startIndex, endIndex);
 
 
-  const getParl = async () => {
+  const getParl = useCallback ( async () => {
     
     try {
       const response = await blogFetchPar.get("parlamentar/search_parlamentares");
@@ -33,11 +33,11 @@ const Disp2 = () => {
       alert ("Sem conexão com o SAPL");
     }
 
-  }
+  }, []);
 
   useEffect(() => {
     getParl();    
-  }, []);
+  }, [getParl]);
 
   return (
     <div className='par'>      
