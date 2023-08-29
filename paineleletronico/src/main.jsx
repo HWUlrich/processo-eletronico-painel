@@ -9,6 +9,7 @@ import Disp1 from './routes/disp1.jsx';
 import Disp2 from './routes/disp2.jsx';
 import Disp3 from './routes/disp3.jsx';
 import Disp4 from './routes/disp4.jsx';
+import Disp5 from './routes/disp5.jsx';
 
 
 const router = createBrowserRouter([
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
       {
         path: '/disp4',
         element: <Disp4 />        
+      },
+      {
+        path: '/disp5',
+        element: <Disp5 />        
       }
     ]
   }

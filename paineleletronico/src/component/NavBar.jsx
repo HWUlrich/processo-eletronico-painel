@@ -21,6 +21,9 @@ const NavBar = () => {
                 <li>
                     <Link to={`/disp4`}>4</Link>
                 </li>
+                <li>
+                    <Link to={`/disp5`}>5</Link>
+                </li>
             </ul>
         </nav>
     )
