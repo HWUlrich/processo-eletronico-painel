@@ -1,25 +1,26 @@
 import { useState, useEffect, useCallback } from 'react';
 import './Disp.css';
-import blogFetchSes from '../axios/configSes';
-import moment from 'moment';
+import aPIFetchSes from '../axios/configSes';
+import Disp1 from './disp1';
+
 
 
 const Disp4 = () => {
 
-  const [sessions, setSesssions] = useState([]);    
+  const [sessions, setSessions] = useState([]);     
 
-  
-  
+  const getSessions = useCallback ( async () => {
 
-  const getSessions = useCallback ( async () => {   
-    try {
-      const sessionsResponse = await blogFetchSes.get();
-      const lastPage = sessionsResponse.data.pagination.total_pages;
-      const lastPageResponse = await blogFetchSes.get(`?page=${lastPage}&page_size=10`);
-      const penultimatePageResponse = await blogFetchSes.get(`?page=${lastPage -1}&page_size=10`);
+    try {      
+      const sessionsResponse = await aPIFetchSes.get(`?data_ordem=2023-08-22`);
+      
+      const merged = sessionsResponse.map((screen) => ({
+        ...Disp1.dataPresent.find((o) => o.sessao_plenaria === screen.sessao_plenaria),        
+        ...screen      
+      }));
 
-      setSesssions(filterTodaySessions(lastPageResponse.data.results));
-      setSesssions((previousState)=> [...previousState, ...filterTodaySessions(penultimatePageResponse.data.results)]);
+      setSessions(merged);
+
     } catch (error) {
       console.log(error);
       alert ("Sem conexão com o SAPL");
@@ -35,12 +36,12 @@ const Disp4 = () => {
     <div className='painel'>      
       {sessions?.length === 0 ? (<p>Carregando Painel...</p>) : (        
         sessions?.map((sessao) => (                    
-          <div className="painel-0" key={sessao.codReuniao}>                         
+          <div className="painel-0" key={sessao.id}>                         
             <div className='painel-1'>
-              <h1>{sessao.txtTituloReuniao}</h1> 
+              <h1>{sessao.__str__}</h1> 
             </div>            
-            <div className='parinel-2'>
-              <h2>{sessao.datReuniaoString}</h2>
+            <div className='painel-2'>
+              <h2>{sessao.metadata}</h2>
             </div>                              
           </div>                    
         )
