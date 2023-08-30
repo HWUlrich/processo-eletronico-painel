@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import './Disp.css';
 import aPIFetchSes from '../axios/configSes';
-import Disp1 from './disp1';
+import aPIFetchPres from '../axios/configPres';
 
 
 
@@ -11,11 +11,16 @@ const Disp4 = () => {
 
   const getSessions = useCallback ( async () => {
 
-    try {      
+    try { 
+
+      let numSesPlenaria = 697;
       const sessionsResponse = await aPIFetchSes.get(`?data_ordem=2023-08-22`);
+      const presentResponse = await aPIFetchPres.get(`?page_size=21&sessao_plenaria=${numSesPlenaria}`);  
+      const dataPresent = presentResponse.data.results; 
+      
       
       const merged = sessionsResponse.map((screen) => ({
-        ...Disp1.dataPresent.find((o) => o.sessao_plenaria === screen.sessao_plenaria),        
+        ...dataPresent.find((o) => o.sessao_plenaria === screen.sessao_plenaria),        
         ...screen      
       }));
 
@@ -34,8 +39,8 @@ const Disp4 = () => {
 
   return (
     <div className='painel'>      
-      {sessions?.length === 0 ? (<p>Carregando Painel...</p>) : (        
-        sessions?.map((sessao) => (                    
+      {sessions.length === 0 ? (<p>Carregando Painel...</p>) : (        
+        sessions.map((sessao) => (                    
           <div className="painel-0" key={sessao.id}>                         
             <div className='painel-1'>
               <h1>{sessao.__str__}</h1> 

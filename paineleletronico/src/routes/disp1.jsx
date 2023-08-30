@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState, useEffect, useCallback } from 'react';
 import './Disp.css';
 import aPIFetchPar from '../axios/configPar';
@@ -48,8 +49,8 @@ const Disp1 = () => {
 
   return (
     <div className='par'>      
-      {currentItens.length === 0 ? (<p>Carregando Parlamentares...</p>) : (        
-        currentItens.map((parlament) => (                     
+      {currentItens?.length === 0 ? (<p>Carregando Parlamentares...</p>) : (        
+        currentItens?.map((parlament) => (                     
           <div className="parl" key={parlament.id}>                         
             <div className='parl-1'>
               <h1>{parlament.nome_parlamentar}</h1> 
@@ -57,8 +58,8 @@ const Disp1 = () => {
             <div className='parl-2'>
               <h2>{parlament.partido}</h2>
             </div>
-            <div className='parl-3'>
-              <h2>{parlament.parlamentar}</h2>
+            <div className='parl-3'>             
+              <h2>{parlament.parlamentar}</h2>            
             </div> 
             <div className='parl-4'>
               <h2>{parlament.voto}</h2>
