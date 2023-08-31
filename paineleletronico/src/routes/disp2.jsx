@@ -17,11 +17,11 @@ const Disp2 = () => {
   const getParl = useCallback ( async () => {
     
     try {
-      let numSesPlenaria = 697;
-      let ordem = 2380;
+      let numSesPlenaria = 695;
+      let ordem = 2540;
       const parlamentResponse = await aPIFetchPar.get("parlamentar/search_parlamentares");      
       const presentResponse = await aPIFetchPres.get(`?page_size=21&sessao_plenaria=${numSesPlenaria}`);      
-      const votoResponse = await aPIFetchVot.get(`?ordem=${ordem}`);
+      const votoResponse = await aPIFetchVot.get(`?ordem=${ordem}&page_size=21`);
       
       const dataParlament = parlamentResponse.data.filter((data) => data.ativo === true);    
       const dataPresent = presentResponse.data.results; 

@@ -4,7 +4,6 @@ import aPIFetchSes from '../axios/configSes';
 import aPIFetchPres from '../axios/configPres';
 
 
-
 const Disp4 = () => {
 
   const [sessions, setSessions] = useState([]);     
@@ -43,7 +42,7 @@ const Disp4 = () => {
         sessions.map((sessao) => (                    
           <div className="painel-0" key={sessao.id}>                         
             <div className='painel-1'>
-              <h1>{sessao.__str__}</h1> 
+              <h1>teste</h1> 
             </div>            
             <div className='painel-2'>
               <h2>{sessao.metadata}</h2>

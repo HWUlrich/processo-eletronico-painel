@@ -17,11 +17,11 @@ const Disp3 = () => {
   const getParl = useCallback ( async () => {
     
     try {
-      let numSesPlenaria = 697;
-      let ordem = 2380;
+      let numSesPlenaria = 695;
+      let ordem = 2540;
       const parlamentResponse = await blogFetchPar.get("parlamentar/search_parlamentares");      
       const presentResponse = await blogFetchPres.get(`?page_size=21&sessao_plenaria=${numSesPlenaria}`);      
-      const votoResponse = await blogFetchVot.get(`?ordem=${ordem}`);
+      const votoResponse = await blogFetchVot.get(`?ordem=${ordem}&page_size=21`);
       
       const dataParlament = parlamentResponse.data.filter((data) => data.ativo === true);
       const dataPresent = presentResponse.data.results;  
