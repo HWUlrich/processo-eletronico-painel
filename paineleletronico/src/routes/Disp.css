@@ -41,26 +41,31 @@
 }
 
 .parl-3 {
-    width: 10%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.parl-4 {
     width: 20%;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
+.parl-4 {
+    width: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .parl-3 h2 {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     color: #189583;        
 }
 
+.parl-3 h3 {
+    font-size: 1.3rem;
+    color: red;        
+}
+
 .parl-4 h2 {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     color: red;    
     font-style: italic;
 }

@@ -12,8 +12,8 @@ const Disp4 = () => {
 
     try { 
 
-      let numSesPlenaria = 697;
-      const sessionsResponse = await aPIFetchSes.get(`?data_ordem=2023-08-22`);
+      let numSesPlenaria = 695;
+      const sessionsResponse = await aPIFetchSes.get(`?data_ordem=2023-08-15`);
       const presentResponse = await aPIFetchPres.get(`?page_size=21&sessao_plenaria=${numSesPlenaria}`);  
       const dataPresent = presentResponse.data.results; 
       

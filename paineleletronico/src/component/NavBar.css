@@ -10,6 +10,11 @@
     
 }
 
+.navbar h2 {
+  color: white;
+  font-size: .8rem;
+}
+
 .navbar ul {
     width: 20%;
     height: 100%;
@@ -23,7 +28,7 @@
 }
 
 .navbar ul li {
-    width: 1.5rem ;
+    width: 1.5rem;
     height: 1.5rem;
     background-color: white;
     border-radius: 50%;
