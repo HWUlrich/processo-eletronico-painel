@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import './Disp.css';
 import aPIFetchSes from '../axios/configSes';
-import aPIFetchPres from '../axios/configPres';
+import aPIFetchRegVot from '../axios/configRegVot';
 
 
 const Disp4 = () => {
@@ -11,18 +11,21 @@ const Disp4 = () => {
   const getSessions = useCallback ( async () => {
 
     try { 
-
-      let numSesPlenaria = 695;
+      let materia = 46327;
+      //let numSesPlenaria = 695;
       const sessionsResponse = await aPIFetchSes.get(`?data_ordem=2023-08-15`);
-      const presentResponse = await aPIFetchPres.get(`?page_size=21&sessao_plenaria=${numSesPlenaria}`);  
-      const dataPresent = presentResponse.data.results;      
-      const dataSession = sessionsResponse.data.results;       
+      const regVotResponse = await aPIFetchRegVot.get(`?materia=${materia}`);
+      //console.log(regVotResponse);            
+      const dataSession = sessionsResponse.data.results; 
+      const dataRegVot = regVotResponse.data.results;        
       
       
       const merged = dataSession.map((screen) => ({
-        ...dataPresent.find((o) => o.sessao_plenaria === screen.sessao_plenaria),        
+        ...dataRegVot.find((o) => o.materia === screen.materia),        
         ...screen      
       }));
+
+      
 
       setSessions(merged);
 
