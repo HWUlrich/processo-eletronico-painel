@@ -15,10 +15,11 @@ const Disp4 = () => {
       let numSesPlenaria = 695;
       const sessionsResponse = await aPIFetchSes.get(`?data_ordem=2023-08-15`);
       const presentResponse = await aPIFetchPres.get(`?page_size=21&sessao_plenaria=${numSesPlenaria}`);  
-      const dataPresent = presentResponse.data.results; 
+      const dataPresent = presentResponse.data.results;      
+      const dataSession = sessionsResponse.data.results;       
       
       
-      const merged = sessionsResponse.map((screen) => ({
+      const merged = dataSession.map((screen) => ({
         ...dataPresent.find((o) => o.sessao_plenaria === screen.sessao_plenaria),        
         ...screen      
       }));
@@ -39,13 +40,13 @@ const Disp4 = () => {
   return (
     <div className='painel'>      
       {sessions.length === 0 ? (<p>Carregando Painel...</p>) : (        
-        sessions.map((sessao) => (                    
+        sessions.map((sessao) => (                                      
           <div className="painel-0" key={sessao.id}>                         
             <div className='painel-1'>
-              <h1>teste</h1> 
+              <h1>{sessao.__str__}</h1> 
             </div>            
             <div className='painel-2'>
-              <h2>{sessao.metadata}</h2>
+              <h2>{sessao.materia}</h2>
             </div>                              
           </div>                    
         )
