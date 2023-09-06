@@ -5,6 +5,7 @@ import aPIFetchPar from '../axios/configPar';
 import aPIFetchVot from '../axios/configVot';
 import aPIFetchPres from '../axios/configPres';
 
+
 const Disp1 = () => {
 
   const [parlament, setParlament] = useState([]);
