@@ -5,7 +5,6 @@ import aPIFetchPar from '../axios/configPar';
 import aPIFetchVot from '../axios/configVot';
 import aPIFetchPres from '../axios/configPres';
 
-
 const Disp1 = () => {
 
   const [parlament, setParlament] = useState([]);
@@ -15,11 +14,12 @@ const Disp1 = () => {
   const startIndex = currentPage * itensPerPage;
   const endIndex = startIndex + itensPerPage;
   const currentItens = parlament.slice(startIndex, endIndex);
+  
 
   const getParl = useCallback ( async () => {
     
     try {
-      let numSesPlenaria = 695; // 15-08-2023
+      let numSesPlenaria = 695 // Disp4.sessions.map((sessao) => sessao.sessao_plenaria); // 15-08-2023
       let ordem = 2540; // 15-08-2023
       const parlamentResponse = await aPIFetchPar.get("parlamentar/search_parlamentares");      
       const presentResponse = await aPIFetchPres.get(`?page_size=21&sessao_plenaria=${numSesPlenaria}`);      

@@ -45,15 +45,14 @@ const Disp4 = () => {
 
   return (    
     <div className='painel'>
-      <div>
-        {sessions.map((titulo) => (<h1>{titulo.txtTituloReuniao}</h1>))}
+      <div className='headline'>
+        <div>{sessions.map((titulo) => <h1 key={titulo.codReuniao}>{titulo.txtTituloReuniao}</h1>)}</div>
       </div>
       {sessions.length === 0 ? (<p>Carregando Painel...</p>) : (        
-        sessions.map((sessao) => (                                      
+        sessions.map((sessao) => (                                                
           <div className="painel-0" key={sessao.id}>                         
             <div className='painel-1'>
-              <h1>{sessao.__str__}</h1>
-              <h1>{sessao.txtTituloReuniao}</h1> 
+              <h1>{sessao.__str__}</h1>              
             </div>            
             <div className='painel-2'>
               <h2>{sessao.materia}</h2>
