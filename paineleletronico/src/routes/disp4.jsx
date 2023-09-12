@@ -58,7 +58,7 @@ const Disp4 = () => {
               <h2>Sim: {sessao.numero_votos_sim}</h2>
               <h2>Não: {sessao.numero_votos_nao}</h2>
               <h2>Abstenções: {sessao.numero_abstencoes}</h2>
-              <h3>{sessao.materia}</h3>
+              <h3>Matéria: {sessao.materia}</h3>
             </div>                              
           </div>                    
         )
