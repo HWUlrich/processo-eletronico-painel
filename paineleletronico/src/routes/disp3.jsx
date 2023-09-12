@@ -18,7 +18,7 @@ const Disp3 = () => {
     
     try {
       let numSesPlenaria = 695;
-      let ordem = 2540;
+      let ordem =  2540; // 15-08-2023 - ordem 2534
       const parlamentResponse = await blogFetchPar.get("parlamentar/search_parlamentares");      
       const presentResponse = await blogFetchPres.get(`?page_size=21&sessao_plenaria=${numSesPlenaria}`);      
       const votoResponse = await blogFetchVot.get(`?ordem=${ordem}&page_size=21`);
