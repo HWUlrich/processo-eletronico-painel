@@ -1,3 +1,11 @@
+/* Pásginas com Parlamentares, partido e voto.*/
+
+.parlamentares {
+    --font-size-parlament: 2.5rem;
+
+}
+
+
 
 
 .parl {
@@ -70,6 +78,12 @@
     font-style: italic;
 }
 
+/* Painel com Matéria a ser votada, cronometragem e resultado das votações. */
+.painel {
+    margin: 0;
+    padding: 0;
+}
+
 .headline {
     width: 100%;
     height: 300px;
@@ -109,4 +123,89 @@
 .painel-2 h2 {
     font-size: 1.5rem;
     color: red;
+}
+
+/* Mesa Diretora. */
+.mesaDir {
+    width: 100%;
+    height: 60%;
+    margin-top: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.mesa {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    color: red;    
+    border-bottom: 1px solid gray;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;    
+}
+
+.mesa parl-1 h1 {
+    font-size: 0.1rem;
+    margin-left: 1rem;
+    color: rgb(3, 45, 100);
+    font-weight: 500;    
+}
+
+.mesa-2 h2 {
+    font-size: 1.2rem;
+    color: #189583;
+    font-weight: 100;
+}
+
+.mesa p {
+    font-size: 1.5rem;
+    padding-left: 150px;
+    color: yellow;
+    background-color: black;
+    letter-spacing: 1rem;
+}
+
+.mesa-1 {
+    width: 40%;
+}
+
+.mesa-2 {
+    width: 20%;
+}
+
+.mesa-3 {
+    width: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mesa-4 {
+    width: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.parl-3 h2 {
+    font-size: 1.3rem;
+    color: #189583;        
+}
+
+.parl-3 h3 {
+    font-size: 1.3rem;
+    color: red;        
+}
+
+.parl-4 h2 {
+    font-size: 1.2rem;
+    color: red;    
+    font-style: italic;
 }
