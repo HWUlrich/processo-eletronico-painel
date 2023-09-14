@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import "./NavBar.css";
 import Logo from '../public/images/LogoNovaFriburgo.png';
 
+
 const NavBar = () => {
     return (
         <nav className='navbar'>                        

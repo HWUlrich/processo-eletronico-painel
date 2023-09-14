@@ -5,14 +5,15 @@ import Disp4 from './disp4';
 
 const Disp5 = () => {
 
-  //document.body.classList.toggle('dark-theme');
+  // altera a tabela de estilos
+  document.body.classList.toggle('mesa-dir');
  
   return (    
-    <div className='mesaDir'>
-      <div className='mesa'>
-      <Disp1 />
-      <Disp2 />
-      <Disp3 />
+    <div className='mesa-diretora'>
+      <div className='mesa-dir'>
+        <Disp1 />
+        <Disp2 />
+        <Disp3 />
       </div>   
       <Disp4 />  
     </div>
