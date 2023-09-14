@@ -14,8 +14,11 @@ const Disp5 = () => {
         <Disp1 />
         <Disp2 />
         <Disp3 />
+      </div>
+      <div className='mesa-dir-1'>
+        <Disp4 /> 
       </div>   
-      <Disp4 />  
+       
     </div>
   );
 }
