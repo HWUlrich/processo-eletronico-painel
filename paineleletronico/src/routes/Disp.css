@@ -11,12 +11,19 @@
 
 .mesa-dir {
     --font-size-parlament-h1: .9rem;
-    --font-size-parlament-h2: .75rem;
+    --font-size-parlament-h2: .8rem;
     --font-size-parlament-p: 0.65rem;
-    --font-size-parlament-3-h2: 0.6rem;
-    --font-size-parlament-4-h2: 0.5rem;
+    --font-size-parlament-3-h2: 0.7rem;
+    --font-size-parlament-4-h2: 0.65rem;
     --height-parl: 40px;
 
+}
+
+.par {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
 }
 
 .parl {
@@ -147,12 +154,12 @@
 }
 
 .mesa-dir {
-    width: 100%;
+    width: 100%;    
     height: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
 
    
 }
