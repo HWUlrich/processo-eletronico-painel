@@ -13,7 +13,7 @@ const Disp4 = () => {
 
     try { 
             
-      let date = "2023-08-15";
+      let date = "2023-08-15";  // new Date();
       const ordDiaResponse = await aPIFetchOrdDia.get(`?data_ordem=${date}`);
       const regVotResponse = await aPIFetchRegVot.get(`?materia=46327`); // ${dataOrdDia.materia}
       const sesPlenResponse = await aPIFetchSesPlen.get(`?data_inicio=${date}`);            
