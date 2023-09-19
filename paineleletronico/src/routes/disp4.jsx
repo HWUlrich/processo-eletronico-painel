@@ -13,10 +13,10 @@ const Disp4 = () => {
 
     try { 
             
-      let date = "2023-08-15";  // new Date();
+      let date = "2023-08-15";  // new Date().toLocaleDateString;
       const ordDiaResponse = await aPIFetchOrdDia.get(`?data_ordem=${date}`);
       const regVotResponse = await aPIFetchRegVot.get(`?materia=46327`); // ${dataOrdDia.materia}
-      const sesPlenResponse = await aPIFetchSesPlen.get(`?data_inicio=${date}`);            
+      const sesPlenResponse = await aPIFetchSesPlen.get(`?data_inicio=${date}`);           
       const dataOrdDia = ordDiaResponse.data.results; 
       const dataRegVot = regVotResponse.data.results; // numero de ordem
       const dataSesPlen = sesPlenResponse.data.results;        
@@ -27,7 +27,6 @@ const Disp4 = () => {
         ...dataSesPlen.find((o) => o.codReuniao === screen.sessao_plenaria),              
         ...screen      
       }));
-
       
 
       setSessions(merged);
@@ -42,6 +41,7 @@ const Disp4 = () => {
   useEffect(() => {
     getSessions();    
   }, [getSessions]);
+
 
   return (    
     <div className='painel'>

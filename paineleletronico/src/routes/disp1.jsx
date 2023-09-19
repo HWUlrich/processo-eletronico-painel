@@ -21,8 +21,10 @@ const Disp1 = () => {
   const getParl = useCallback ( async () => {
     
     try {
+      // navigation.navigate.params => permite trazer parametros de outas páginas
       let numSesPlenaria = 695 // Disp4.sessions.map((sessao) => sessao.sessao_plenaria); // 15-08-2023
-      let ordem = 2540; // 15-08-2023 - ordem 2534 
+      let ordem = 2540; // 15-08-2023 - ordem 2534
+
       const parlamentResponse = await aPIFetchPar.get("parlamentar/search_parlamentares");      
       const presentResponse = await aPIFetchPres.get(`?page_size=21&sessao_plenaria=${numSesPlenaria}`);      
       const votoResponse = await aPIFetchVot.get(`?ordem=${ordem}&page_size=21`);
