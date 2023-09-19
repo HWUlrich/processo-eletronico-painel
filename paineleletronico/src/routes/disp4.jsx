@@ -11,11 +11,11 @@ const Disp4 = () => {
 
   const getSessions = useCallback ( async () => {
 
-    try { 
-            
+    try {
+                  
       let date = "2023-08-15";  // new Date().toLocaleDateString;
       const ordDiaResponse = await aPIFetchOrdDia.get(`?data_ordem=${date}`);
-      const regVotResponse = await aPIFetchRegVot.get(`?materia=46327`); // ${dataOrdDia.materia}
+      const regVotResponse = await aPIFetchRegVot.get(`?materia=46327`); // ${dataOrdDia.reduce((0) => o.materia}
       const sesPlenResponse = await aPIFetchSesPlen.get(`?data_inicio=${date}`);           
       const dataOrdDia = ordDiaResponse.data.results; 
       const dataRegVot = regVotResponse.data.results; // numero de ordem
