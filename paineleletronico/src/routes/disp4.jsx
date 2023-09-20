@@ -3,6 +3,7 @@ import './Disp.css';
 import aPIFetchOrdDia from '../axios/configOrdDia';
 import aPIFetchRegVot from '../axios/configRegVot';
 import aPIFetchSesPlen from '../axios/configSesPlen';
+import HeadLine from '../component/headLine';
 
 
 const Disp4 = () => {
@@ -45,9 +46,7 @@ const Disp4 = () => {
 
   return (    
     <div className='painel'>
-      <div className='headline'>
-        <div>{sessions.map((titulo) => <h1 key={titulo.codReuniao}>{titulo.txtTituloReuniao}</h1>)}</div>
-      </div>
+      <HeadLine />     
       {sessions.length === 0 ? (<p>Carregando Painel...</p>) : (        
         sessions.map((sessao) => (                                                
           <div className="painel-0" key={sessao.id}>                         
