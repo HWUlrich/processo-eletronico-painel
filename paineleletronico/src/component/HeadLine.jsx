@@ -30,7 +30,7 @@ const HeadLine = () => {
 
 
   return (    
-    <div className='painel'>      
+    <div className='parinel'>      
       {sessions.length === 0 ? (<p>Carregando Painel...</p>) : (        
         <div className='headline'>
         <div>{sessions.map((titulo) => <h1 key={titulo.codReuniao}>{titulo.txtTituloReuniao}</h1>)}</div>

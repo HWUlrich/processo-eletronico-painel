@@ -4,9 +4,10 @@ import aPIFetchOrdDia from '../axios/configOrdDia';
 import aPIFetchRegVot from '../axios/configRegVot';
 import aPIFetchSesPlen from '../axios/configSesPlen';
 import HeadLine from '../component/headLine';
+import Disp1 from './disp1';
 
 
-const Disp4 = ({onDataFetched}) => {
+const Disp4 = () => {
 
   const [sessions, setSessions] = useState([]);     
 

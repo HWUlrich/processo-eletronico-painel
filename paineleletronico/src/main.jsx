@@ -6,10 +6,10 @@ import {createBrowserRouter, RouterProvider} from 'react-router-dom';
 
 // Páginas
 import Disp1 from './routes/disp1.jsx';
-import Disp2 from './routes/disp2.jsx';
-import Disp3 from './routes/disp3.jsx';
-import Disp4 from './routes/disp4.jsx';
-import MesaDir from './routes/mesaDir.jsx';
+import Disp2 from './routes/Disp2.jsx';
+import Disp3 from './routes/Disp3.jsx';
+import Disp4 from './routes/Disp4.jsx';
+import MesaDir from './routes/MesaDir.jsx';
 
 
 const router = createBrowserRouter([

@@ -1,21 +1,22 @@
 import { useState, useEffect, useCallback } from 'react';
-import './Disp.css';
+import '../routes/Disp.css';
 import aPIFetchPar from '../axios/configPar';
 import aPIFetchVot from '../axios/configVot';
 import aPIFetchPres from '../axios/configPres';
-import Disp4 from './Disp4';
+import Disp4 from '../routes/Disp4';
+import '../routes/Disp.css';
 
 
-const Disp1 = ({sessions}) => {
+const Parlament = () => {
   
   // altera a tabela de estilos
   document.body.classList.toggle('parlamentares');
    
 
   const [parlament, setParlament] = useState([]);
-  const [itensPerPage, setItensPerPage] = useState(7);
+  const [itensPerPage, setItensPerPage] = useState(21);
   const [currentPage, setCurrentPage] = useState(0);
- 
+
   const startIndex = currentPage * itensPerPage;
   const endIndex = startIndex + itensPerPage;
   const currentItens = parlament.slice(startIndex, endIndex);
@@ -26,9 +27,7 @@ const Disp1 = ({sessions}) => {
     
     try {
       
-      Disp4.onDataFetched = setDataFromDisp4;
-      let numSesPlenaria = 695; // sessions.map((o) => o.sessao_plenaria);// Disp4.sessions.map((sessao) => sessao.sessao_plenaria); // 15-08-2023
-      console.log(numSesPlenaria);
+      let numSesPlenaria = 695 // Disp4.sessions.map((sessao) => sessao.sessao_plenaria); // 15-08-2023
       let ordem = 2540; // 15-08-2023 - ordem 2534
 
       const parlamentResponse = await aPIFetchPar.get("parlamentar/search_parlamentares");      
@@ -83,4 +82,4 @@ const Disp1 = ({sessions}) => {
   );
 }
 
-export default Disp1;
+export default Parlament;
