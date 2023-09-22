@@ -18,12 +18,13 @@ const Disp1 = () => {
   const startIndex = currentPage * itensPerPage;
   const endIndex = startIndex + itensPerPage;
   const currentItens = parlament.slice(startIndex, endIndex);
+  import Disp4 from './disp4';
   
 
   const getParl = useCallback ( async () => {
     
     try {
-      // navigation.navigate.params => permite trazer parametros de outas páginas
+      
       let numSesPlenaria = 695 // Disp4.sessions.map((sessao) => sessao.sessao_plenaria); // 15-08-2023
       let ordem = 2540; // 15-08-2023 - ordem 2534
 

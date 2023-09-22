@@ -6,7 +6,7 @@ import aPIFetchSesPlen from '../axios/configSesPlen';
 import HeadLine from '../component/headLine';
 
 
-const Disp4 = () => {
+const Disp4 = ({onDataFetched}) => {
 
   const [sessions, setSessions] = useState([]);     
 
@@ -29,8 +29,8 @@ const Disp4 = () => {
         ...screen      
       }));
       
-
       setSessions(merged);
+      onDataFetched(merged);
 
     } catch (error) {
       console.log(error);
