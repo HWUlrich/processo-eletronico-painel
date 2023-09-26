@@ -3,7 +3,6 @@ import './Disp.css';
 import aPIFetchOrdDia from '../axios/configOrdDia';
 import aPIFetchRegVot from '../axios/configRegVot';
 import aPIFetchSesPlen from '../axios/configSesPlen';
-import HeadLine from '../component/headLine';
 import Disp1 from './disp1';
 
 
@@ -15,14 +14,13 @@ const Disp4 = () => {
 
     try {
                   
-      let date = "2023-08-15";  // new Date().toLocaleDateString;
+      const date = "2023-08-15";  // new Date().toLocaleDateString;
       const ordDiaResponse = await aPIFetchOrdDia.get(`?data_ordem=${date}`);
       const regVotResponse = await aPIFetchRegVot.get(`?materia=46327`); // ${dataOrdDia.reduce((0) => o.materia}
       const sesPlenResponse = await aPIFetchSesPlen.get(`?data_inicio=${date}`);           
       const dataOrdDia = ordDiaResponse.data.results; 
       const dataRegVot = regVotResponse.data.results; // numero de ordem
-      const dataSesPlen = sesPlenResponse.data.results;        
-      
+      const dataSesPlen = sesPlenResponse.data.results;      
       
       const merged = dataOrdDia.map((screen) => ({
         ...dataRegVot.find((o) => o.materia === screen.materia),
@@ -31,8 +29,7 @@ const Disp4 = () => {
       }));
       
       setSessions(merged);
-      onDataFetched(merged);
-
+    
     } catch (error) {
       console.log(error);
       alert ("Sem conexão com o SAPL");
@@ -47,7 +44,7 @@ const Disp4 = () => {
 
   return (    
     <div className='painel'>
-      <HeadLine />     
+       <h1>{sessions.reduce((o, p) => {return p.txtTituloReuniao}, "")}</h1>        
       {sessions.length === 0 ? (<p>Carregando Painel...</p>) : (        
         sessions.map((sessao) => (                                                
           <div className="painel-0" key={sessao.id}>                         
@@ -59,7 +56,7 @@ const Disp4 = () => {
               <h2>Não: {sessao.numero_votos_nao}</h2>
               <h2>Abstenções: {sessao.numero_abstencoes}</h2>
               <h3>Matéria: {sessao.materia}</h3>
-            </div>                              
+            </div>                                          
           </div>                    
         )
         )

@@ -1,7 +1,6 @@
-import Disp4 from './Disp4';
 import './Disp.css';
 import Parlament from '../component/Parlament';
-import HeadLine from '../component/headLine';
+import Disp4 from './disp4';
 
 const MesaDir = () => {
 
@@ -10,7 +9,6 @@ const MesaDir = () => {
   
   return (    
     <div className='mesa-diretora'>
-      <HeadLine />
       <div className='mesa-dir'>        
         <Parlament />
         <div className='mesa-dir-1'>        

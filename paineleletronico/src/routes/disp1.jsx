@@ -3,10 +3,9 @@ import './Disp.css';
 import aPIFetchPar from '../axios/configPar';
 import aPIFetchVot from '../axios/configVot';
 import aPIFetchPres from '../axios/configPres';
-import Disp4 from './Disp4';
 
 
-const Disp1 = ({sessions}) => {
+const Disp1 = (props) => {
   
   // altera a tabela de estilos
   document.body.classList.toggle('parlamentares');
@@ -26,11 +25,8 @@ const Disp1 = ({sessions}) => {
     
     try {
       
-      Disp4.onDataFetched = setDataFromDisp4;
       let numSesPlenaria = 695; // sessions.map((o) => o.sessao_plenaria);// Disp4.sessions.map((sessao) => sessao.sessao_plenaria); // 15-08-2023
-      console.log(numSesPlenaria);
       let ordem = 2540; // 15-08-2023 - ordem 2534
-
       const parlamentResponse = await aPIFetchPar.get("parlamentar/search_parlamentares");      
       const presentResponse = await aPIFetchPres.get(`?page_size=21&sessao_plenaria=${numSesPlenaria}`);      
       const votoResponse = await aPIFetchVot.get(`?ordem=${ordem}&page_size=21`);
@@ -59,7 +55,8 @@ const Disp1 = ({sessions}) => {
   }, [getParl]);
 
   return (
-    <div className='par'>      
+    <div className='par'>
+      <div>{props.data}</div>      
       {currentItens?.length === 0 ? (<p>Carregando Parlamentares...</p>) : (        
         currentItens?.map((parlament) => (                     
           <div className="parl" key={parlament.id}>                         
