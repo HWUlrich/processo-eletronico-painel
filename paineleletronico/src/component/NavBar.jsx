@@ -5,13 +5,14 @@ import Logo from '../public/images/LogoNovaFriburgo.png';
 
 const NavBar = () => {
     return (
-        <nav className='navbar'>                        
-            <img src={Logo} alt='Logo Nova Friburgo'/>
-            <div>
+        <nav className='navbar'>
+            <div className="img-wrapper">
+                <img src={Logo} alt='Logo Nova Friburgo'/>
+            </div>          
+            <div className='title'>
                 <h1>CÂMARA MUNICIPAL DE NOVA FRIBURGO</h1>
                 <h2>Fonte: SAPL</h2>
-            </div>
-                        
+            </div>                        
             <ul>
                 <li>
                     <Link to={`/disp1`}>1</Link>

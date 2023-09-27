@@ -3,6 +3,9 @@ import './Disp.css';
 import aPIFetchPar from '../axios/configPar';
 import aPIFetchVot from '../axios/configVot';
 import aPIFetchPres from '../axios/configPres';
+import {dataSesPlen} from './disp4';
+
+
 
 
 const Disp1 = (props) => {
@@ -14,6 +17,7 @@ const Disp1 = (props) => {
   const [parlament, setParlament] = useState([]);
   const [itensPerPage, setItensPerPage] = useState(7);
   const [currentPage, setCurrentPage] = useState(0);
+  const [dataSesPlena, setDataSesPlen] = useState();
  
   const startIndex = currentPage * itensPerPage;
   const endIndex = startIndex + itensPerPage;
@@ -24,9 +28,10 @@ const Disp1 = (props) => {
   const getParl = useCallback ( async () => {
     
     try {
-      
-      let numSesPlenaria = 695; // sessions.map((o) => o.sessao_plenaria);// Disp4.sessions.map((sessao) => sessao.sessao_plenaria); // 15-08-2023
-      let ordem = 2540; // 15-08-2023 - ordem 2534
+      const dataNumSesPlen = dataSesPlen.reduce((o, p) => {return p.codReuniao}, "");
+      setDataSesPlen(dataNumSesPlen);
+      const numSesPlenaria = dataSesPlena   //695; // sessions.map((o) => o.sessao_plenaria);// Disp4.sessions.map((sessao) => sessao.sessao_plenaria); // 15-08-2023
+      const ordem = 2540; // 15-08-2023 - ordem 2534
       const parlamentResponse = await aPIFetchPar.get("parlamentar/search_parlamentares");      
       const presentResponse = await aPIFetchPres.get(`?page_size=21&sessao_plenaria=${numSesPlenaria}`);      
       const votoResponse = await aPIFetchVot.get(`?ordem=${ordem}&page_size=21`);
