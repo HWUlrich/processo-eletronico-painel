@@ -51,8 +51,8 @@ const Disp2 = () => {
 
   return (
     <div className='par'>      
-      {currentItens.length === 0 ? (<p>Carregando Parlamentares...</p>) : (        
-        currentItens.map((parlament) => (                     
+      {currentItens?.length === 0 ? (<p>Carregando Parlamentares...</p>) : (        
+        currentItens?.map((parlament) => (                     
           <div className="parl" key={parlament.id}>                         
             <div className='parl-1'>
               <h1>{parlament.nome_parlamentar}</h1> 
@@ -61,7 +61,7 @@ const Disp2 = () => {
               <h2>{parlament.partido}</h2>
             </div>
             <div className='parl-3'>
-            <div>{parlament.parlamentar?<h2>Presente</h2>:<h3>Ausente</h3>}</div>
+              <div>{parlament.parlamentar?<h2>Presente</h2>:<h3>Ausente</h3>}</div>
             </div> 
             <div className='parl-4'>
               <h2>{parlament.voto?parlament.voto:"-"}</h2>

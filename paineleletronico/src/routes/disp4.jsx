@@ -50,7 +50,7 @@ const Disp4 = () => {
         sessions.map((sessao) => (                                                
           <div className="painel-0" key={sessao.id}>                         
             <div className='painel-1'>
-              <h1>{sessao.__str__.slice(0, 71)}</h1>              
+              <h1>{sessao.__str__.slice(0, 71)}</h1>                            
             </div>            
             <div className='painel-2'>
               <h2>Sim: {sessao.numero_votos_sim}</h2>

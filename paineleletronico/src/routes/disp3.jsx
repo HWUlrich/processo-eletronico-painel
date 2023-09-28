@@ -51,8 +51,8 @@ const Disp3 = () => {
 
   return (
     <div className='par'>      
-      {currentItens.length === 0 ? (<p>Carregando Parlamentares...</p>) : (        
-        currentItens.map((parlament) => (                     
+      {currentItens?.length === 0 ? (<p>Carregando Parlamentares...</p>) : (        
+        currentItens?.map((parlament) => (                     
           <div className="parl" key={parlament.id}>                         
             <div className='parl-1'>
               <h1>{parlament.nome_parlamentar}</h1> 

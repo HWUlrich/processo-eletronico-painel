@@ -3,7 +3,6 @@ import './Disp.css';
 import aPIFetchPar from '../axios/configPar';
 import aPIFetchVot from '../axios/configVot';
 import aPIFetchPres from '../axios/configPres';
-import {dataSesPlen} from './disp4';
 
 
 
@@ -17,7 +16,7 @@ const Disp1 = (props) => {
   const [parlament, setParlament] = useState([]);
   const [itensPerPage, setItensPerPage] = useState(7);
   const [currentPage, setCurrentPage] = useState(0);
-  const [dataSesPlena, setDataSesPlen] = useState();
+ 
  
   const startIndex = currentPage * itensPerPage;
   const endIndex = startIndex + itensPerPage;
@@ -28,9 +27,8 @@ const Disp1 = (props) => {
   const getParl = useCallback ( async () => {
     
     try {
-      const dataNumSesPlen = dataSesPlen.reduce((o, p) => {return p.codReuniao}, "");
-      setDataSesPlen(dataNumSesPlen);
-      const numSesPlenaria = dataSesPlena   //695; // sessions.map((o) => o.sessao_plenaria);// Disp4.sessions.map((sessao) => sessao.sessao_plenaria); // 15-08-2023
+      
+      const numSesPlenaria = 695; // sessions.map((o) => o.sessao_plenaria);// Disp4.sessions.map((sessao) => sessao.sessao_plenaria); // 15-08-2023
       const ordem = 2540; // 15-08-2023 - ordem 2534
       const parlamentResponse = await aPIFetchPar.get("parlamentar/search_parlamentares");      
       const presentResponse = await aPIFetchPres.get(`?page_size=21&sessao_plenaria=${numSesPlenaria}`);      
@@ -60,8 +58,7 @@ const Disp1 = (props) => {
   }, [getParl]);
 
   return (
-    <div className='par'>
-      <div>{props.data}</div>      
+    <div className='par'>            
       {currentItens?.length === 0 ? (<p>Carregando Parlamentares...</p>) : (        
         currentItens?.map((parlament) => (                     
           <div className="parl" key={parlament.id}>                         
@@ -72,7 +69,7 @@ const Disp1 = (props) => {
               <h2>{parlament.partido}</h2>
             </div>
             <div id='presParl' className='parl-3'>             
-            <div>{parlament.parlamentar?<h2>Presente</h2>:<h3>Ausente</h3>}</div>            
+              <div>{parlament.parlamentar?<h2>Presente</h2>:<h3>Ausente</h3>}</div>            
             </div> 
             <div className='parl-4'>
               <h2>{parlament.voto?parlament.voto:"-"}</h2>
