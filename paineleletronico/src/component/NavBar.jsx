@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import "./NavBar.css";
-import Logo from '../public/images/LogoNovaFriburgo.png';
+import Logo from '../public/images/brasaoLogo.png';
 
 
 const NavBar = () => {
