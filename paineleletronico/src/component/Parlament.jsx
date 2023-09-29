@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useContext } from 'react';
 import '../routes/Disp.css';
 import aPIFetchPar from '../axios/configPar';
 import aPIFetchVot from '../axios/configVot';

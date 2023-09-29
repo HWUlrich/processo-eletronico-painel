@@ -24,6 +24,7 @@ function Provider({ children }) {
   }, [setDrinks]);
 
   const contextValue = {
+    parlament,
     meals,
     login,
     drinks,
