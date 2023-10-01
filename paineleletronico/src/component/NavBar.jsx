@@ -1,9 +1,12 @@
 import { Link } from 'react-router-dom';
 import "./NavBar.css";
 import Logo from '../public/images/brasaoLogo.png';
+import Disp1 from '../routes/disp1';
+import MesaDir from '../routes/mesaDir';
 
 
-const NavBar = () => {
+const NavBar = () => { 
+
     return (
         <nav className='navbar'>
             <div className="img-wrapper">
@@ -15,19 +18,19 @@ const NavBar = () => {
             </div>                        
             <ul>
                 <li>
-                    <Link to={`/disp1`}>1</Link>
+                    <Link to={`/disp1`} onClick={Disp1.dispStyleParl}>1</Link>
                 </li>
                 <li>
-                    <Link to={`/disp2`}>2</Link>
+                    <Link to={`/disp2`} onClick={Disp1.dispStyleParl}>2</Link>
                 </li>
                 <li>
-                    <Link to={`/disp3`}>3</Link>
+                    <Link to={`/disp3`} onClick={Disp1.dispStyleParl}>3</Link>
                 </li>
                 <li>
-                    <Link to={`/disp4`}>4</Link>
+                    <Link to={`/disp4`} onClick={Disp1.dispStyleParl}>4</Link>
                 </li>
                 <li>
-                    <Link to={`/mesaDir`}>5</Link>
+                    <Link to={`/mesaDir`} onClick={MesaDir.dispStyleMesa}>5</Link>
                 </li>
             </ul>
         </nav>

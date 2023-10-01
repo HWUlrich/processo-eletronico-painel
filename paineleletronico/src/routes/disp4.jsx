@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, createContext, useContext } from 'react';
+import { useState, useEffect, useCallback, useContext } from 'react';
 import './Disp.css';
 import aPIFetchOrdDia from '../axios/configOrdDia';
 import aPIFetchRegVot from '../axios/configRegVot';
@@ -13,9 +13,9 @@ const Disp4 = () => {
 
     try {
                   
-      const date = "2023-08-15";  // new Date().toLocaleDateString;
+      const date = "2023-08-15";  // new Date().toISOString().slice(0,10);
       const ordDiaResponse = await aPIFetchOrdDia.get(`?data_ordem=${date}`);
-      const regVotResponse = await aPIFetchRegVot.get(`?materia=46327`); // ${dataOrdDia.reduce((0) => o.materia}
+      const regVotResponse = await aPIFetchRegVot.get(`?materia=46327`);
       const sesPlenResponse = await aPIFetchSesPlen.get(`?data_inicio=${date}`);           
       const dataOrdDia = ordDiaResponse.data.results; 
       const dataRegVot = regVotResponse.data.results; // numero de ordem

@@ -1,34 +1,35 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useContext } from 'react';
 import './Disp.css';
 import aPIFetchPar from '../axios/configPar';
 import aPIFetchVot from '../axios/configVot';
 import aPIFetchPres from '../axios/configPres';
+import Context from '../context/MyContext';
 
 
-
-
-const Disp1 = (props) => {
+const Disp1 = () => {
   
   // altera a tabela de estilos
-  document.body.classList.toggle('parlamentares');
-   
+  const dispStyleParl = () => {
+    document.body.classList.toggle('parlamentares');
+  }
 
   const [parlament, setParlament] = useState([]);
   const [itensPerPage, setItensPerPage] = useState(7);
   const [currentPage, setCurrentPage] = useState(0);
+  
  
  
   const startIndex = currentPage * itensPerPage;
   const endIndex = startIndex + itensPerPage;
   const currentItens = parlament.slice(startIndex, endIndex);
  
-  
+  const { sessions } = useContext(Context);
 
   const getParl = useCallback ( async () => {
     
     try {
       
-      const numSesPlenaria = 695; // sessions.map((o) => o.sessao_plenaria);// Disp4.sessions.map((sessao) => sessao.sessao_plenaria); // 15-08-2023
+      const numSesPlenaria = sessions.reduce((o,p) => {return p.sessao_plenaria}, "");
       const ordem = 2540; // 15-08-2023 - ordem 2534
       const parlamentResponse = await aPIFetchPar.get("parlamentar/search_parlamentares");      
       const presentResponse = await aPIFetchPres.get(`?page_size=21&sessao_plenaria=${numSesPlenaria}`);      

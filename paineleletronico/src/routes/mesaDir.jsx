@@ -3,9 +3,11 @@ import Parlament from '../component/Parlament';
 import Disp4 from './disp4';
 
 const MesaDir = () => {
-
-  // altera a tabela de estilos
-  document.body.classList.toggle('mesa-dir');
+  
+     // altera a tabela de estilos
+     const dispStyleMesa = () => {
+      document.body.classList.toggle('mesa-dir');
+  }
   
   return (    
     <div className='mesa-diretora'>

@@ -6,9 +6,6 @@ import aPIFetchPres from '../axios/configPres';
 
 const Disp2 = () => {
 
-  // altera a tabela de estilos
-  document.body.classList.toggle('parlamentares');
-
   const [parlament, setParlament] = useState([]);
   const [itensPerPage, setItensPerPage] = useState(7);
   const [currentPage, setCurrentPage] = useState(1);
