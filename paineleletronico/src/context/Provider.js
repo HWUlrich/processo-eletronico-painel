@@ -4,24 +4,23 @@ import fetchDrinks from "../services/fetchDrinks";
 import fetchFoods from '../services/fetchFoods';
 
 function Provider({ children }) {
-  const [parlament, setParlament] = useState();
-  const [sessions, setSessions] = useState();
+  
+  const [sessions, setSessions] = useState([]);
   
   
-  useEffect(() => {
+  /*useEffect(() => {
     fetchFoods().then((data) => setParlament(data));
     fetchDrinks().then((data) => setSessions(data));
-  }, [setSessions]);
+  }, [setSessions]); */
 
-  const contextValue = {
-    parlament,
-    sessions,    
-    setParlament,
+  const contextValue = {    
+    sessions,   
     setSessions,    
   };
+
   return (
     <Context.Provider value={ contextValue }>
-      {children}
+      { children }
     </Context.Provider>
   );
 }

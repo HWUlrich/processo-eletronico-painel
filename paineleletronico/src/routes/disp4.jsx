@@ -3,11 +3,12 @@ import './Disp.css';
 import aPIFetchOrdDia from '../axios/configOrdDia';
 import aPIFetchRegVot from '../axios/configRegVot';
 import aPIFetchSesPlen from '../axios/configSesPlen';
+import Context from '../context/MyContext';
 
 
 const Disp4 = () => {
 
-  const [sessions, setSessions] = useState([]);     
+  const {sessions, setSessions} = useContext(Context);     
 
   const getSessions = useCallback ( async () => {
 
@@ -34,7 +35,7 @@ const Disp4 = () => {
       alert ("Sem conexão com o SAPL");
     }
 
-    }, []);
+    }, [setSessions]);
 
   useEffect(() => {
     getSessions();    
