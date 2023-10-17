@@ -14,8 +14,8 @@ function Provider({ children }) {
   }, [setSessions]); */
 
   const contextValue = {    
-    sessions,   
-    setSessions,    
+    sessions,
+    setSessions,
   };
 
   return (
