@@ -1,17 +1,16 @@
 import { useState, useEffect } from 'react';
 import Context from './MyContext';
-import fetchDrinks from "../services/fetchDrinks";
-import fetchFoods from '../services/fetchFoods';
+import aPIFetchOrdDia from '../axios/configOrdDia';
+
 
 function Provider({ children }) {
   
   const [sessions, setSessions] = useState([]);
   
   
-  /*useEffect(() => {
-    fetchFoods().then((data) => setParlament(data));
-    fetchDrinks().then((data) => setSessions(data));
-  }, [setSessions]); */
+  useEffect(() => {
+    aPIFetchOrdDia().then((data) => setSessions(data));
+  }, [setSessions]);
 
   const contextValue = {    
     sessions,
