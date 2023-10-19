@@ -21,8 +21,8 @@ const Disp1 = () => {
   const endIndex = startIndex + itensPerPage;
   const currentItens = parlament.slice(startIndex, endIndex);
  
-  const { sessions, setSessions } = useContext(Context);
-  //console.log(sessions);
+  const sessions = useContext(Context);
+  console.log(sessions);
 
   const getParl = useCallback ( async () => {
     
@@ -51,7 +51,7 @@ const Disp1 = () => {
       alert ("Sem conexão com o SAPL");
     }
 
-  }, []);
+  }, [sessions]);
 
   useEffect(() => {
     getParl();    

@@ -8,7 +8,8 @@ import Context from '../context/MyContext';
 
 const Disp4 = () => {
 
-  const {sessions, setSessions} = useContext(Context);     
+  const { sessions, setSessions } = useContext(Context);
+  console.log(sessions);     
 
   const getSessions = useCallback ( async () => {
 

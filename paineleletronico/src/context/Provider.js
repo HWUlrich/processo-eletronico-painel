@@ -3,23 +3,23 @@ import Context from './MyContext';
 import aPIFetchOrdDia from '../axios/configOrdDia';
 
 
-function Provider({ children }) {
+function Provider() {
   
   const [sessions, setSessions] = useState([]);
   
-  
+  /*
   useEffect(() => {
     aPIFetchOrdDia().then((data) => setSessions(data));
-  }, [setSessions]);
+  }, [setSessions]); 
 
   const contextValue = {    
     sessions,
     setSessions,
-  };
+  }; */
 
   return (
-    <Context.Provider value={ contextValue }>
-      { children }
+    <Context.Provider value={ sessions }>
+     <disp4 />
     </Context.Provider>
   );
 }
