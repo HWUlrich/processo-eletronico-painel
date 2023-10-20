@@ -21,7 +21,7 @@ const Disp1 = () => {
   const endIndex = startIndex + itensPerPage;
   const currentItens = parlament.slice(startIndex, endIndex);
  
-  const [sessions] = useContext(Context);
+  const {sessions} = useContext(Context);
   console.log(sessions);
 
   const getParl = useCallback ( async () => {

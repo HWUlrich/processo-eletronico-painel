@@ -1,8 +1,9 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useContext } from 'react';
 import './Disp.css';
 import aPIFetchPar from '../axios/configPar';
 import aPIFetchVot from '../axios/configVot';
 import aPIFetchPres from '../axios/configPres';
+import Context from '../context/MyContext';
 
 const Disp2 = () => {
 
@@ -14,10 +15,13 @@ const Disp2 = () => {
   const endIndex = startIndex + itensPerPage;
   const currentItens = parlament.slice(startIndex, endIndex);
 
+  const {sessions} = useContext(Context);
+  console.log(sessions);
+
   const getParl = useCallback ( async () => {
     
     try {
-      let numSesPlenaria = 695;
+      let numSesPlenaria = sessions?.reduce((o,p) => {return p.sessao_plenaria}, "");
       let ordem =  2540; // 15-08-2023 - ordem 2534
       const parlamentResponse = await aPIFetchPar.get("parlamentar/search_parlamentares");      
       const presentResponse = await aPIFetchPres.get(`?page_size=21&sessao_plenaria=${numSesPlenaria}`);      
