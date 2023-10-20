@@ -21,14 +21,14 @@ const Disp1 = () => {
   const endIndex = startIndex + itensPerPage;
   const currentItens = parlament.slice(startIndex, endIndex);
  
-  const sessions = useContext(Context);
+  const [sessions] = useContext(Context);
   console.log(sessions);
 
   const getParl = useCallback ( async () => {
     
     try {
       
-      const numSesPlenaria = sessions.reduce((o,p) => {return p.sessao_plenaria}, ""); // Precisa trazer esse valor: 695
+      const numSesPlenaria = sessions?.reduce((o,p) => {return p.sessao_plenaria}, ""); // Precisa trazer esse valor: 695
       const ordem = 2540; // 15-08-2023 - ordem 2534
       const parlamentResponse = await aPIFetchPar.get("parlamentar/search_parlamentares");      
       const presentResponse = await aPIFetchPres.get(`?page_size=21&sessao_plenaria=${numSesPlenaria}`);      

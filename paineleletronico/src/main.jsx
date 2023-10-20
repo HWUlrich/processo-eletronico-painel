@@ -3,18 +3,21 @@ import ReactDOM from 'react-dom/client';
 import App from './App.jsx';
 import './index.css';
 import {createBrowserRouter, RouterProvider} from 'react-router-dom';
+import Provider from './context/Provider.jsx';
 
 // Páginas
-import Disp1 from './routes/disp1.jsx';
-import Disp2 from './routes/Disp2.jsx';
-import Disp3 from './routes/Disp3.jsx';
-import Disp4 from './routes/Disp4.jsx';
-import MesaDir from './routes/MesaDir.jsx';
+import Disp1 from './routes/disp1.jsx'; 
+import Disp2 from './routes/disp2.jsx';
+import Disp3 from './routes/disp3.jsx';
+import Disp4 from './routes/disp4.jsx';
+import MesaDir from './routes/mesaDir.jsx';
 
 
 const router = createBrowserRouter([
-  {
-    element: <App />,
+  {    
+    element: <Provider>
+               <App />
+             </Provider>,
     children: [
       {
         path: '/disp1',

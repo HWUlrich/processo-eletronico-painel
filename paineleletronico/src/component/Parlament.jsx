@@ -3,7 +3,7 @@ import '../routes/Disp.css';
 import aPIFetchPar from '../axios/configPar';
 import aPIFetchVot from '../axios/configVot';
 import aPIFetchPres from '../axios/configPres';
-import Disp4 from '../routes/Disp4';
+import Disp4 from '../routes/disp4';
 import '../routes/Disp.css';
 
 
