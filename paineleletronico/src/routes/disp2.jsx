@@ -1,54 +1,17 @@
-import { useState, useEffect, useCallback, useContext } from 'react';
+import { useState, useContext } from 'react';
 import './Disp.css';
-import aPIFetchPar from '../axios/configPar';
-import aPIFetchVot from '../axios/configVot';
-import aPIFetchPres from '../axios/configPres';
 import Context from '../context/MyContext';
 
 const Disp2 = () => {
 
-  const [parlament, setParlament] = useState([]);
-  const [itensPerPage, setItensPerPage] = useState(7);
-  const [currentPage, setCurrentPage] = useState(1);
+  const { parlament } = useContext(Context);
+  
+  const [ itensPerPage ] = useState(7);
+  const [ currentPage ] = useState(1);
 
   const startIndex = currentPage * itensPerPage;
   const endIndex = startIndex + itensPerPage;
   const currentItens = parlament.slice(startIndex, endIndex);
-
-  const {sessions} = useContext(Context);
-  console.log(sessions);
-
-  const getParl = useCallback ( async () => {
-    
-    try {
-      let numSesPlenaria = sessions?.reduce((o,p) => {return p.sessao_plenaria}, "");
-      let ordem =  2540; // 15-08-2023 - ordem 2534
-      const parlamentResponse = await aPIFetchPar.get("parlamentar/search_parlamentares");      
-      const presentResponse = await aPIFetchPres.get(`?page_size=21&sessao_plenaria=${numSesPlenaria}`);      
-      const votoResponse = await aPIFetchVot.get(`?ordem=${ordem}&page_size=21`);
-      
-      const dataParlament = parlamentResponse.data.filter((data) => data.ativo === true);    
-      const dataPresent = presentResponse.data.results; 
-      const dataVoto = votoResponse.data.results;     
-      
-      const merged = dataParlament.map((screen) => ({
-        ...dataPresent.find((o) => o.parlamentar === screen.id),
-        ...dataVoto.find((o) => o.parlamentar === screen.id),
-        ...screen      
-      }));
-
-      setParlament(merged);
-
-    } catch (error) {
-      console.log(error);
-      alert ("Sem conexão com o SAPL");
-    }
-
-  }, []);
-
-  useEffect(() => {
-    getParl();    
-  }, [getParl]);
 
   return (
     <div className='par'>      

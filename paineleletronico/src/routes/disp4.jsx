@@ -1,15 +1,11 @@
-import { useState, useEffect, useCallback, useContext } from 'react';
+import { useContext } from 'react';
 import './Disp.css';
-import aPIFetchOrdDia from '../axios/configOrdDia';
-import aPIFetchRegVot from '../axios/configRegVot';
-import aPIFetchSesPlen from '../axios/configSesPlen';
 import Context from '../context/MyContext';
 
 
 const Disp4 = () => {
 
-  const { sessions } = useContext(Context);
-  console.log(sessions);  
+  const { sessions } = useContext(Context);  
 
   return (    
     <div className='painel'>
