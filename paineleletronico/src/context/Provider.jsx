@@ -6,18 +6,22 @@ import aPIFetchSesPlen from '../axios/configSesPlen';
 import aPIFetchPar from '../axios/configPar';
 import aPIFetchPres from '../axios/configPres';
 import aPIFetchVot from '../axios/configVot';
+import aPIFetchExpMat from '../axios/configExpMat';
 
 
 function Provider({children}) {
   
   const [sessions, setSessions] = useState([]);
-  const [parlament, setParlament] = useState([]);  
+  const [expmat, setExpmat] = useState([]);
+  const [parlament, setParlament] = useState([]);
+  
   
   const getSessions = useCallback ( async () => {
 
     try {
                   
       const date = "2023-08-15";  // new Date().toISOString().slice(0,10);
+      // Ordem do dia
       const ordDiaResponse = await aPIFetchOrdDia.get(`?data_ordem=${date}`);
       const regVotResponse = await aPIFetchRegVot.get(`?materia=46327`);
       const sesPlenResponse = await aPIFetchSesPlen.get(`?data_inicio=${date}`);           
@@ -33,10 +37,19 @@ function Provider({children}) {
       
       setSessions(merged);
 
+      // Matérias do Expediente
+      const expMatResponse = await aPIFetchExpMat.get(`?data_ordem=${date}`);
+      const dataExpMat = expMatResponse.data.results;
+
+      setExpmat(dataExpMat);
+
+      // Painéis
       const numSesPlenaria = sessions?.reduce((o,p) => {return p.sessao_plenaria}, "");
+      const ordem = sessions?.reduce((o,p) => {return p.id}, "");
       const parlamentResponse = await aPIFetchPar.get("parlamentar/search_parlamentares");      
       const presentResponse = await aPIFetchPres.get(`?page_size=21&sessao_plenaria=${numSesPlenaria}`);      
       const votoResponse = await aPIFetchVot.get(`?ordem=${ordem}&page_size=21`);
+      // console.log (ordem)
       
       const dataParlament = parlamentResponse.data.filter((data) => data.ativo === true);      
       const dataPresent = presentResponse.data.results; 
@@ -64,8 +77,10 @@ function Provider({children}) {
 
   const contextValue = {    
     sessions,
+    expmat,
     parlament,
     setSessions,
+    setExpmat,
     setParlament,    
   }; 
 

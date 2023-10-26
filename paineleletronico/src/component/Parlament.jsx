@@ -1,62 +1,19 @@
-import { useState, useEffect, useCallback, useContext } from 'react';
+import { useState, useContext } from 'react';
 import '../routes/Disp.css';
-import aPIFetchPar from '../axios/configPar';
-import aPIFetchVot from '../axios/configVot';
-import aPIFetchPres from '../axios/configPres';
-import Disp4 from '../routes/disp4';
-import '../routes/Disp.css';
+import Context from '../context/MyContext';
 
 
 const Parlament = () => {
   
-  // altera a tabela de estilos
-  document.body.classList.toggle('parlamentares');
-   
-
-  const [parlament, setParlament] = useState([]);
-  const [itensPerPage, setItensPerPage] = useState(21);
-  const [currentPage, setCurrentPage] = useState(0);
+  const { parlament } = useContext(Context);
+  const [ itensPerPage ] = useState(21);
+  const [ currentPage ] = useState(0);
 
   const startIndex = currentPage * itensPerPage;
   const endIndex = startIndex + itensPerPage;
-  const currentItens = parlament.slice(startIndex, endIndex);
+  const currentItens = parlament.slice(startIndex, endIndex);  
+
  
-  
-
-  const getParl = useCallback ( async () => {
-    
-    try {
-      
-      let numSesPlenaria = 695 // Disp4.sessions.map((sessao) => sessao.sessao_plenaria); // 15-08-2023
-      let ordem = 2540; // 15-08-2023 - ordem 2534
-
-      const parlamentResponse = await aPIFetchPar.get("parlamentar/search_parlamentares");      
-      const presentResponse = await aPIFetchPres.get(`?page_size=21&sessao_plenaria=${numSesPlenaria}`);      
-      const votoResponse = await aPIFetchVot.get(`?ordem=${ordem}&page_size=21`);
-      
-      const dataParlament = parlamentResponse.data.filter((data) => data.ativo === true);      
-      const dataPresent = presentResponse.data.results; 
-      const dataVoto = votoResponse.data.results;  
-      
-      const merged = dataParlament.map((screen) => ({
-        ...dataPresent.find((o) => o.parlamentar === screen.id),
-        ...dataVoto.find((o) => o.parlamentar === screen.id),
-        ...screen      
-      }));
-
-      setParlament(merged);
-
-    } catch (error) {
-      console.log(error);
-      alert ("Sem conexão com o SAPL");
-    }
-
-  }, []);
-
-  useEffect(() => {
-    getParl();    
-  }, [getParl]);
-
   return (
     <div className='par'>      
       {currentItens?.length === 0 ? (<p>Carregando Parlamentares...</p>) : (        
