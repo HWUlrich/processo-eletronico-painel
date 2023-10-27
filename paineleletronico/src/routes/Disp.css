@@ -208,7 +208,7 @@
 }
 
 .button-mesa {
-    width: 150px;
+    width: 50px;
     height: 30px;
     background-color: blue;
     color: white;
@@ -220,6 +220,54 @@
 .button-mesa:hover {
     background-color: rgb(53, 53, 255);
     color: yellow;
+}
+
+.painel-mesa-fundo {
+    margin: 5px 0 5px 0;
+    background-color: gray;
+    border: 3px solid white;
+    border-radius: 15px;
+    opacity: .7;
+
+}
+
+/* Matérias do Expediente */
+.painel-mesa-0 {
+    margin: 0 0 0 30px;    
+    width: 100%;
+    height: 60px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.painel-mesa-1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60%;
+    height: 100%;    
+}
+
+.painel-mesa-2 {
+    width: 40%;
+    height: 30px;
+    margin: 0;
+    padding: 2%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.painel-mesa-1 h1 {
+    font-size: .8rem;
+    color: black;
+}
+
+.painel-mesa-2 h2 {
+    font-size: .8rem;
+    color: blue;
 }
 
 
