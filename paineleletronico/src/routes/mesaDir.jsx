@@ -44,14 +44,12 @@ const MesaDir = () => {
               ))}
             </div>
             <div className='painel-2'>
-                    {parlament.map((votopar) => (
+            {parlament.map((votopar) => (
                       <div key={parlament.id}>                                        
                         <h2>{(votopar.voto === "Sim" ? votopar.voto : "")}</h2>                      
-                        <h2>{votopar.voto === "Não" ? votopar.voto : ""}</h2>                     
-                        <h2>{votopar.voto === "Abstenção" ? votopar.voto : ""}</h2>                     
-                        <h2>{votopar.voto === "Não Votou" ? votopar.voto : ""}</h2>  
+                          
                       </div>                               
-                    ))}                         
+                    ))}
             </div>        
           </div> 
         </div>
