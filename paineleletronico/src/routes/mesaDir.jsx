@@ -25,7 +25,7 @@ const MesaDir = () => {
               {expmat.map((sessao) => (                                                
                 <div className="painel-mesa-0" key={sessao.id}>                         
                   <div className='painel-mesa-1'>
-                    <h1>{sessao.__str__.slice(0, 71)}</h1>                            
+                    <h1>{sessao.__str__.slice(24, -67)}</h1>                            
                   </div>            
                   <div className='painel-mesa-2'>
                     <h2>{sessao.resultado}</h2>                
@@ -39,15 +39,19 @@ const MesaDir = () => {
                   <div className='painel-1'>
                     <h1>{sessao.__str__.slice(0, 71)}</h1>
                     <button className='button-mesa'>Votar</button>                            
-                  </div>
-                  <div className='painel-2'>
-                    <h2>{parlament.map((o) => o.voto === "Sim" ? o.voto : "")}</h2>
-                    <h2>{parlament.map((o) => o.voto === "Não" ? o.voto : "")}</h2>
-                    <h2>{parlament.map((o) => o.voto === "Abstenção" ? o.voto : "")}</h2>
-                    <h2>{parlament.map((o) => o.voto === "Não Votou" ? o.voto : "")}</h2>
-                  </div>
+                  </div>                  
                 </div>
               ))}
+            </div>
+            <div className='painel-2'>
+                    {parlament.map((votopar) => (
+                      <div key={parlament.id}>                                        
+                        <h2>{(votopar.voto === "Sim" ? votopar.voto : "")}</h2>                      
+                        <h2>{votopar.voto === "Não" ? votopar.voto : ""}</h2>                     
+                        <h2>{votopar.voto === "Abstenção" ? votopar.voto : ""}</h2>                     
+                        <h2>{votopar.voto === "Não Votou" ? votopar.voto : ""}</h2>  
+                      </div>                               
+                    ))}                         
             </div>        
           </div> 
         </div>
