@@ -16,7 +16,7 @@ const Disp4 = () => {
         {expmat.map((sessao) => (                                                
             <div className="painel-0" key={sessao.id}>                         
               <div className='painel-1'>
-                <h1>{sessao.__str__.slice(0, 71)}</h1>                            
+                <h1>{sessao.__str__.slice(24, -67)}</h1>                            
               </div>            
               <div className='painel-2'>
                 <h2>{sessao.resultado}</h2>                
@@ -28,12 +28,13 @@ const Disp4 = () => {
         {sessions.map((sessao) => (                                                
             <div className="painel-0" key={sessao.id}>                         
               <div className='painel-1'>
-                <h1>{sessao.__str__.slice(0, 71)}</h1>                            
+                <h1>{sessao.__str__.slice(0, -67)}</h1>                            
               </div>
               <div className='painel-2'>
-                <h2>{parlament.reduce((o,p) => {return p.voto === "Sim" ? `Sim: ${o.voto + p.voto}` : ""}, [])}</h2>
-                <h2>{parlament.reduce((o,p) => {return p.voto === "Não" ? `Não: ${o.voto + p.voto}` : ""}, [])}</h2>
-                <h2>{parlament.reduce((o,p) => {return p.voto === "Abstenção" ? `Abstenções: ${o.voto + p.voto}` : "-"}, [])}</h2>                
+                <h2>Sim:{parlament.reduce((o,p) => {p.voto === "Sim" && o++; return o}, 0)}</h2>
+                <h2>Não:{parlament.reduce((o,p) => {p.voto === "Não" && o++; return o}, 0)}</h2>
+                <h2>Abstenções:{parlament.reduce((o,p) => {p.voto === "Abstenções" && o++; return o}, 0)}</h2>
+                <h2>Não Votaram:{parlament.reduce((o,p) => {p.voto === "Não Votou" && o++; return o}, 0)}</h2>                
               </div>
             </div>
         ))}
