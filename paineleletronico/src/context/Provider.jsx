@@ -23,7 +23,7 @@ function Provider({children}) {
       const date = "2023-08-15";  // new Date().toISOString().slice(0,10);
       // Ordem do dia
       const ordDiaResponse = await aPIFetchOrdDia.get(`?data_ordem=${date}`);
-      const regVotResponse = await aPIFetchRegVot.get(`?materia=46327`);
+      const regVotResponse = await aPIFetchRegVot.get(`?materia=46327`); //O Registro de Votação é usado somente quando o operador preenche com os dados. 
       const sesPlenResponse = await aPIFetchSesPlen.get(`?data_inicio=${date}`);           
       const dataOrdDia = ordDiaResponse.data.results; 
       const dataRegVot = regVotResponse.data.results; // numero de ordem

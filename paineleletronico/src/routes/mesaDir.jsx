@@ -1,16 +1,32 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import './Disp.css';
 import Parlament from '../component/Parlament';
 import Context from '../context/MyContext';
+import PanelInfo from '../component/PanelInfo';
 
 const MesaDir = () => {
   
      // altera a tabela de estilos
      const dispStyleMesa = () => {
       document.body.classList.toggle('mesa-dir');
-  }
+    }
+
+    // método a ser exportado
+    const votar = () => {      
+      return (
+        setData(
+          sessions.find((sessao) => (                                                
+            sessao.materia
+    
+        )
+
+      )
+      )
+      )}
+
 
   const { sessions, expmat, parlament } = useContext(Context);
+  const [data, setData] = useState();
   
   return (    
     <div className='mesa-diretora'>
@@ -40,19 +56,22 @@ const MesaDir = () => {
               <div className="painel-0" key={sessao.id}>                         
                 <div className='painel-1'>
                   <h1>{sessao.__str__.slice(24, -67)}</h1>
-                  <button className="button-mesa" onClick={12}>Votar</button>                           
+                  <button className="button-mesa" onClick={() => votar()}>Votação</button>                           
                 </div>
                 <div className='painel-2'>
-                  <h2>Sim:{parlament.reduce((o,p) => {p.voto === "Sim" && o++; return o}, 0)}</h2>
-                  <h2>Não{parlament.reduce((o,p) => {p.voto === "Não" && o++; return o}, 0)}</h2>
-                  <h2>Abstenções:{parlament.reduce((o,p) => {p.voto === "Abstenções" && o++; return o}, 0)}</h2>
-                  <h2>Não Votaram:{parlament.reduce((o,p) => {p.voto === "Não Votou" && o++; return o}, 0)}</h2>                
+                  <h2>Sim: {parlament.reduce((o,p) => {p.voto === "Sim" && o++; return o}, 0)}</h2>
+                  <h2>Não: {parlament.reduce((o,p) => {p.voto === "Não" && o++; return o}, 0)}</h2>
+                  <h2>Abstenções: {parlament.reduce((o,p) => {p.voto === "Abstenções" && o++; return o}, 0)}</h2>
+                  <h2>Não Votaram: {parlament.reduce((o,p) => {p.voto === "Não Votou" && o++; return o}, 0)}</h2>                
                 </div>
+                <div>
+                  <PanelInfo votar={data} />
+                </div>                
               </div>
-              ))}          
-          </div> 
+              ))};         
+            </div>
+          </div>        
         </div>
-      </div>
       </div>
     </div>
   );
