@@ -14,7 +14,7 @@ const Disp4 = () => {
       </div>
       <div>
         {expmat.map((sessao) => (
-            (sessao.numero_ordem === 1 && sessao.resultado === "Matéria lida" ) ?                                                                  
+            (sessao.numero_ordem === 2 && sessao.resultado === "Matéria lida" ) ?                                                                  
             (<div className="painel-0" key={sessao.id}>                         
               <div className='painel-1'>
                 <h1>{sessao.__str__.slice(24, -67)}</h1>                            
@@ -27,7 +27,7 @@ const Disp4 = () => {
       </div>
       <div>
         {sessions.map((sessao) => (
-            (sessao.numero_ordem === 1 && sessao.resultado === "Aprovado" ) ?                                                  
+            (sessao.numero_ordem === 2 && sessao.resultado === "Aprovado" ) ?                                                  
             (<div className="painel-0" key={sessao.id}>                         
               <div className='painel-1'>
                 <h1>{sessao.__str__.slice(24, -67)}</h1>                            
