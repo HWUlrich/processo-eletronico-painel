@@ -48,11 +48,11 @@ function Provider({children}) {
 
       const ordem = () => {
         for(const i in sessions) {
-          sessions[i].resultado !== "" ? sessions.materia : sessions.id;
-          return sessions.id
+          sessions[i].resultado === "" && sessions.id;
+          break;
           }
+          return sessions.id;
         }
-      }
 
       const parlamentResponse = await aPIFetchPar.get("parlamentar/search_parlamentares");      
       const presentResponse = await aPIFetchPres.get(`?page_size=21&sessao_plenaria=${numSesPlenaria}`);      
