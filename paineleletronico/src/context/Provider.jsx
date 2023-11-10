@@ -23,14 +23,14 @@ function Provider({children}) {
       const date = "2023-08-15";  // new Date().toISOString().slice(0,10);
       // Ordem do dia
       const ordDiaResponse = await aPIFetchOrdDia.get(`?data_ordem=${date}`);
-      const regVotResponse = await aPIFetchRegVot.get(`?materia=46327`); //O Registro de Votação é usado somente quando o operador preenche com os dados. 
+      //const regVotResponse = await aPIFetchRegVot.get(`?materia=46327`); //O Registro de Votação é usado somente quando o operador preenche com os dados. 
       const sesPlenResponse = await aPIFetchSesPlen.get(`?data_inicio=${date}`);           
       const dataOrdDia = ordDiaResponse.data.results; 
-      const dataRegVot = regVotResponse.data.results; // numero de ordem
+      //const dataRegVot = regVotResponse.data.results; // numero de ordem
       const dataSesPlen = sesPlenResponse.data.results;
            
       const merged = dataOrdDia.map((screen) => ({
-        ...dataRegVot.find((o) => o.materia === screen.materia),
+        //...dataRegVot.find((o) => o.materia === screen.materia),
         ...dataSesPlen.find((o) => o.codReuniao === screen.sessao_plenaria),              
         ...screen      
       }));
@@ -45,7 +45,15 @@ function Provider({children}) {
 
       // Painéis
       const numSesPlenaria = sessions?.reduce((o,p) => {return p.sessao_plenaria}, "");
-      const ordem = sessions?.reduce((o,p) => {return p.id}, "");
+
+      const ordem = () => {
+        for(const i in sessions) {
+          sessions[i].resultado !== "" ? sessions.materia : sessions.id;
+          return sessions.id
+          }
+        }
+      }
+
       const parlamentResponse = await aPIFetchPar.get("parlamentar/search_parlamentares");      
       const presentResponse = await aPIFetchPres.get(`?page_size=21&sessao_plenaria=${numSesPlenaria}`);      
       const votoResponse = await aPIFetchVot.get(`?ordem=${ordem}&page_size=21`);
