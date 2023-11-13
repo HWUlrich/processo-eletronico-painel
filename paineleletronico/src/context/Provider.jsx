@@ -50,7 +50,7 @@ function Provider({children}) {
         for(const i in sessions) {
           sessions[i].resultado === "" && sessions.id;
           break;
-          }
+        }
           return sessions.id;
         }
 
@@ -77,6 +77,7 @@ function Provider({children}) {
     }
 
     }, [sessions]);
+
 
   useEffect(() => {
     getSessions();    

@@ -5,9 +5,9 @@ const aPIFetchPres = axios.create({
     //timeout: 8000,
     headers: {       
         "content-language": "pt-br", 
-        "content-length": 4954, 
+        //"content-length": 4954, 
         "content-type": "application/json",
-        "Access-Control-Allow-Origin": "*",//http://localhost:5173/",       
+        //"Access-Control-Allow-Origin": "*",//http://localhost:5173/",       
     }
 });
 
