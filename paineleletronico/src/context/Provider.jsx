@@ -20,7 +20,7 @@ function Provider({children}) {
 
     try {
                   
-      const date = "2023-08-15";  // new Date().toISOString().slice(0,10);
+      const date = "2023-11-14";  // new Date().toISOString().slice(0,10);
       // Ordem do dia
       const ordDiaResponse = await aPIFetchOrdDia.get(`?data_ordem=${date}`);
       //const regVotResponse = await aPIFetchRegVot.get(`?materia=46327`); //O Registro de Votação é usado somente quando o operador preenche com os dados. 
@@ -46,13 +46,63 @@ function Provider({children}) {
       // Painéis
       const numSesPlenaria = sessions?.reduce((o,p) => {return p.sessao_plenaria}, "");
 
-      const ordem = () => {
-        for(const i in sessions) {
-          sessions[i].resultado === "" && sessions.id;
-          break;
-        }
-          return sessions.id;
-        }
+      const ordem = sessions.map((p) => {
+        
+        switch(p.numero_ordem) {
+          case 1:
+            p.resultado === "";
+            p.id;
+            break;
+          case 2:
+            p.resultado === "";
+            p.id;
+            break;
+          case 3:
+            p.resultado === "";
+            p.id;
+            break;
+          case 3 == undefined:
+            break;
+          case 4:
+            p.resultado === "";
+            p.id;
+            break;
+          case 4 == undefined:
+            break;
+          case 5:
+            p.resultado === "";
+            p.id;
+            break;
+          case 5 == undefined:
+            p.resultado === "";
+            p.id;
+            break;
+          case 6:
+            p.resultado === "";
+            p.id;
+            break;
+          case 6 == undefined:
+            break;
+          case 7:
+            p.resultado === "";
+            p.id;
+            break;
+          case 7 == undefined:
+            break;
+          case 8:
+            p.resultado === "";
+            p.id;
+            break;
+          case 8 == undefined:
+            break;
+          case 9:
+            p.resultado === "";
+            p.id;
+            break;
+          case 9 == undefined:
+            break;         
+          }
+      })
 
       const parlamentResponse = await aPIFetchPar.get("parlamentar/search_parlamentares");      
       const presentResponse = await aPIFetchPres.get(`?page_size=21&sessao_plenaria=${numSesPlenaria}`);      
