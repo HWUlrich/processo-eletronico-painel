@@ -46,64 +46,43 @@ function Provider({children}) {
       // Painéis
       const numSesPlenaria = sessions?.reduce((o,p) => {return p.sessao_plenaria}, "");
 
-      const ordem = sessions.map((p) => {
-        
+      const ordem = sessions?.map((p) => {
         switch(p.numero_ordem) {
-          case 1:
-            p.resultado === "";
-            p.id;
+          case 1 & p.resultado === "":            
+            return p.id;
+          case 2 & p.resultado === "":
+            return p.id;
+          case 3 & p.resultado === "":
+            return p.id;
+          case 3 === undefined:
             break;
-          case 2:
-            p.resultado === "";
-            p.id;
+          case 4 & p.resultado === "":
+            return p.id;
+          case 4 === undefined:
             break;
-          case 3:
-            p.resultado === "";
-            p.id;
+          case 5 & p.resultado === "":
+            return p.id;
+          case 5 === undefined:            
             break;
-          case 3 == undefined:
+          case 6 & p.resultado === "":
+            return p.id;
+          case 6 === undefined:
             break;
-          case 4:
-            p.resultado === "";
-            p.id;
+          case 7 & p.resultado === "":
+            return p.id;
+          case 7 === undefined:
             break;
-          case 4 == undefined:
+          case 8 & p.resultado === "":
+            return p.id;
+          case 8 === undefined:
             break;
-          case 5:
-            p.resultado === "";
-            p.id;
-            break;
-          case 5 == undefined:
-            p.resultado === "";
-            p.id;
-            break;
-          case 6:
-            p.resultado === "";
-            p.id;
-            break;
-          case 6 == undefined:
-            break;
-          case 7:
-            p.resultado === "";
-            p.id;
-            break;
-          case 7 == undefined:
-            break;
-          case 8:
-            p.resultado === "";
-            p.id;
-            break;
-          case 8 == undefined:
-            break;
-          case 9:
-            p.resultado === "";
-            p.id;
-            break;
-          case 9 == undefined:
+          case 9 & p.resultado === "":
+            return p.id;
+          case 9 === undefined:
             break;         
-          }
-      })
-
+        }
+      });
+      
       const parlamentResponse = await aPIFetchPar.get("parlamentar/search_parlamentares");      
       const presentResponse = await aPIFetchPres.get(`?page_size=21&sessao_plenaria=${numSesPlenaria}`);      
       const votoResponse = await aPIFetchVot.get(`?ordem=${ordem}&page_size=21`);
@@ -123,8 +102,8 @@ function Provider({children}) {
     
     } catch (error) {
       console.log(error);
-      alert ("Sem conexão com o SAPL");
-    }
+      //alert ("Sem conexão com o SAPL");
+    } 
 
     }, [sessions]);
 
