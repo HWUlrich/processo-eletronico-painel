@@ -5,7 +5,7 @@ import Context from '../context/MyContext';
 
 const Disp4 = () => {
 
-  const { sessions, expmat, parlament } = useContext(Context);  
+  const { sessions, expmat, parlament, ordemDia } = useContext(Context);  
 
   return (    
     <div className='painel'>
@@ -23,13 +23,13 @@ const Disp4 = () => {
               </div>                                         
             </div>                
         ))}
-      </div>
+      </div>      
       <div>
         {sessions.map((sessao) => (                                                                       
             <div className="painel-0" key={sessao.id}>                         
               <div className='painel-1'>
                 <h1>{sessao.__str__.slice(24, -67)}</h1>
-                <h2>{sessao.id}</h2>                            
+                <h2>{sessao.id + " " + sessao.materia}</h2>                            
               </div>
               <div className='painel-2'>
                 <h2>Sim: {parlament.reduce((o,p) => {p.voto === "Sim" && o++; return o}, 0)}</h2>

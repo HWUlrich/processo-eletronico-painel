@@ -14,13 +14,14 @@ function Provider({children}) {
   const [sessions, setSessions] = useState([]);
   const [expmat, setExpmat] = useState([]);
   const [parlament, setParlament] = useState([]);
+  const [ordemDia, setOrdemDia] = useState([]);
   
   
   const getSessions = useCallback ( async () => {
 
     try {
                   
-      const date = "2023-11-14";  // new Date().toISOString().slice(0,10);
+      const date = "2023-11-21";  // new Date().toISOString().slice(0,10);
       // Ordem do dia
       const ordDiaResponse = await aPIFetchOrdDia.get(`?data_ordem=${date}`);
       //const regVotResponse = await aPIFetchRegVot.get(`?materia=46327`); //O Registro de Votação é usado somente quando o operador preenche com os dados. 
@@ -45,47 +46,18 @@ function Provider({children}) {
 
       // Painéis
       const numSesPlenaria = sessions?.reduce((o,p) => {return p.sessao_plenaria}, "");
+      console.log(numSesPlenaria)
 
       const ordem = sessions?.map((p) => {
-        switch(p.numero_ordem) {
-          case 1 & p.resultado === "":            
-            return p.id;
-          case 2 & p.resultado === "":
-            return p.id;
-          case 3 & p.resultado === "":
-            return p.id;
-          case 3 === undefined:
-            break;
-          case 4 & p.resultado === "":
-            return p.id;
-          case 4 === undefined:
-            break;
-          case 5 & p.resultado === "":
-            return p.id;
-          case 5 === undefined:            
-            break;
-          case 6 & p.resultado === "":
-            return p.id;
-          case 6 === undefined:
-            break;
-          case 7 & p.resultado === "":
-            return p.id;
-          case 7 === undefined:
-            break;
-          case 8 & p.resultado === "":
-            return p.id;
-          case 8 === undefined:
-            break;
-          case 9 & p.resultado === "":
-            return p.id;
-          case 9 === undefined:
-            break;         
-        }
-      });
+        if(p.resultado === "" ) {
+          return p.id;
+        }})
+      console.log(ordem.shift());
+      setOrdemDia(ordem);
       
       const parlamentResponse = await aPIFetchPar.get("parlamentar/search_parlamentares");      
       const presentResponse = await aPIFetchPres.get(`?page_size=21&sessao_plenaria=${numSesPlenaria}`);      
-      const votoResponse = await aPIFetchVot.get(`?ordem=${ordem}&page_size=21`);
+      const votoResponse = await aPIFetchVot.get(`?ordem=${ordemDia.shift()}&page_size=21`);
       // console.log (ordem)
       
       const dataParlament = parlamentResponse.data.filter((data) => data.ativo === true);      
@@ -117,9 +89,11 @@ function Provider({children}) {
     sessions,
     expmat,
     parlament,
+    ordemDia,
     setSessions,
     setExpmat,
-    setParlament,    
+    setParlament,
+    setOrdemDia,    
   }; 
 
   return (
