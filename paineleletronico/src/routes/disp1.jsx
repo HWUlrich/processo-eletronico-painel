@@ -21,7 +21,7 @@ const Disp1 = () => {
 
   return (
     <div className='par'>            
-      {currentItens?.length === 0 ? (<p>Carregando Parlamentares...</p>) : (        
+      {        
         currentItens?.map((parlament) => (                     
           <div className="parl" key={parlament.id}>                         
             <div className='parl-1'>
@@ -39,7 +39,7 @@ const Disp1 = () => {
           </div>                    
         )
         )
-      )} 
+      } 
     </div>
   );
 }
