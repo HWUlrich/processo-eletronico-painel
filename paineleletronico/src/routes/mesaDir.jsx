@@ -9,20 +9,7 @@ const MesaDir = () => {
      // altera a tabela de estilos
      const dispStyleMesa = () => {
       document.body.classList.toggle('mesa-dir');
-    }
-
-    // método a ser exportado
-    const votar = () => {      
-      return (
-        setData(
-          sessions.find((sessao) => (                                                
-            sessao.materia
-    
-        )
-
-      )
-      )
-      )}
+    }    
 
 
   const { sessions, expmat, parlament } = useContext(Context);
@@ -55,8 +42,7 @@ const MesaDir = () => {
               {sessions.map((sessao) => (                                                
               <div className="painel-0" key={sessao.id}>                         
                 <div className='painel-1'>
-                  <h1>{sessao.__str__.slice(24, -67)}</h1>
-                  <button className="button-mesa" onClick={() => votar()}>Votação</button>                           
+                  <h1>{sessao.__str__.slice(24, -67)}</h1>                                            
                 </div>
                 <div className='painel-2'>
                   <h2>Sim: {parlament.reduce((o,p) => {p.voto === "Sim" && o++; return o}, 0)}</h2>

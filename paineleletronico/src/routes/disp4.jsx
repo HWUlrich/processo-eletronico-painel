@@ -5,37 +5,40 @@ import Context from '../context/MyContext';
 
 const Disp4 = () => {
 
-  const { sessions, expmat, parlament, ordemDia } = useContext(Context);
-  
-  const ordem = sessions.find((o) => o.id === ordemDia.shift());
-
+  const { sessions, expmat, parlament, ordemDia } = useContext(Context);  
+    
   return (    
     <div className='painel'>
       <div className='headline'>
         <h1>{sessions.reduce((o, p) => {return p.txtTituloReuniao}, "")}</h1>
-      </div>
-      <div>
+      </div>      
+      <div className="materias-exp">
         {expmat.map((sessao) => (                                                                            
-            <div className="painel-0" key={sessao.id}>                         
-              <div className='painel-1'>
+            <div className='exped-result'  key={sessao.id}>                         
+              <div className='exped-result-mat'>
                 <h1>{sessao.__str__.slice(24, -67)}</h1>                            
               </div>            
-              <div className='painel-2'>
+              <div className='exped-result-res'>
                 <h2>{sessao.resultado}</h2>                
               </div>                                         
             </div>                
         ))}
-      </div>                              
-        <div className='painel-1'>
-          <h1>{ordem.__str__.slice(24, -67)}</h1>
-          <h2>{ordem.id}</h2>            
-        </div>      
-        <div className='painel-2'>
-          <h2>Sim: {parlament.reduce((o,p) => {p.voto === "Sim" && o++; return o}, 0)}</h2>
-          <h2>Não: {parlament.reduce((o,p) => {p.voto === "Não" && o++; return o}, 0)}</h2>
-          <h2>Abstenções: {parlament.reduce((o,p) => {p.voto === "Abstenções" && o++; return o}, 0)}</h2>
-          <h2>Não Votaram: {parlament.reduce((o,p) => {p.voto === "Não Votou" && o++; return o}, 0)}</h2>                
-        </div>
+      </div>               
+      <div className="painel-mat-result">
+        {sessions.map((sessao) => ( 
+          sessao.id === ordemDia.shift() && (
+          <div className='materia-vot' key={sessao.id}>
+            <h1>{sessao.__str__.slice(24, -67)}</h1>
+            <h2>{sessao.id}</h2>                      
+          </div>
+        )))} 
+          <div className='resultado-vot'>
+            <h2>Sim: {parlament.reduce((o,p) => {p.voto === "Sim" && o++; return o}, 0)}</h2>
+            <h2>Não: {parlament.reduce((o,p) => {p.voto === "Não" && o++; return o}, 0)}</h2>
+            <h2>Abstenções: {parlament.reduce((o,p) => {p.voto === "Abstenções" && o++; return o}, 0)}</h2>
+            <h2>Não Votaram: {parlament.reduce((o,p) => {p.voto === "Não Votou" && o++; return o}, 0)}</h2>                
+          </div>          
+      </div>
     </div>
   );
 };

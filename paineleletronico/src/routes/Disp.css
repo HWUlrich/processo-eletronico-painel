@@ -98,6 +98,8 @@
 
 /* Painel com Matéria a ser votada, cronometragem e resultado das votações. */
 .painel {
+    width: 100%;
+    height: 100%;
     margin: 0;
     padding: 0;
     display: flex;
@@ -222,7 +224,12 @@
     color: yellow;
 }
 
+/* Matérias do Expediente */
 .painel-mesa-fundo {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     margin: 5px 0 5px 0;
     background-color: gray;
     border: 3px solid white;
@@ -231,7 +238,6 @@
 
 }
 
-/* Matérias do Expediente */
 .painel-mesa-0 {
     margin: 0 0 0 30px;    
     width: 100%;
@@ -268,6 +274,40 @@
 .painel-mesa-2 h2 {
     font-size: .8rem;
     color: blue;
+}
+
+.materias-exp {
+    width: 50%;
+}
+
+.exped-result {
+    height: 50%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.exped-result-mat {
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+}
+
+.exped-result-res {
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+}
+
+.exped-result h1 {
+    color: #189583;
+    font-size: 1.5rem;
+}
+
+.exped-result {
+    color: red;
+    font-size: 1.2rem;
 }
 
 
