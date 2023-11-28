@@ -25,8 +25,8 @@ const Disp4 = () => {
         ))}
       </div>               
       <div className="painel-mat-result">
-        {sessions.map((sessao) => ( 
-          sessao.id === ordemDia.shift() && (
+        {sessions.find((sessao) => (
+          sessao.id === ordemDia && (          
           <div className='materia-vot' key={sessao.id}>
             <h1>{sessao.__str__.slice(24, -67)}</h1>
             <h2>{sessao.id}</h2>                      

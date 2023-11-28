@@ -21,7 +21,7 @@ function Provider({children}) {
 
     try {
                   
-      const date = "2023-11-14";  // new Date().toISOString().slice(0,10);
+      const date = "2023-11-28";  // new Date().toISOString().slice(0,10);
       // Ordem do dia
       const ordDiaResponse = await aPIFetchOrdDia.get(`?data_ordem=${date}`);
       //const regVotResponse = await aPIFetchRegVot.get(`?materia=46327`); //O Registro de Votação é usado somente quando o operador preenche com os dados. 
@@ -48,17 +48,17 @@ function Provider({children}) {
       const numSesPlenaria = sessions?.reduce((o,p) => {return p.sessao_plenaria}, "");
       console.log(numSesPlenaria)
 
-      const ordem = sessions?.map((p) => {
+      const ordem = sessions.map((p) => {
         if(p.resultado === "" ) {
           return p.id;
         }})
         
       console.log(ordem.shift());
-      setOrdemDia(ordem);
+      setOrdemDia(ordem.shift());
       
       const parlamentResponse = await aPIFetchPar.get("parlamentar/search_parlamentares");      
       const presentResponse = await aPIFetchPres.get(`?page_size=21&sessao_plenaria=${numSesPlenaria}`);      
-      const votoResponse = await aPIFetchVot.get(`?ordem=${ordemDia.shift()}&page_size=21`);
+      const votoResponse = await aPIFetchVot.get(`?ordem=${ordemDia}&page_size=21`);
       // console.log (ordem)
       
       const dataParlament = parlamentResponse.data.filter((data) => data.ativo === true);      
@@ -74,11 +74,11 @@ function Provider({children}) {
       setParlament(merged1);      
     
     } catch (error) {
-      console.log(error);
+      console.log(error);      
       //alert ("Sem conexão com o SAPL");
     } 
 
-    }, [sessions]);
+    }, [ordemDia, sessions]);
 
 
   useEffect(() => {
