@@ -5,7 +5,10 @@ import Context from '../context/MyContext';
 
 const Disp4 = () => {
 
-  const { sessions, expmat, parlament, ordemDia } = useContext(Context);  
+  const { sessions, expmat, parlament, ordemDia } = useContext(Context);
+  
+  //const matVot= sessions.find(sessao => sessao.id === ordemDia);
+  //console.log(matVot)
     
   return (    
     <div className='painel'>
@@ -25,13 +28,12 @@ const Disp4 = () => {
         ))}
       </div>               
       <div className="painel-mat-result">
-        {sessions.find((sessao) => (
-          sessao.id === ordemDia && (          
-          <div className='materia-vot' key={sessao.id}>
+        {sessions.map((sessao) => (                    
+          <div className='materia-vot' key={sessao}>
             <h1>{sessao.__str__.slice(24, -67)}</h1>
             <h2>{sessao.id}</h2>                      
           </div>
-        )))} 
+        ))} 
           <div className='resultado-vot'>
             <h2>Sim: {parlament.reduce((o,p) => {p.voto === "Sim" && o++; return o}, 0)}</h2>
             <h2>Não: {parlament.reduce((o,p) => {p.voto === "Não" && o++; return o}, 0)}</h2>
