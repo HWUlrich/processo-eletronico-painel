@@ -146,6 +146,13 @@
     text-align: center;
 }
 
+.headline h2 {
+    
+    font-size: 2rem;
+    color: white;
+    text-align: center;
+}
+
 .painel-0 {
     width: 100%;
     height: 70px;

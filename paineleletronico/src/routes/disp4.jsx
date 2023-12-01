@@ -5,14 +5,16 @@ import Context from '../context/MyContext';
 
 const Disp4 = () => {
 
-  const { sessions, expmat, parlament, ordemDia } = useContext(Context);  
+  const { sessions, expmat, parlament, ordemDia, date } = useContext(Context);  
     
   return (    
     <div className='painel'>
       <div className='headline'>
-        <h1>{sessions.reduce((o, p) => {return p.txtTituloReuniao}, "")}</h1>
+        <h1>{sessions.reduce((o, p) => {return p.txtTituloReuniao}, "")}</h1>        
+        <h2>{date}</h2>        
       </div>      
       <div className="materias-exp">
+        <h2>{date}</h2>
         {expmat.map((sessao) => (                                                                            
             <div className='exped-result'  key={sessao.id}>                         
               <div className='exped-result-mat'>

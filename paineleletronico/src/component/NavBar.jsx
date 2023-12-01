@@ -5,7 +5,8 @@ import Disp1 from '../routes/disp1';
 import MesaDir from '../routes/mesaDir';
 
 
-const NavBar = () => { 
+const NavBar = () => {    
+    
 
     return (
         <nav className='navbar'>
@@ -14,7 +15,7 @@ const NavBar = () => {
             </div>          
             <div className='title'>
                 <h1>CÂMARA MUNICIPAL DE NOVA FRIBURGO</h1>
-                <h2>Fonte: SAPL</h2>
+                <h2>Fonte: SAPL</h2>                
             </div>                        
             <ul>
                 <li>

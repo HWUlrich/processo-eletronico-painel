@@ -15,23 +15,26 @@ function Provider({children}) {
   const [expmat, setExpmat] = useState([]);
   const [parlament, setParlament] = useState([]);
   const [ordemDia, setOrdemDia] = useState([]);
+  const [date, setDate] = useState([]);
   
   
   const getSessions = useCallback ( async () => {
 
     try {
                   
-      const date = "2023-11-28";  // new Date().toISOString().slice(0,10);
+      const date = "2023-11-28"; // new Date().toISOString().slice(0,10);
+      setDate(date);
+      
       // Ordem do dia
       const ordDiaResponse = await aPIFetchOrdDia.get(`?data_ordem=${date}`);
-      //const regVotResponse = await aPIFetchRegVot.get(`?materia=46327`); //O Registro de Votação é usado somente quando o operador preenche com os dados. 
+      const regVotResponse = await aPIFetchRegVot.get(`?materia=46327`); //O Registro de Votação é usado somente quando o operador preenche com os dados. 
       const sesPlenResponse = await aPIFetchSesPlen.get(`?data_inicio=${date}`);           
       const dataOrdDia = ordDiaResponse.data.results; 
-      //const dataRegVot = regVotResponse.data.results; // numero de ordem
+      const dataRegVot = regVotResponse.data.results; // numero de ordem
       const dataSesPlen = sesPlenResponse.data.results;
            
       const merged = dataOrdDia.map((screen) => ({
-        //...dataRegVot.find((o) => o.materia === screen.materia),
+        ...dataRegVot.find((o) => o.ordem === screen.id),
         ...dataSesPlen.find((o) => o.codReuniao === screen.sessao_plenaria),              
         ...screen      
       }));
@@ -50,6 +53,8 @@ function Provider({children}) {
 
       const ordem = sessions?.map((p) => {
         if(p.resultado === "" ) {
+          return p.id;
+        } else {
           return p.id;
         }})
         
@@ -75,6 +80,7 @@ function Provider({children}) {
     
     } catch (error) {
       console.log(error);
+
       //alert ("Sem conexão com o SAPL");
     } 
 
@@ -91,10 +97,12 @@ function Provider({children}) {
     expmat,
     parlament,
     ordemDia,
+    date,
     setSessions,
     setExpmat,
     setParlament,
-    setOrdemDia,    
+    setOrdemDia,
+    setDate,    
   }; 
 
   return (
