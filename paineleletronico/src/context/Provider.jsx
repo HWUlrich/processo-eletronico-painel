@@ -22,13 +22,9 @@ function Provider({children}) {
 
     try {
                   
-<<<<<<< HEAD
       const date = "2023-11-28"; // new Date().toISOString().slice(0,10);
       setDate(date);
       
-=======
-      const date = "2023-11-21";  // new Date().toISOString().slice(0,10);
->>>>>>> 0cb1e8abbb69bd85ff36f73166a3c5cd190352cd
       // Ordem do dia
       const ordDiaResponse = await aPIFetchOrdDia.get(`?data_ordem=${date}`);
       const regVotResponse = await aPIFetchRegVot.get(`?materia=46327`); //O Registro de Votação é usado somente quando o operador preenche com os dados. 
@@ -83,12 +79,8 @@ function Provider({children}) {
       setParlament(merged1);      
     
     } catch (error) {
-<<<<<<< HEAD
       console.log(error);
 
-=======
-      console.log(error);      
->>>>>>> 0cb1e8abbb69bd85ff36f73166a3c5cd190352cd
       //alert ("Sem conexão com o SAPL");
     } 
 
