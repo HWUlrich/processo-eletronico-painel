@@ -5,16 +5,17 @@ import Context from '../context/MyContext';
 
 const Disp4 = () => {
 
-  const { sessions, expmat, parlament, ordemDia, date } = useContext(Context);  
-    
+  const { sessions, expmat, parlament, ordemDia } = useContext(Context);
+  const dayToday = new Date();
+  const localDate = dayToday.toLocaleString('pt-br', {timeZone: 'America/Sao_Paulo'});    
   return (    
     <div className='painel'>
       <div className='headline'>
-        <h1>{sessions.reduce((o, p) => {return p.txtTituloReuniao}, "")}</h1>        
-        <h2>{date}</h2>        
+        <h1>{sessions.reduce((o, p) => {return p.txtTituloReuniao}, "")}</h1>             
       </div>      
       <div className="materias-exp">
-        <h2>{date}</h2>
+      <h2>{localDate.getDay() + "/" + localDate.getMonth() + "/" + localDate.getFullYear()}</h2>       
+        {setInterval(() => {<h2>{localDate.getHours() + ":" + localDate.getMinutes()}</h2>}, 1000)}        
         {expmat.map((sessao) => (                                                                            
             <div className='exped-result'  key={sessao.id}>                         
               <div className='exped-result-mat'>
