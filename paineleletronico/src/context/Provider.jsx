@@ -22,7 +22,7 @@ function Provider({children}) {
 
     try {
                   
-      const date = "2023-11-28"; // new Date().toISOString().slice(0,10);
+      const date = "2023-12-05"; // new Date().toISOString().slice(0,10);
       setDate(date);
       
       // Ordem do dia
