@@ -8,21 +8,27 @@ const Disp4 = () => {
   const { sessions, expmat, parlament, ordemDia } = useContext(Context);
 
   const dayToday = new Date();
-  const day = dayToday.getUTCDay() + 2;
-  const month = dayToday.getUTCMonth() + 1;
-  const year = dayToday.getUTCFullYear();
-  const hours = dayToday.getUTCHours() + 21;
-  const minutes = dayToday.getUTCMinutes();
-  const timer = hours + ":" + minutes;
+  const day = dayToday.getDay();
+  const month = dayToday.getMonth();
+  const year = dayToday.getFullYear();
+  const hours = dayToday.getHours();
+  const minutes = dayToday.getMinutes();
+  const timer = (hours < 10 ? "0" + hours : hours) + " : " + (minutes < 10 ? "0" + minutes : minutes) + " h";
+
+  setInterval(() => {
+    this.timer;
+  }, 1000);
       
   return (    
     <div className='painel'>
       <div className='headline'>
         <h1>{sessions.reduce((o, p) => {return p.txtTituloReuniao}, "")}</h1>             
-      </div>      
-      <div className="materias-exp">
-      <h2>{day + "/" + month + "/" + year}</h2>       
-      <h2>{timer}</h2>        
+      </div>
+      <div className='data-hora'>
+          <h2>{day + "/" + month + "/" + year}</h2>       
+          <h2>{timer}</h2>
+        </div>       
+      <div className="materias-exp">                    
         {expmat.map((sessao) => (                                                                            
             <div className='exped-result'  key={sessao.id}>                         
               <div className='exped-result-mat'>

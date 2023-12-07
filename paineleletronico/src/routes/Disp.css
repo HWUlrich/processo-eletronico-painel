@@ -330,5 +330,24 @@
     color: #189583;
 }
 
+.data-hora {
+    width: 100%;
+    height: 100px;
+    margin: 1px;
+    border-radius: 10px;
+    background-color: black;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    
+}
+
+.data-hora h2 {
+    color: white;
+    font-size: 3rem;
+    margin: 0 200px;
+}
+
 
 
