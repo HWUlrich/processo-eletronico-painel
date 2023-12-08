@@ -52,11 +52,10 @@ function Provider({children}) {
       console.log(numSesPlenaria)
 
       const ordem = sessions.map((p) => {
-        if(p.resultado === "" ) {
-          return p.id;
-        } else {
-          return p.id;
-        }})
+        if(p.resultado === "") {
+          p.id;
+        }
+        })
         
       console.log(ordem.shift());
       setOrdemDia(ordem.shift());

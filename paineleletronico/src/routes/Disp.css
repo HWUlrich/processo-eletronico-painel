@@ -113,7 +113,7 @@
     height: 200px;
     margin: 1px;
     border-radius: 10px;
-    background-color: black;    
+    background-color: #189583;    
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -335,7 +335,7 @@
     height: 100px;
     margin: 1px;
     border-radius: 10px;
-    background-color: black;
+    background-color: #189583;
     display: flex;
     flex-direction: row;
     align-items: center;
