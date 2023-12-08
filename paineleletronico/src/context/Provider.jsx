@@ -22,7 +22,7 @@ function Provider({children}) {
 
     try {
                   
-      const date = "2023-12-05"; // new Date().toISOString().slice(0,10);
+      const date = "2023-08-15"; // new Date().toISOString().slice(0,10);
       setDate(date);
       
       // Ordem do dia
@@ -79,6 +79,16 @@ function Provider({children}) {
     
     } catch (error) {
       console.log(error);
+      /*
+      const dataParlament = parlamentResponse.data.filter((data) => data.ativo === true); 
+      const dataPresent = presentResponse.data.results;
+
+      const merged1 = dataParlament.map((screen) => ({
+        ...dataPresent.find((o) => o.parlamentar === screen.id),        
+        ...screen      
+      }));
+
+      setParlament(merged1); */ 
 
       //alert ("Sem conexão com o SAPL");
     } 
