@@ -67,7 +67,11 @@ function Provider({children}) {
       
       const dataParlament = parlamentResponse.data.filter((data) => data.ativo === true);      
       const dataPresent = presentResponse.data.results; 
-      const dataVoto = votoResponse.data.results;  
+      const dataVoto = () => {
+        votoResponse.data.results.length > 0 ?
+        votoResponse.data.results :
+        "";
+      }  
       
       const merged1 = dataParlament.map((screen) => ({
         ...dataPresent.find((o) => o.parlamentar === screen.id),
@@ -78,18 +82,7 @@ function Provider({children}) {
       setParlament(merged1);      
     
     } catch (error) {
-      console.log(error);
-      /*
-      const dataParlament = parlamentResponse.data.filter((data) => data.ativo === true); 
-      const dataPresent = presentResponse.data.results;
-
-      const merged1 = dataParlament.map((screen) => ({
-        ...dataPresent.find((o) => o.parlamentar === screen.id),        
-        ...screen      
-      }));
-
-      setParlament(merged1); */ 
-
+      console.log(error);   
       //alert ("Sem conexão com o SAPL");
     } 
 
