@@ -27,19 +27,20 @@ function Provider({children}) {
       
       // Ordem do dia
       const ordDiaResponse = await aPIFetchOrdDia.get(`?data_ordem=${date}`);
-      const regVotResponse = await aPIFetchRegVot.get(`?materia=46327`); //O Registro de Votação é usado somente quando o operador preenche com os dados. 
+      //const regVotResponse = await aPIFetchRegVot.get(`?materia=46327`); //O Registro de Votação é usado somente quando o operador preenche com os dados. 
       const sesPlenResponse = await aPIFetchSesPlen.get(`?data_inicio=${date}`);           
       const dataOrdDia = ordDiaResponse.data.results; 
-      const dataRegVot = regVotResponse.data.results; // numero de ordem
+      //const dataRegVot = regVotResponse.data.results; // numero de ordem
       const dataSesPlen = sesPlenResponse.data.results;
            
       const merged = dataOrdDia.map((screen) => ({
-        ...dataRegVot.find((o) => o.ordem === screen.id),
+        //...dataRegVot.find((o) => o.ordem === screen.id),
         ...dataSesPlen.find((o) => o.codReuniao === screen.sessao_plenaria),              
         ...screen      
       }));
       
       setSessions(merged);
+      console.log(merged);
 
       // Matérias do Expediente
       const expMatResponse = await aPIFetchExpMat.get(`?data_ordem=${date}`);
@@ -55,23 +56,25 @@ function Provider({children}) {
         if(p.resultado === "") {
           p.id;
         }
-        })
+      })
         
       console.log(ordem.shift());
       setOrdemDia(ordem.shift());
       
       const parlamentResponse = await aPIFetchPar.get("parlamentar/search_parlamentares");      
       const presentResponse = await aPIFetchPres.get(`?page_size=21&sessao_plenaria=${numSesPlenaria}`);      
-      const votoResponse = await aPIFetchVot.get(`?ordem=${ordemDia}&page_size=21`);
+      //const votoResponse =  await aPIFetchVot.get(`?ordem=${ordemDia}&page_size=21`) !== undefined && 
+      //await aPIFetchVot.get(`?ordem=${ordemDia}&page_size=21`);
+
       // console.log (ordem)
       
       const dataParlament = parlamentResponse.data.filter((data) => data.ativo === true);      
       const dataPresent = presentResponse.data.results; 
-      const dataVoto = votoResponse.data.results;  
+      //const dataVoto = votoResponse.data.results;
       
       const merged1 = dataParlament.map((screen) => ({
         ...dataPresent.find((o) => o.parlamentar === screen.id),
-        ...dataVoto.find((o) => o.parlamentar === screen.id),
+        //...dataVoto.find((o) => o.parlamentar === screen.id),
         ...screen      
       }));
 
@@ -79,16 +82,6 @@ function Provider({children}) {
     
     } catch (error) {
       console.log(error);
-      /*
-      const dataParlament = parlamentResponse.data.filter((data) => data.ativo === true); 
-      const dataPresent = presentResponse.data.results;
-
-      const merged1 = dataParlament.map((screen) => ({
-        ...dataPresent.find((o) => o.parlamentar === screen.id),        
-        ...screen      
-      }));
-
-      setParlament(merged1); */ 
 
       //alert ("Sem conexão com o SAPL");
     } 
