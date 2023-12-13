@@ -20,15 +20,14 @@ function Provider({children}) {
   
   const getSessions = useCallback ( async () => {
 
-    try {
-                  
+    try {                  
       const date = "2023-12-12"; // new Date().toISOString().slice(0,10);
       setDate(date);
       
       // Ordem do dia
-      const ordDiaResponse = await aPIFetchOrdDia.get(`?data_ordem=${date}`);
+      const ordDiaResponse = await aPIFetchOrdDia.get(`?data_ordem=${date}&page_size=30`);
       //const regVotResponse = await aPIFetchRegVot.get(`?materia=46327`); //O Registro de Votação é usado somente quando o operador preenche com os dados. 
-      const sesPlenResponse = await aPIFetchSesPlen.get(`?data_inicio=${date}`);           
+      const sesPlenResponse = await aPIFetchSesPlen.get(`?data_inicio=${date}&page_size=30`);           
       const dataOrdDia = ordDiaResponse.data.results; 
       //const dataRegVot = regVotResponse.data.results; // numero de ordem
       const dataSesPlen = sesPlenResponse.data.results;
@@ -40,10 +39,10 @@ function Provider({children}) {
       }));
       
       setSessions(merged);
-      console.log(merged);
+      //console.log(merged);
 
       // Matérias do Expediente
-      const expMatResponse = await aPIFetchExpMat.get(`?data_ordem=${date}`);
+      const expMatResponse = await aPIFetchExpMat.get(`?data_ordem=${date}&page_size=30`);
       const dataExpMat = expMatResponse.data.results;
 
       setExpmat(dataExpMat);
@@ -52,29 +51,28 @@ function Provider({children}) {
       const numSesPlenaria = sessions?.reduce((o,p) => {return p.sessao_plenaria}, "");
       console.log(numSesPlenaria)
 
-      const ordem = sessions.map((p) => {
+      const ordem = [2540] /* sessions?.map((p) => {
         if(p.resultado === "") {
           p.id;
         }
-      })
+      }) */
         
       console.log(ordem.shift());
       setOrdemDia(ordem.shift());
       
       const parlamentResponse = await aPIFetchPar.get("parlamentar/search_parlamentares");      
       const presentResponse = await aPIFetchPres.get(`?page_size=21&sessao_plenaria=${numSesPlenaria}`);      
-      //const votoResponse =  await aPIFetchVot.get(`?ordem=${ordemDia}&page_size=21`) !== undefined && 
-      //await aPIFetchVot.get(`?ordem=${ordemDia}&page_size=21`);
+      const votoResponse =  await aPIFetchVot.get(`?ordem=${ordem.shift()}&page_size=21`);
 
       // console.log (ordem)
       
       const dataParlament = parlamentResponse.data.filter((data) => data.ativo === true);      
       const dataPresent = presentResponse.data.results; 
-      //const dataVoto = votoResponse.data.results;
+      const dataVoto = votoResponse.data.results;
       
       const merged1 = dataParlament.map((screen) => ({
         ...dataPresent.find((o) => o.parlamentar === screen.id),
-        //...dataVoto.find((o) => o.parlamentar === screen.id),
+        ...dataVoto.find((o) => o.parlamentar === screen.id),
         ...screen      
       }));
 

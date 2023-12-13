@@ -14,6 +14,12 @@ const Disp4 = () => {
   const month = dayToday.getMonth() + 1;
   const year = dayToday.getFullYear();
   const timer = (hours < 10 ? "0" + hours : hours) + " : " + (minutes < 10 ? "0" + minutes : minutes) + " " + ampm;
+
+  const ordem = sessions.map((p) => {
+    if(p.resultado === "") {
+      p.id;
+    }
+  })
        
   return (    
     <div className='painel'>
