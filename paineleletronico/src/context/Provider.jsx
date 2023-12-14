@@ -27,7 +27,8 @@ function Provider({children}) {
       // Ordem do dia
       const ordDiaResponse = await aPIFetchOrdDia.get(`?data_ordem=${date}&page_size=30`);
       //const regVotResponse = await aPIFetchRegVot.get(`?materia=46327`); //O Registro de Votação é usado somente quando o operador preenche com os dados. 
-      const sesPlenResponse = await aPIFetchSesPlen.get(`?data_inicio=${date}&page_size=30`);           
+      const sesPlenResponse = await aPIFetchSesPlen.get(`?data_inicio=${date}&page_size=30`);      
+                 
       const dataOrdDia = ordDiaResponse.data.results; 
       //const dataRegVot = regVotResponse.data.results; // numero de ordem
       const dataSesPlen = sesPlenResponse.data.results;
@@ -44,31 +45,40 @@ function Provider({children}) {
       // Matérias do Expediente
       const expMatResponse = await aPIFetchExpMat.get(`?data_ordem=${date}&page_size=30`);
       const dataExpMat = expMatResponse.data.results;
+      console.log(dataExpMat);
 
-      setExpmat(dataExpMat);
+      const matExp = dataExpMat?.map((p) => {
+        if(p.resultado === "") {
+          return p.id;
+        } else {
+          return p.id;
+        }
+      })
+        
+      console.log(matExp.shift());
+      setExpmat(matExp);
 
       // Painéis
       const numSesPlenaria = sessions?.reduce((o,p) => {return p.sessao_plenaria}, "");
       console.log(numSesPlenaria)
 
-      const ordem = [2540] /* sessions?.map((p) => {
+      const ordem = sessions?.map((p) => {
         if(p.resultado === "") {
-          p.id;
+          return p.id;
         }
-      }) */
+      })
         
-      console.log(ordem.shift());
+      //console.log(ordemDia);
       setOrdemDia(ordem.shift());
       
       const parlamentResponse = await aPIFetchPar.get("parlamentar/search_parlamentares");      
       const presentResponse = await aPIFetchPres.get(`?page_size=21&sessao_plenaria=${numSesPlenaria}`);      
-      const votoResponse =  await aPIFetchVot.get(`?ordem=${ordem.shift()}&page_size=21`);
-
-      // console.log (ordem)
-      
+      const votoResponse =  await aPIFetchVot.get(`?ordem=${ordemDia}&page_size=30`);
+        
       const dataParlament = parlamentResponse.data.filter((data) => data.ativo === true);      
       const dataPresent = presentResponse.data.results; 
       const dataVoto = votoResponse.data.results;
+      //console.log(dataVoto);
       
       const merged1 = dataParlament.map((screen) => ({
         ...dataPresent.find((o) => o.parlamentar === screen.id),
@@ -80,7 +90,6 @@ function Provider({children}) {
     
     } catch (error) {
       console.log(error);
-
       //alert ("Sem conexão com o SAPL");
     } 
 
