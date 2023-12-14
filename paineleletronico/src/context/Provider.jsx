@@ -18,6 +18,7 @@ function Provider({children}) {
   const [date, setDate] = useState([]);
   
   
+  
   const getSessions = useCallback ( async () => {
 
     try {                  
@@ -45,18 +46,17 @@ function Provider({children}) {
       // Matérias do Expediente
       const expMatResponse = await aPIFetchExpMat.get(`?data_ordem=${date}&page_size=30`);
       const dataExpMat = expMatResponse.data.results;
-      console.log(dataExpMat);
+      //console.log(dataExpMat);
 
-      const matExp = dataExpMat?.map((p) => {
-        if(p.resultado === "") {
+      const matExp = dataExpMat.map((p) => {
+        if(p.resultado === "Matéria lida") {
           return p.id;
-        } else {
-          return p.id;
-        }
+        }     
       })
         
+      //console.log(matExp);
+      setExpmat(dataExpMat);
       console.log(matExp.shift());
-      setExpmat(matExp);
 
       // Painéis
       const numSesPlenaria = sessions?.reduce((o,p) => {return p.sessao_plenaria}, "");

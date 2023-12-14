@@ -28,8 +28,7 @@ const Disp4 = () => {
         {expmat.map((sessao) => (                                                                            
             <div className='exped-result'  key={sessao.id}>                         
               <div className='exped-result-mat'>
-                <h1>{sessao.id === 2120 && sessao.__str__.slice(24, -67)}</h1>
-                <h2>{sessao.id}</h2>                            
+                <h1>{sessao.__str__.slice(24, -67)}</h1>                                            
               </div>            
               <div className='exped-result-res'>
                 <h2>{sessao.resultado}</h2>                
