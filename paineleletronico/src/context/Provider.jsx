@@ -22,7 +22,7 @@ function Provider({children}) {
   const getSessions = useCallback ( async () => {
 
     try {                  
-      const date = "2023-12-12"; // new Date().toISOString().slice(0,10);
+      const date = "2023-12-14"; // new Date().toISOString().slice(0,10);
       setDate(date);
       
       // Ordem do dia
@@ -49,7 +49,7 @@ function Provider({children}) {
       //console.log(dataExpMat);
 
       const matExp = dataExpMat.map((p) => {
-        if(p.resultado === "Matéria lida") {
+        if(p.resultado === "") {
           return p.id;
         }     
       })

@@ -42,11 +42,11 @@ const Disp4 = () => {
             <h1>{sessao.id === ordemDia && sessao.__str__.slice(24, -67)}</h1>                                  
           </div>
         ))} 
-          <div className='resultado-vot'>
+          <div className='resultado-vot'>             
             <h2>Sim: {parlament.reduce((o,p) => {p.voto === "Sim" && o++; return o}, 0)}</h2>
             <h2>Não: {parlament.reduce((o,p) => {p.voto === "Não" && o++; return o}, 0)}</h2>
             <h2>Abstenções: {parlament.reduce((o,p) => {p.voto === "Abstenções" && o++; return o}, 0)}</h2>
-            <h2>Não Votaram: {parlament.reduce((o,p) => {p.voto === "Não Votou" && o++; return o}, 0)}</h2>                
+            <h2>Não Votaram: {parlament.reduce((o,p) => {p.voto === "Não Votou" && o++; return o}, 0)}</h2>                                       
           </div>          
       </div>
     </div>
