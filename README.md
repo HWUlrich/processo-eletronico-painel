@@ -13,9 +13,10 @@ Obtidas diretamente do SAPL - Sistema de Apoio ao Processo Legislativo.
 
 A aplicação será desenvolvida utilizando as seguintes tecnologias:
 
-HTML 5
-CSS 3
-React
-Axios
+- HTML 5
+- CSS 3
+- React
+- Axios
+- Vite
 
 Espera-se com isso trazer as informações diretamente do SAPL, durante as sessões e exibi-las nos painéis do plenário da Câmara.
