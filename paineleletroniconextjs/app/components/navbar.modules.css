@@ -16,14 +16,14 @@
 
 }
 
-.img-wrapper {
+.img_wrapper {
   width: 15%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.img-wrapper img {
+.img_wrapper img {
   width: 80%;
 }
 

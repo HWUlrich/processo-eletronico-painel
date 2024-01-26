@@ -8,12 +8,12 @@ const NavBar = () => {
 
     return (
         <nav className={styles.navbar}>
-            <div className={styles.img-wrapper}>
+            <div className={styles.img_wrapper}>
                 <Image
-                    src='../public/images/brasaoLogo.png'
-                    width= '70'
-                    height='50'
-                    alt='Logo Identidade Visual Câmara Municipal'
+                    src="../public/images/brasaoLogo.png"
+                    width= "70"
+                    height= "50"
+                    alt="Logo Identidade Visual Câmara Municipal"
                 />                
             </div>          
             <div className={styles.title}>
@@ -22,19 +22,19 @@ const NavBar = () => {
             </div>                        
             <ul>
                 <li>
-                    <Link href="/" onClick={Disp1.dispStyleParl}>1</Link>
+                    <Link href="/">1</Link>
                 </li>
                 <li>
-                    <Link href="/disp2" onClick={Disp1.dispStyleParl}>2</Link>
+                    <Link href="/disp2">2</Link>
                 </li>
                 <li>
-                    <Link href="/disp3" onClick={Disp1.dispStyleParl}>3</Link>
+                    <Link href="/disp3">3</Link>
                 </li>
                 <li>
-                    <Link href="/disp4" onClick={Disp1.dispStyleParl}>4</Link>
+                    <Link href="/disp4">4</Link>
                 </li>
                 <li>
-                    <Link href="/mesaDir" onClick={MesaDir.dispStyleMesa}>5</Link>
+                    <Link href="/mesaDir">5</Link>
                 </li>
             </ul>
         </nav>
