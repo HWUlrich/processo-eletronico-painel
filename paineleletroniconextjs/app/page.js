@@ -1,6 +1,7 @@
+'use client'
 import styles from "./page.module.css";
 import { useState, useContext } from 'react';
-import Context from '../context/MyContext';
+import Context from './context/MyContext';
 
 
 const Disp1 = () => {

@@ -1,12 +1,13 @@
-import { useState, useEffect, useCallback } from 'react';
+'use client'
+import { useState } from 'react';
 import Context from './MyContext';
-import aPIFetchOrdDia from '../service/configOrdDia';
-import aPIFetchRegVot from '../service/configRegVot';
-import aPIFetchSesPlen from '../service/configSesPlen';
-import aPIFetchPar from '../service/configPar';
-import aPIFetchPres from '../service/configPres';
-import aPIFetchVot from '../service/configVot';
-import aPIFetchExpMat from '../service/configExpMat';
+import aPIFetchOrdDia from '../services/configOrdDia';
+import aPIFetchSesPlen from '../services/configSesPlen';
+import aPIFetchPar from '../services/configPar';
+import aPIFetchPres from '../services/configPres';
+import aPIFetchVot from '../services/configVot';
+import aPIFetchExpMat from '../services/configExpMat';
+
 
 
 function Provider({children}) {
@@ -19,7 +20,7 @@ function Provider({children}) {
   
   
   
-  const getSessions = useCallback ( async () => {
+  const getSessions =  async () => {
 
     try {                  
       const date = "2023-12-14"; // new Date().toISOString().slice(0,10);
@@ -91,14 +92,9 @@ function Provider({children}) {
     } catch (error) {
       console.log(error);
       //alert ("Sem conexão com o SAPL");
-    } 
+    }
+  }
 
-    }, [ordemDia, sessions]);
-
-
-  useEffect(() => {
-    getSessions();    
-  }, [getSessions]);
 
 
   const contextValue = {    

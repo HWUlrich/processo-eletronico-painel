@@ -1,3 +1,4 @@
+'use client'
 import { useContext, useState } from 'react';
 import styles from '../page.module.css';
 import Parlament from '../component/Parlament';

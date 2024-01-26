@@ -1,3 +1,4 @@
+'use client'
 import { useContext } from 'react';
 import { useTime } from 'react-timer-hook';
 import Context from '../context/MyContext';

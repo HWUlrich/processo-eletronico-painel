@@ -1,3 +1,4 @@
+'use client'
 import { useState, useContext } from 'react';
 import styles from '../page.module.css'
 import Context from '../context/MyContext';

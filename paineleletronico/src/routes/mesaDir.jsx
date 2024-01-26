@@ -2,7 +2,6 @@ import { useContext, useState } from 'react';
 import './Disp.css';
 import Parlament from '../component/Parlament';
 import Context from '../context/MyContext';
-import PanelInfo from '../component/PanelInfo';
 
 const MesaDir = () => {
   
@@ -49,10 +48,7 @@ const MesaDir = () => {
                   <h2>Não: {parlament.reduce((o,p) => {p.voto === "Não" && o++; return o}, 0)}</h2>
                   <h2>Abstenções: {parlament.reduce((o,p) => {p.voto === "Abstenções" && o++; return o}, 0)}</h2>
                   <h2>Não Votaram: {parlament.reduce((o,p) => {p.voto === "Não Votou" && o++; return o}, 0)}</h2>                
-                </div>
-                <div>
-                  <PanelInfo votar={data} />
-                </div>                
+                </div>                            
               </div>
               ))};         
             </div>
