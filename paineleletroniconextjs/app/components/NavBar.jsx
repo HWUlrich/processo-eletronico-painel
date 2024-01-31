@@ -10,10 +10,10 @@ const NavBar = () => {
         <nav className={styles.navbar}>
             <div className={styles.img_wrapper}>
                 <Image
-                    src="../public/images/brasaoLogo.png"
-                    width= "70"
-                    height= "50"
-                    alt="Logo Identidade Visual Câmara Municipal"
+                    src= '../public/images/brasaoLogo.png'
+                    width= '70'
+                    height= '50'
+                    alt= 'Logo Identidade Visual Câmara Municipal'
                 />                
             </div>          
             <div className={styles.title}>

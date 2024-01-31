@@ -6,7 +6,7 @@ import Context from './context/MyContext';
 
 const Disp1 = () => {
   
-  // altera a tabela de estilos
+  // altera a folha de estilos
   const dispStyleParl = () => {
     document.body.classList.toggle('parlamentares');
   }

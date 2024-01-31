@@ -64,7 +64,7 @@ function Provider({children}) {
 
       const ordem = sessions?.map((p) => {
         if(p.resultado === "") {
-          return p.id;
+          return p.id
         }
       })
         
