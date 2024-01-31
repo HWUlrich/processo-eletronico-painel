@@ -48,22 +48,21 @@ function Provider({children}) {
       const dataExpMat = expMatResponse.data.results;
       //console.log(dataExpMat);
 
-      const matExp = dataExpMat.map((p) => {
-        if(p.resultado === "") {
-          return p.id;
-        }     
+      const matExp = dataExpMat?.filter((p) => {
+        if(p.resultado === "Matéria lida")
+        return p.id
       })
         
       //console.log(matExp);
-      setExpmat(dataExpMat);
+      setExpmat(matExp.shift());
       console.log(matExp.shift());
 
       // Painéis
       const numSesPlenaria = sessions?.reduce((o,p) => {return p.sessao_plenaria}, "");
       console.log(numSesPlenaria)
 
-      const ordem = sessions?.map((p) => {
-        if(p.resultado === "") {
+      const ordem = sessions?.filter((p) => {
+        if(p.resultado === "Aprovado") {
           return p.id
         }
       })
