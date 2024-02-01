@@ -48,31 +48,25 @@ function Provider({children}) {
       const dataExpMat = expMatResponse.data.results;
       //console.log(dataExpMat);
 
-      const matExp = dataExpMat?.filter((p) => {
-        if(p.resultado === "Matéria lida")
-        return p.id
-      })
-        
-      //console.log(matExp);
-      setExpmat(matExp.shift());
-      console.log(matExp.shift());
+      const matExp = dataExpMat?.filter((p) => p.resultado === "Matéria lida")
+      const nmatExp = matExp?.map((p) => {return p.id}).shift();
+      setExpmat(nmatExp);
+      console.log(nmatExp);      
 
       // Painéis
       const numSesPlenaria = sessions?.reduce((o,p) => {return p.sessao_plenaria}, "");
-      console.log(numSesPlenaria)
+      //console.log(numSesPlenaria)
 
-      const ordem = sessions?.filter((p) => {
-        if(p.resultado === "Aprovado") {
-          return p.id
-        }
-      })
-        
-      //console.log(ordemDia);
-      setOrdemDia(ordem.shift());
+      const ordem = sessions?.filter((p) => p.resultado === "Aprovado")
+      const nordem = ordem?.map((p) => {return p.id}).shift();
+      setOrdemDia(nordem);        
+      console.log(nordem);
+      console.log(ordemDia);
+      
       
       const parlamentResponse = await aPIFetchPar.get("parlamentar/search_parlamentares");      
       const presentResponse = await aPIFetchPres.get(`?page_size=21&sessao_plenaria=${numSesPlenaria}`);      
-      const votoResponse =  await aPIFetchVot.get(`?ordem=${ordemDia}&page_size=30`);
+      const votoResponse =  await aPIFetchVot.get(`?ordem=${nordem}&page_size=30`);
         
       const dataParlament = parlamentResponse.data.filter((data) => data.ativo === true);      
       const dataPresent = presentResponse.data.results; 
