@@ -51,7 +51,7 @@ function Provider({children}) {
       const matExp = dataExpMat?.filter((p) => p.resultado === "Matéria lida")
       const nmatExp = matExp?.map((p) => {return p.id}).shift();
       setExpmat(nmatExp);
-      console.log(nmatExp);      
+      console.log('nmatExp: ' + nmatExp);      
 
       // Painéis
       const numSesPlenaria = sessions?.reduce((o,p) => {return p.sessao_plenaria}, "");
@@ -60,8 +60,8 @@ function Provider({children}) {
       const ordem = sessions?.filter((p) => p.resultado === "Aprovado")
       const nordem = ordem?.map((p) => {return p.id}).shift();
       setOrdemDia(nordem);        
-      console.log(nordem);
-      console.log(ordemDia);
+      console.log('nordem :' + nordem);
+      console.log('ordemDia :' + ordemDia);
       
       
       const parlamentResponse = await aPIFetchPar.get("parlamentar/search_parlamentares");      
