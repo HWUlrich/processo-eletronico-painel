@@ -8,7 +8,7 @@ const aPIFetchVot = axios.create({
         //"content-length": 4954, 
         "content-type": "application/json",
         "access-Control-Allow-Origin": "*",
-        "access-control-allow-headers": "*"
+        "access-control-allow-headers": "Access-Control-Allow-Origin,XMLHttpRequest,Accept,Authorization,Cache-Control,Content-Type,DNT,If-Modified-Since,Keep-Alive,Origin,User-Agent,X-Mx-ReqToken,X-Requested-With "
     }
 });
 
