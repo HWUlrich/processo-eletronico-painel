@@ -66,11 +66,11 @@ function Provider({children}) {
       
       const parlamentResponse = await aPIFetchPar.get("parlamentar/search_parlamentares");      
       const presentResponse = await aPIFetchPres.get(`?page_size=21&sessao_plenaria=${numSesPlenaria}`);      
-      const votoResponse =  await aPIFetchVot.get(`?ordem=${nordem}&page_size=30`);
+      const votoResponse =  ordemDia ? await aPIFetchVot.get(`?ordem=${ordemDia}&page_size=30`) : null;
         
       const dataParlament = parlamentResponse.data.filter((data) => data.ativo === true);      
       const dataPresent = presentResponse.data.results; 
-      const dataVoto = votoResponse.data.results;
+      const dataVoto = votoResponse ? votoResponse.data.results : [];
       //console.log(dataVoto);
       
       const merged1 = dataParlament.map((screen) => ({
