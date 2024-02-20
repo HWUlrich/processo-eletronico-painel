@@ -1,7 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import Context from './MyContext';
 import aPIFetchOrdDia from '../axios/configOrdDia';
-import aPIFetchRegVot from '../axios/configRegVot';
 import aPIFetchSesPlen from '../axios/configSesPlen';
 import aPIFetchPar from '../axios/configPar';
 import aPIFetchPres from '../axios/configPres';
@@ -26,16 +25,13 @@ function Provider({children}) {
       setDate(date);
       
       // Ordem do dia
-      const ordDiaResponse = await aPIFetchOrdDia.get(`?data_ordem=${date}&page_size=30`);
-      //const regVotResponse = await aPIFetchRegVot.get(`?materia=46327`); //O Registro de Votação é usado somente quando o operador preenche com os dados. 
+      const ordDiaResponse = await aPIFetchOrdDia.get(`?data_ordem=${date}&page_size=30`);      
       const sesPlenResponse = await aPIFetchSesPlen.get(`?data_inicio=${date}&page_size=30`);      
                  
-      const dataOrdDia = ordDiaResponse.data.results; 
-      //const dataRegVot = regVotResponse.data.results; // numero de ordem
+      const dataOrdDia = ordDiaResponse.data.results;       
       const dataSesPlen = sesPlenResponse.data.results;
            
-      const merged = dataOrdDia.map((screen) => ({
-        //...dataRegVot.find((o) => o.ordem === screen.id),
+      const merged = dataOrdDia.map((screen) => ({        
         ...dataSesPlen.find((o) => o.codReuniao === screen.sessao_plenaria),              
         ...screen      
       }));
@@ -50,8 +46,11 @@ function Provider({children}) {
 
       const matExp = dataExpMat?.filter((p) => p.resultado === "Matéria lida")
       const nmatExp = matExp?.map((p) => {return p.id}).shift();
-      setExpmat(nmatExp);
-      console.log('nmatExp: ' + nmatExp);      
+      const dataMateriasExp = await aPIFetchExpMat.get(`?id=${nmatExp}&page_size=30`);
+      const materiasExp = dataMateriasExp.data.results; 
+
+      setExpmat(materiasExp);
+      console.log(materiasExp);           
 
       // Painéis
       const numSesPlenaria = sessions?.reduce((o,p) => {return p.sessao_plenaria}, "");

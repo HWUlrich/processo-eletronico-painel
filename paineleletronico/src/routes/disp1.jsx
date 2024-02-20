@@ -31,10 +31,10 @@ const Disp1 = () => {
               <h2>{parlament.partido}</h2>
             </div>
             <div id='presParl' className='parl-3'>             
-              <div>{parlament.parlamentar?<h2>Presente</h2>:<h3>Ausente</h3>}</div>            
+              <div>{parlament.parlamentar ? <h2>Presente</h2> : <h3>Ausente</h3>}</div>            
             </div> 
             <div className='parl-4'>
-              <h2>{parlament.voto?parlament.voto:"-"}</h2>
+              <h2>{parlament.voto ? parlament.voto : "-"}</h2>
             </div>                              
           </div>                    
         )
