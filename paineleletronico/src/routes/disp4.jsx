@@ -15,6 +15,9 @@ const Disp4 = () => {
   const year = dayToday.getFullYear();
   const timer = (hours < 10 ? "0" + hours : hours) + " : " + (minutes < 10 ? "0" + minutes : minutes) + " " + ampm;
 
+  console.log(expmat);
+  console.log(ordemDia);
+
   return (    
     <div className='painel'>
       <div className='headline'>
@@ -23,9 +26,9 @@ const Disp4 = () => {
       <div className='data-hora'>
           <h2>{day + " / " + month + " / " + year}</h2>       
           <h2>{timer}</h2>
-        </div>       
+      </div>       
       <div className="materias-exp">                    
-        {expmat.map((sessao) => (                                                                            
+        {expmat.map((sessao) => (                                                                          
             <div className='exped-result'  key={sessao.id}>                         
               <div className='exped-result-mat'>
                 <h1>{sessao.__str__.slice(24, -67)}</h1>                                            
@@ -38,8 +41,8 @@ const Disp4 = () => {
       </div>               
       <div className="painel-mat-result">
         {sessions.map((sessao) => (                    
-          <div className='materia-vot' key={sessao}>
-            <h1>{sessao.id === ordemDia && sessao.__str__.slice(24, -67)}</h1>                                  
+          <div className='materia-vot' key={sessao.id}>
+            <h1>{sessao.__str__.slice(24, -67)}</h1>                                  
           </div>
         ))} 
           <div className='resultado-vot'>             
