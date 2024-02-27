@@ -11,10 +11,10 @@ import aPIFetchExpMat from '../axios/configExpMat';
 function Provider({children}) {
   
   const [sessions, setSessions] = useState([]);
-  const [expmat, setExpmat] = useState([]);
+  const [expmat, setExpmat] = useState();
   const [parlament, setParlament] = useState([]);
-  const [ordemDia, setOrdemDia] = useState([]);
-  const [date, setDate] = useState([]);
+  const [ordemDia, setOrdemDia] = useState();
+  const [date, setDate] = useState();
   
   
   
@@ -45,27 +45,21 @@ function Provider({children}) {
       //console.log(dataExpMat);
 
       const matExp = dataExpMat?.filter((p) => p.resultado === "Matéria lida")
-      const nmatExp = matExp?.map((p) => {return p.id}).shift();
-      const dataMateriasExp = await aPIFetchExpMat.get(`${nmatExp}/`);
-      const materiasExp = dataMateriasExp.data; 
-
-      setExpmat(materiasExp);
-      //console.log(materiasExp);           
+      const nmatExp = matExp?.map((p) => {return p.id}).shift();    
+      setExpmat(nmatExp);                 
 
       // Painéis
       const numSesPlenaria = sessions?.reduce((o,p) => {return p.sessao_plenaria}, "");
       //console.log(numSesPlenaria)
 
       const ordem = sessions?.filter((p) => p.resultado === "Aprovado")
-      const nordem = ordem?.map((p) => {return p.id}).shift();
-      const dataMateriasOrd = await aPIFetchOrdDia.get(`${nordem}/`);
-      const materiasOrd = dataMateriasOrd.data;
-      console.log(materiasOrd);
-      setOrdemDia(materiasOrd);        
+      const nordem = ordem?.map((p) => {return p.id}).shift();      
+      setOrdemDia(nordem);
+      console.log(ordemDia);
+
       //console.log('nordem :' + nordem);
       //console.log('ordemDia :' + ordemDia);
-      
-      
+            
       const parlamentResponse = await aPIFetchPar.get("parlamentar/search_parlamentares");      
       const presentResponse = await aPIFetchPres.get(`?page_size=21&sessao_plenaria=${numSesPlenaria}`);      
       const votoResponse =  nordem ? await aPIFetchVot.get(`?ordem=${nordem}&page_size=30`) : null;
@@ -88,7 +82,7 @@ function Provider({children}) {
       //alert ("Sem conexão com o SAPL");
     } 
 
-    }, [ordemDia, sessions]);
+    }, []);
 
 
   useEffect(() => {

@@ -1,10 +1,15 @@
-import { useContext } from 'react';
+import { useContext, useEffect, useCallback, useState } from 'react';
 import { useTime } from 'react-timer-hook';
 import Context from '../context/MyContext';
 import './Disp.css';
+import aPIFetchExpMat from '../axios/configExpMat';
+import aPIFetchOrdDia from '../axios/configOrdDia';
 
 
 const Disp4 = () => {
+
+  const [ matExp, setMatExp] = useState([]);
+  const [ matOrd, setMatOrd] = useState([]);
 
   const { sessions, expmat, parlament, ordemDia } = useContext(Context);
   const { hours, minutes, seconds, ampm } = useTime({ format: '12-hour'});
@@ -16,7 +21,29 @@ const Disp4 = () => {
   const timer = (hours < 10 ? "0" + hours : hours) + " : " + (minutes < 10 ? "0" + minutes : minutes) + " " + ampm;
 
   console.log(expmat);
-  console.log(ordemDia);
+  //console.log(ordemDia);
+
+  const getMaterias = useCallback ( async () => {
+
+  try {
+  const dataMateriasExp = expmat ? await aPIFetchExpMat.get(`${expmat}/`) : null;
+  const materiasExp = dataMateriasExp.data;
+  setMatExp(materiasExp);
+
+  const dataMateriasOrd = ordemDia ? await aPIFetchOrdDia.get(`${ordemDia}/`) : null;
+  const materiasOrd = dataMateriasOrd.data;
+  setMatOrd(materiasOrd);
+
+  } catch (error) {
+    console.log(error);
+    //alert ("Sem conexão com o SAPL");
+  } 
+
+  }, []);
+
+  useEffect(() => {
+    getMaterias();    
+  }, []);
 
   return (    
     <div className='painel'>
@@ -28,7 +55,7 @@ const Disp4 = () => {
           <h2>{timer}</h2>
       </div>       
       <div className="materias-exp">                    
-        {expmat.map((sessao) => (                                                                          
+        {matExp.map((sessao) => (                                                                          
             <div className='exped-result'  key={sessao.id}>                         
               <div className='exped-result-mat'>
                 <h1>{sessao.__str__.slice(24, -67)}</h1>                                            
@@ -40,7 +67,7 @@ const Disp4 = () => {
         ))}
       </div>               
       <div className="painel-mat-result">
-        {sessions.map((sessao) => (                    
+        {matOrd.map((sessao) => (                    
           <div className='materia-vot' key={sessao.id}>
             <h1>{sessao.__str__.slice(24, -67)}</h1>                                  
           </div>
