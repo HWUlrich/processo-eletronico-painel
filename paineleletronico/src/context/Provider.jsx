@@ -11,10 +11,11 @@ import aPIFetchExpMat from '../axios/configExpMat';
 function Provider({children}) {
   
   const [sessions, setSessions] = useState([]);
-  const [expmat, setExpmat] = useState();
+  const [expmat, setExpmat] = useState([]);
   const [parlament, setParlament] = useState([]);
-  const [ordemDia, setOrdemDia] = useState();
-  const [date, setDate] = useState();
+  const [ordemDia, setOrdemDia] = useState([]);
+  const [date, setDate] = useState([]);
+  const [nordem, setNordem ] = useState();
   
   
   
@@ -46,19 +47,17 @@ function Provider({children}) {
 
       const matExp = dataExpMat?.filter((p) => p.resultado === "Matéria lida")
       const nmatExp = matExp?.map((p) => {return p.id}).shift();    
-      setExpmat(nmatExp);                 
+      setExpmat(nmatExp);
+      console.log('nmatExp :' + nmatExp);                 
 
       // Painéis
       const numSesPlenaria = sessions?.reduce((o,p) => {return p.sessao_plenaria}, "");
       //console.log(numSesPlenaria)
 
-      const ordem = sessions?.filter((p) => p.resultado === "Aprovado")
+      const ordem = dataOrdDia?.filter((p) => p.resultado === "Aprovado")
       const nordem = ordem?.map((p) => {return p.id}).shift();      
-      setOrdemDia(nordem);
-      console.log(ordemDia);
-
-      //console.log('nordem :' + nordem);
-      //console.log('ordemDia :' + ordemDia);
+      setNordem(nordem);
+      console.log('ordemDia :' + nordem);      
             
       const parlamentResponse = await aPIFetchPar.get("parlamentar/search_parlamentares");      
       const presentResponse = await aPIFetchPres.get(`?page_size=21&sessao_plenaria=${numSesPlenaria}`);      
@@ -95,11 +94,13 @@ function Provider({children}) {
     expmat,
     parlament,
     ordemDia,
+    nordem,
     date,
     setSessions,
     setExpmat,
     setParlament,
     setOrdemDia,
+    setNordem,
     setDate,    
   }; 
 
