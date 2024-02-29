@@ -31,26 +31,26 @@ const Disp4 = () => {
   const dataExpMat = expMatResponse.data.results;
   console.log('date: ' + date);
 
-  const matExp = dataExpMat?.filter((p) => p.resultado === "Matéria lida")
+  const matExp = dataExpMat?.filter((p) => p.resultado === "")
   const nmatExp = matExp?.map((p) => {return p.id}).shift();  
   console.log('nmatExp :' + nmatExp);
     
   const dataMateriasExp = nmatExp ? await aPIFetchExpMat.get(`${nmatExp}/`) : null;
   const materiasExp = dataMateriasExp.data;
-  setMatExp(materiasExp);
-  //console.log(matExp);
+  setMatExp([materiasExp]);
+  console.log(materiasExp);
 
   const ordDiaResponse = await aPIFetchOrdDia.get(`?data_ordem=${date}&page_size=30`); 
   const dataOrdDia = ordDiaResponse.data.results;
   
-  const ordem = dataOrdDia?.filter((p) => p.resultado === "Aprovado")
+  const ordem = dataOrdDia?.filter((p) => p.resultado === "")
   const nordem = ordem?.map((p) => {return p.id}).shift();  
   console.log('ordemDia :' + nordem);
 
   const dataMateriasOrd = nordem ? await aPIFetchOrdDia.get(`${nordem}/`) : null;
   const materiasOrd = dataMateriasOrd.data;
-  setMatOrd(materiasOrd);
-  //console.log(matOrd);
+  setMatOrd([materiasOrd]);
+  console.log(materiasOrd);
 
   } catch (error) {
     console.log(error);

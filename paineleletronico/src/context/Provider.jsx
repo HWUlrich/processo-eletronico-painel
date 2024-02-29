@@ -11,7 +11,7 @@ function Provider({children}) {
   
   const [sessions, setSessions] = useState([]);  
   const [parlament, setParlament] = useState([]); 
-  const [date, setDate] = useState("2023-12-14");
+  const [date, setDate] = useState("2024-02-29");
   
   
   const getSessions = useCallback ( async () => {
