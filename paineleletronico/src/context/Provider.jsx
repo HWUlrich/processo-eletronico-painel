@@ -38,17 +38,7 @@ function Provider({children}) {
       }));
       
       setSessions(merged);
-      //console.log(merged);
-
-      // Matérias do Expediente
-      const expMatResponse = await aPIFetchExpMat.get(`?data_ordem=${date}&page_size=30`);
-      const dataExpMat = expMatResponse.data.results;
-      //console.log(dataExpMat);
-
-      const matExp = dataExpMat?.filter((p) => p.resultado === "Matéria lida")
-      const nmatExp = matExp?.map((p) => {return p.id}).shift();    
-      setExpmat(nmatExp);
-      console.log('nmatExp :' + expmat);                 
+      //console.log(merged);                      
 
       // Painéis
       const numSesPlenaria = sessions?.reduce((o,p) => {return p.sessao_plenaria}, "");

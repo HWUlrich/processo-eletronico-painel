@@ -11,35 +11,54 @@ const Disp4 = () => {
   const [ matExp, setMatExp] = useState([]);
   const [ matOrd, setMatOrd] = useState([]);
 
-  const { sessions, expmat, parlament, ordemDia } = useContext(Context);
+  const { sessions, parlament, date } = useContext(Context);
   const { hours, minutes, seconds, ampm } = useTime({ format: '12-hour'});
   
   const dayToday = new Date();
   const day = dayToday.getDate();
   const month = dayToday.getMonth() + 1;
   const year = dayToday.getFullYear();
-  const timer = (hours < 10 ? "0" + hours : hours) + " : " + (minutes < 10 ? "0" + minutes : minutes) + " " + ampm;
-  
-  //console.log('expmat :' + expmat);
-  //console.log('ordemDia :' + ordemDia);
+  const timer = (hours < 10 ? "0" + hours : hours) + " : " + (minutes < 10 ? "0" + minutes : minutes) + " " + ampm;  
 
-  const getMaterias = useCallback ( async () => {
+  
+
+
+  const getMaterias = ( async () => {
 
   try {
-  const dataMateriasExp = expmat ? await aPIFetchExpMat.get(`${expmat}/`) : null;
+
+  // Matérias do Expediente
+  const expMatResponse = await aPIFetchExpMat.get(`?data_ordem=${date}&page_size=30`);
+  const dataExpMat = expMatResponse.data.results;
+  console.log('date: ' + date);
+
+  const matExp = dataExpMat?.filter((p) => p.resultado === "Matéria lida")
+  const nmatExp = matExp?.map((p) => {return p.id}).shift();  
+  //console.log('nmatExp :' + nmatExp);
+    
+  const dataMateriasExp = nmatExp ? await aPIFetchExpMat.get(`${nmatExp}/`) : null;
   const materiasExp = dataMateriasExp.data;
   setMatExp(materiasExp);
+  console.log(materiasExp);
 
-  const dataMateriasOrd = ordemDia ? await aPIFetchOrdDia.get(`${ordemDia}/`) : null;
+  const ordDiaResponse = await aPIFetchOrdDia.get(`?data_ordem=${date}&page_size=30`); 
+  const dataOrdDia = ordDiaResponse.data.results;
+  
+  const ordem = dataOrdDia?.filter((p) => p.resultado === "Aprovado")
+  const nordem = ordem?.map((p) => {return p.id}).shift();  
+  //console.log('ordemDia :' + nordem);
+
+  const dataMateriasOrd = nordem ? await aPIFetchOrdDia.get(`${nordem}/`) : null;
   const materiasOrd = dataMateriasOrd.data;
   setMatOrd(materiasOrd);
+  console.log(materiasOrd);
 
   } catch (error) {
     console.log(error);
     //alert ("Sem conexão com o SAPL");
   } 
 
-  }, []);
+  });
 
   useEffect(() => {
     getMaterias();    
