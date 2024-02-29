@@ -1,7 +1,7 @@
 .App {
   margin: 0;
   padding: 0;
-  width: 100%;   
+  width: 100%;
 }
 
 .container {
@@ -9,7 +9,4 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  
 }
-
-

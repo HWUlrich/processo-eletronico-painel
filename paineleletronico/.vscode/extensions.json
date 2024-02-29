@@ -1,0 +1,14 @@
+{
+	"recommendations": [
+		"esbenp.prettier-vscode",
+		"dbaeumer.vscode-eslint",
+		"formulahendry.auto-close-tag",
+		"formulahendry.auto-rename-tag",
+		"coenraads.bracket-pair-colorizer-2",
+		"naumovs.color-highlight",
+		"vincaslt.highlight-matching-tag",
+		"editorconfig.editorconfig",
+		"VisualStudioExptTeam.vscodeintellicode",
+		"dracula-theme.theme-dracula",
+	]
+}

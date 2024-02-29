@@ -5,97 +5,129 @@ import './Disp.css';
 import aPIFetchExpMat from '../axios/configExpMat';
 import aPIFetchOrdDia from '../axios/configOrdDia';
 
-
 const Disp4 = () => {
-
-  const [ matExp, setMatExp] = useState([]);
-  const [ matOrd, setMatOrd] = useState([]);
+  const [matExp, setMatExp] = useState([]);
+  const [matOrd, setMatOrd] = useState([]);
 
   const { sessions, parlament, date } = useContext(Context);
-  const { hours, minutes, seconds, ampm } = useTime({ format: '12-hour'});
-  
+  const { hours, minutes, ampm } = useTime({ format: '12-hour' });
+
   const dayToday = new Date();
   const day = dayToday.getDate();
   const month = dayToday.getMonth() + 1;
   const year = dayToday.getFullYear();
-  const timer = (hours < 10 ? "0" + hours : hours) + " : " + (minutes < 10 ? "0" + minutes : minutes) + " " + ampm;  
-  
+  const timer = (hours < 10 ? '0' + hours : hours) + ' : ' + (minutes < 10 ? '0' + minutes : minutes) + ' ' + ampm;
+
   //const date = '2023-12-14';
 
-  const getMaterias = useCallback ( async () => {
+  const getMaterias = useCallback(async () => {
+    try {
+      // Matérias do Expediente
+      const expMatResponse = await aPIFetchExpMat.get(`?data_ordem=${date}&page_size=30`);
+      const dataExpMat = expMatResponse.data.results;
+      console.log('date: ' + date);
 
-  try {
+      const matExp = dataExpMat?.filter((p) => p.resultado === 'Matéria lida');
+      const nmatExp = matExp
+        ?.map((p) => {
+          return p.id;
+        })
+        .shift();
+      console.log('nmatExp :' + nmatExp);
 
-  // Matérias do Expediente
-  const expMatResponse = await aPIFetchExpMat.get(`?data_ordem=${date}&page_size=30`);
-  const dataExpMat = expMatResponse.data.results;
-  console.log('date: ' + date);
+      const dataMateriasExp = nmatExp ? await aPIFetchExpMat.get(`${nmatExp}/`) : null;
+      const materiasExp = dataMateriasExp.data;
+      console.log('🚀 ~ getMaterias ~ materiasExp:', materiasExp);
+      setMatExp([materiasExp]);
+      //console.log(matExp);
 
-  const matExp = dataExpMat?.filter((p) => p.resultado === "Matéria lida")
-  const nmatExp = matExp?.map((p) => {return p.id}).shift();  
-  console.log('nmatExp :' + nmatExp);
-    
-  const dataMateriasExp = nmatExp ? await aPIFetchExpMat.get(`${nmatExp}/`) : null;
-  const materiasExp = dataMateriasExp.data;
-  setMatExp(materiasExp);
-  //console.log(matExp);
+      const ordDiaResponse = await aPIFetchOrdDia.get(`?data_ordem=${date}&page_size=30`);
+      const dataOrdDia = ordDiaResponse.data.results;
 
-  const ordDiaResponse = await aPIFetchOrdDia.get(`?data_ordem=${date}&page_size=30`); 
-  const dataOrdDia = ordDiaResponse.data.results;
-  
-  const ordem = dataOrdDia?.filter((p) => p.resultado === "Aprovado")
-  const nordem = ordem?.map((p) => {return p.id}).shift();  
-  console.log('ordemDia :' + nordem);
+      const ordem = dataOrdDia?.filter((p) => p.resultado === 'Aprovado');
+      const nordem = ordem
+        ?.map((p) => {
+          return p.id;
+        })
+        .shift();
+      console.log('ordemDia :' + nordem);
 
-  const dataMateriasOrd = nordem ? await aPIFetchOrdDia.get(`${nordem}/`) : null;
-  const materiasOrd = dataMateriasOrd.data;
-  setMatOrd(materiasOrd);
-  //console.log(matOrd);
-
-  } catch (error) {
-    console.log(error);
-    //alert ("Sem conexão com o SAPL");
-  } 
-
-  }, []);
+      const dataMateriasOrd = nordem ? await aPIFetchOrdDia.get(`${nordem}/`) : null;
+      const materiasOrd = dataMateriasOrd.data;
+      console.log('🚀 ~ getMaterias ~ materiasOrd:', materiasOrd);
+      setMatOrd(materiasOrd);
+      //console.log(matOrd);
+    } catch (error) {
+      console.log(error);
+      //alert ("Sem conexão com o SAPL");
+    }
+  }, [date]);
 
   useEffect(() => {
-    getMaterias();    
+    getMaterias();
   }, [getMaterias]);
 
-  return (    
-    <div className='painel'>
-      <div className='headline'>
-        <h1>{sessions.reduce((o, p) => {return p.txtTituloReuniao}, "")}</h1>             
+  return (
+    <div className="painel">
+      <div className="headline">
+        <h1>
+          {sessions.reduce((o, p) => {
+            return p.txtTituloReuniao;
+          }, '')}
+        </h1>
       </div>
-      <div className='data-hora'>
-          <h2>{day + " / " + month + " / " + year}</h2>       
-          <h2>{timer}</h2>
-      </div>       
-      <div className="materias-exp">                    
-        {matExp.map((sessao) => (                                                                          
-            <div className='exped-result'  key={sessao.id}>                         
-              <div className='exped-result-mat'>
-                <h1>{sessao.__str__ ? sessao.__str__.slice(24, -67) : null}</h1>                                            
-              </div>            
-              <div className='exped-result-res'>
-                <h2>{sessao.resultado ? sessao.resultado : null}</h2>                
-              </div>                                         
-            </div>                
-        ))}
-      </div>               
-      <div className="painel-mat-result">
-        {matOrd.map((sessao) => (                    
-          <div className='materia-vot' key={sessao.id}>
-            <h1>{sessao.__str__ ? sessao.__str__.slice(24, -67) : null}</h1>                                  
+      <div className="data-hora">
+        <h2>{day + ' / ' + month + ' / ' + year}</h2>
+        <h2>{timer}</h2>
+      </div>
+      <div className="materias-exp">
+        {matExp.map((sessao) => (
+          <div className="exped-result" key={sessao.id}>
+            <div className="exped-result-mat">
+              <h1>{sessao.__str__ ? sessao.__str__.slice(24, -67) : null}</h1>
+            </div>
+            <div className="exped-result-res">
+              <h2>{sessao.resultado ? sessao.resultado : null}</h2>
+            </div>
           </div>
-        ))} 
-          <div className='resultado-vot'>             
-            <h2>Sim: {parlament.reduce((o,p) => {p.voto === "Sim" && o++; return o}, 0)}</h2>
-            <h2>Não: {parlament.reduce((o,p) => {p.voto === "Não" && o++; return o}, 0)}</h2>
-            <h2>Abstenções: {parlament.reduce((o,p) => {p.voto === "Abstenções" && o++; return o}, 0)}</h2>
-            <h2>Não Votaram: {parlament.reduce((o,p) => {p.voto === "Não Votou" && o++; return o}, 0)}</h2>                                       
-          </div>          
+        ))}
+      </div>
+      <div className="painel-mat-result">
+        {matOrd.map((sessao) => (
+          <div className="materia-vot" key={sessao.id}>
+            <h1>{sessao.__str__ ? sessao.__str__.slice(24, -67) : null}</h1>
+          </div>
+        ))}
+        <div className="resultado-vot">
+          <h2>
+            Sim:{' '}
+            {parlament.reduce((o, p) => {
+              p.voto === 'Sim' && o++;
+              return o;
+            }, 0)}
+          </h2>
+          <h2>
+            Não:{' '}
+            {parlament.reduce((o, p) => {
+              p.voto === 'Não' && o++;
+              return o;
+            }, 0)}
+          </h2>
+          <h2>
+            Abstenções:{' '}
+            {parlament.reduce((o, p) => {
+              p.voto === 'Abstenções' && o++;
+              return o;
+            }, 0)}
+          </h2>
+          <h2>
+            Não Votaram:{' '}
+            {parlament.reduce((o, p) => {
+              p.voto === 'Não Votou' && o++;
+              return o;
+            }, 0)}
+          </h2>
+        </div>
       </div>
     </div>
   );
