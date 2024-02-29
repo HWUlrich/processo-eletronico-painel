@@ -5,25 +5,21 @@ import aPIFetchSesPlen from '../axios/configSesPlen';
 import aPIFetchPar from '../axios/configPar';
 import aPIFetchPres from '../axios/configPres';
 import aPIFetchVot from '../axios/configVot';
-import aPIFetchExpMat from '../axios/configExpMat';
 
 
 function Provider({children}) {
   
-  const [sessions, setSessions] = useState([]);
-  const [expmat, setExpmat] = useState([]);
-  const [parlament, setParlament] = useState([]);
-  const [ordemDia, setOrdemDia] = useState([]);
-  const [date, setDate] = useState([]);
-  const [nordem, setNordem ] = useState();
-  
+  const [sessions, setSessions] = useState([]);  
+  const [parlament, setParlament] = useState([]); 
+  const [date, setDate] = useState("2023-12-14");
   
   
   const getSessions = useCallback ( async () => {
 
-    try {                  
-      const date = "2023-12-14"; // new Date().toISOString().slice(0,10);
-      setDate(date);
+    //const dateOrdem = "2023-12-14";
+    //setDate(dateOrdem);
+
+    try {     
       
       // Ordem do dia
       const ordDiaResponse = await aPIFetchOrdDia.get(`?data_ordem=${date}&page_size=30`);      
@@ -45,9 +41,7 @@ function Provider({children}) {
       //console.log(numSesPlenaria)
 
       const ordem = dataOrdDia?.filter((p) => p.resultado === "Aprovado")
-      const nordem = ordem?.map((p) => {return p.id}).shift();      
-      setNordem(nordem);
-      console.log('ordemDia :' + ordemDia);      
+      const nordem = ordem?.map((p) => {return p.id}).shift();                  
             
       const parlamentResponse = await aPIFetchPar.get("parlamentar/search_parlamentares");      
       const presentResponse = await aPIFetchPres.get(`?page_size=21&sessao_plenaria=${numSesPlenaria}`);      
@@ -80,17 +74,11 @@ function Provider({children}) {
 
 
   const contextValue = {    
-    sessions,
-    expmat,
-    parlament,
-    ordemDia,
-    nordem,
+    sessions,    
+    parlament,    
     date,
-    setSessions,
-    setExpmat,
-    setParlament,
-    setOrdemDia,
-    setNordem,
+    setSessions,    
+    setParlament,    
     setDate,    
   }; 
 

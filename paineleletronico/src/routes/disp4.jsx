@@ -19,11 +19,10 @@ const Disp4 = () => {
   const month = dayToday.getMonth() + 1;
   const year = dayToday.getFullYear();
   const timer = (hours < 10 ? "0" + hours : hours) + " : " + (minutes < 10 ? "0" + minutes : minutes) + " " + ampm;  
-
   
+  //const date = '2023-12-14';
 
-
-  const getMaterias = ( async () => {
+  const getMaterias = useCallback ( async () => {
 
   try {
 
@@ -34,35 +33,35 @@ const Disp4 = () => {
 
   const matExp = dataExpMat?.filter((p) => p.resultado === "Matéria lida")
   const nmatExp = matExp?.map((p) => {return p.id}).shift();  
-  //console.log('nmatExp :' + nmatExp);
+  console.log('nmatExp :' + nmatExp);
     
   const dataMateriasExp = nmatExp ? await aPIFetchExpMat.get(`${nmatExp}/`) : null;
   const materiasExp = dataMateriasExp.data;
   setMatExp(materiasExp);
-  console.log(materiasExp);
+  //console.log(matExp);
 
   const ordDiaResponse = await aPIFetchOrdDia.get(`?data_ordem=${date}&page_size=30`); 
   const dataOrdDia = ordDiaResponse.data.results;
   
   const ordem = dataOrdDia?.filter((p) => p.resultado === "Aprovado")
   const nordem = ordem?.map((p) => {return p.id}).shift();  
-  //console.log('ordemDia :' + nordem);
+  console.log('ordemDia :' + nordem);
 
   const dataMateriasOrd = nordem ? await aPIFetchOrdDia.get(`${nordem}/`) : null;
   const materiasOrd = dataMateriasOrd.data;
   setMatOrd(materiasOrd);
-  console.log(materiasOrd);
+  //console.log(matOrd);
 
   } catch (error) {
     console.log(error);
     //alert ("Sem conexão com o SAPL");
   } 
 
-  });
+  }, []);
 
   useEffect(() => {
     getMaterias();    
-  }, []);
+  }, [getMaterias]);
 
   return (    
     <div className='painel'>
