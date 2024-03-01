@@ -14,10 +14,7 @@ function Provider({children}) {
   const [date, setDate] = useState("2024-02-29");
   
   
-  const getSessions = useCallback ( async () => {
-
-    //const dateOrdem = "2023-12-14";
-    //setDate(dateOrdem);
+  const getSessions = useCallback ( async () => {  
 
     try {     
       

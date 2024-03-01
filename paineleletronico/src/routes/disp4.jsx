@@ -18,9 +18,8 @@ const Disp4 = () => {
   const day = dayToday.getDate();
   const month = dayToday.getMonth() + 1;
   const year = dayToday.getFullYear();
-  const timer = (hours < 10 ? "0" + hours : hours) + " : " + (minutes < 10 ? "0" + minutes : minutes) + " " + ampm;  
-  
-  //const date = '2023-12-14';
+  const timer = (hours < 10 ? "0" + hours : hours) + " : " + (minutes < 10 ? "0" + minutes : minutes) + " " + ampm;    
+
 
   const getMaterias = useCallback ( async () => {
 
@@ -31,7 +30,7 @@ const Disp4 = () => {
   const dataExpMat = expMatResponse.data.results;
   console.log('date: ' + date);
 
-  const matExp = dataExpMat?.filter((p) => p.resultado === "")
+  const matExp = dataExpMat?.filter((p) => p.resultado === "Matéria lida")
   const nmatExp = matExp?.map((p) => {return p.id}).shift();  
   console.log('nmatExp :' + nmatExp);
     
@@ -43,7 +42,7 @@ const Disp4 = () => {
   const ordDiaResponse = await aPIFetchOrdDia.get(`?data_ordem=${date}&page_size=30`); 
   const dataOrdDia = ordDiaResponse.data.results;
   
-  const ordem = dataOrdDia?.filter((p) => p.resultado === "")
+  const ordem = dataOrdDia?.filter((p) => p.resultado === "Aprovado")
   const nordem = ordem?.map((p) => {return p.id}).shift();  
   console.log('ordemDia :' + nordem);
 
@@ -76,7 +75,7 @@ const Disp4 = () => {
         {matExp.map((sessao) => (                                                                          
             <div className='exped-result'  key={sessao.id}>                         
               <div className='exped-result-mat'>
-                <h1>{sessao.__str__ ? sessao.__str__.slice(24, -67) : null}</h1>                                            
+                <h1>Expediente: {sessao.__str__ ? sessao.__str__.slice(24, -67) : null}</h1>                                            
               </div>            
               <div className='exped-result-res'>
                 <h2>{sessao.resultado ? sessao.resultado : null}</h2>                
@@ -87,7 +86,7 @@ const Disp4 = () => {
       <div className="painel-mat-result">
         {matOrd.map((sessao) => (                    
           <div className='materia-vot' key={sessao.id}>
-            <h1>{sessao.__str__ ? sessao.__str__.slice(24, -67) : null}</h1>                                  
+            <h1>Votação: {sessao.__str__ ? sessao.__str__.slice(24, -67) : null}</h1>                                  
           </div>
         ))} 
           <div className='resultado-vot'>             

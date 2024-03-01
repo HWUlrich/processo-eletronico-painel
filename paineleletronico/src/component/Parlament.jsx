@@ -1,5 +1,5 @@
 import { useState, useContext } from 'react';
-import '../routes/Disp.css';
+import './Parlament.css';
 import Context from '../context/MyContext';
 
 
@@ -15,20 +15,20 @@ const Parlament = () => {
 
  
   return (
-    <div className='par'>      
+    <div className='parlament'>      
       {currentItens?.length === 0 ? (<p>Carregando Parlamentares...</p>) : (        
         currentItens?.map((parlament) => (                     
-          <div className="parl" key={parlament.id}>                         
-            <div className='parl-1'>
+          <div className="parlament-0" key={parlament.id}>                         
+            <div className='parlament-1'>
               <h1>{parlament.nome_parlamentar}</h1> 
             </div>                           
-            <div className='parl-2'>
+            <div className='parlament-2'>
               <h2>{parlament.partido}</h2>
             </div>
-            <div id='presParl' className='parl-3'>             
+            <div id='presParlament' className='parlament-3'>             
             <div>{parlament.parlamentar?<h2>Presente</h2>:<h3>Ausente</h3>}</div>            
             </div> 
-            <div className='parl-4'>
+            <div className='parlament-4'>
               <h2>{parlament.voto?parlament.voto:"-"}</h2>
             </div>                              
           </div>                    

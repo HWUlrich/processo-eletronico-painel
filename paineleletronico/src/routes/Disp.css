@@ -1,6 +1,6 @@
 /* Pásginas com Parlamentares, partido e voto.*/
 .parlamentares {
-    --font-size-parlament-h1: 2.5rem;
+    --font-size-parlament-h1: 2rem;
     --font-size-parlament-h2: 2rem;
     --font-size-parlament-p: 1.5rem;
     --font-size-parlament-3-h2: 1.3rem;
@@ -48,14 +48,6 @@
     font-size: var(--font-size-parlament-h2);
     color: #189583;
     font-weight: 100;
-}
-
-.par p {
-    font-size: var(--font-size-parlament-p);
-    padding-left: 150px;
-    color: yellow;
-    background-color: black;
-    letter-spacing: 1rem;
 }
 
 .parl-1 {
@@ -108,6 +100,19 @@
     flex-direction: column;
 }
 
+/* mesa diretora */
+.mesa-diretora {
+    display: flex;
+    flex-direction: column;
+}
+
+.mesa-1 {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: top;
+}
+
 .headline {
     width: 100%;
     height: 200px;
@@ -118,25 +123,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-}
 
-.headline-mesa {
-    width: 100%;
-    height: 35px;
-    margin: 0;
-    border-radius: 5px;
-    background-color: rgb(20, 20, 150);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-}
-
-.headline-mesa h1 {
-    font-size: 1.5rem;
-    color: white;
-    letter-spacing: .2rem;
-    
 }
 
 .headline h1 {
@@ -190,111 +177,17 @@
     color: red;
 }
 
-/* Mesa Diretora. */
-.mesa-diretora {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.mesa-dir {
-    width: 100%;    
-    height: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: top;
-    justify-content: center;   
-}
-
-.mesa-dir-1 {
-    width: 100%;    
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;   
-}
-
-.button-mesa {
-    width: 150px;
-    height: 30px;
-    background-color: blue;
-    color: white;
-    border: 2px solid white;
-    border-radius: 3px;
-    cursor: pointer;
-}
-
-.button-mesa:hover {
-    background-color: rgb(53, 53, 255);
-    color: yellow;
-}
-
-/* Matérias do Expediente */
-.painel-mesa-fundo {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin: 5px 0 5px 0;
-    background-color: gray;
-    border: 3px solid white;
-    border-radius: 15px;
-    opacity: .7;
-
-}
-
-.painel-mesa-0 {
-    margin: 0 0 0 30px;    
-    width: 100%;
-    height: 60px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-}
-
-.painel-mesa-1 {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 60%;
-    height: 100%;    
-}
-
-.painel-mesa-2 {
-    width: 40%;
-    height: 30px;
-    margin: 0;
-    padding: 2%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.painel-mesa-1 h1 {
-    font-size: .8rem;
-    color: black;
-}
-
-.painel-mesa-2 h2 {
-    font-size: .8rem;
-    color: blue;
-}
-
 .materias-exp {
     width: 100%;
 }
 
 .exped-result {
-    height: 20px;    
+    height: 100px;    
     display: flex;
+    padding: 0 30px;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
 }
 
 .exped-result-mat {
@@ -306,7 +199,7 @@
 
 .exped-result-mat h1 {
     color: #189583 ;
-    font-size: 1rem;
+    font-size: 2rem;
 }
 
 .exped-result-res {
@@ -316,7 +209,8 @@
 }
 
 .exped-result-res h2 {
-    font-size: 1rem;
+    font-size: 2rem;
+    color: red;
 }
 
 .resultado-vot {
@@ -344,7 +238,7 @@
 }
 
 .materia-vot {
-         
+    height: 100px;         
     background-color: #189583;
     border-radius: 5px;     
     display: flex;
@@ -377,6 +271,3 @@
     font-size: 1.5rem;
     margin: 0 200px;
 }
-
-
-
