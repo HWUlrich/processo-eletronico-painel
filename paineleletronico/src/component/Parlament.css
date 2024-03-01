@@ -11,14 +11,15 @@
 }
 
 .parlament-1 h1 {
-    font-size: 1rem;
+    font-size: .7rem;
     margin-left: 1rem;
     color: rgb(3, 45, 100);
     font-weight: 500;    
 }
 
 .parlament-2 h2 {
-    font-size: 1rem;
+    font-size: .5rem;
+    font-weight: 800;
     color: #189583;
     font-weight: 100;
 }
@@ -46,17 +47,17 @@
 }
 
 .parlament-3 div h2 {
-    font-size: 1rem;
+    font-size: .7rem;
     color: #189583;        
 }
 
 .parlament-3 div h3 {
-    font-size: 1rem;
+    font-size: .7rem;
     color: red;
 }
 
 .parlament-4 h2 {
-    font-size: 1rem;
+    font-size: .7rem;
     color: red;    
     font-style: italic;
 }

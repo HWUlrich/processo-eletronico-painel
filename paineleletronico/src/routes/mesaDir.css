@@ -1,0 +1,31 @@
+.mesa-diretora {
+    display: flex;
+    flex-direction: column;
+}
+
+.mesa-1 {
+    margin: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: top;
+}
+
+.parlament {
+    width: 100%;
+    
+}
+
+.som {
+    width: 50%;
+    background-color: blue;
+    color: white ;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.som h1 {
+    font-size: 1.5rem;
+}
