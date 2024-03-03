@@ -31,7 +31,13 @@ const Disp4 = () => {
   console.log('date: ' + date);
 
   const matExp = dataExpMat?.filter((p) => p.resultado === "Matéria lida")
-  const nmatExp = matExp?.map((p) => {return p.id}).shift();  
+
+  const nmatExp = matExp
+    ?.map((p) => {
+      return p.id;
+    })
+    .shift();
+
   console.log('nmatExp :' + nmatExp);
     
   const dataMateriasExp = nmatExp ? await aPIFetchExpMat.get(`${nmatExp}/`) : null;
@@ -43,7 +49,13 @@ const Disp4 = () => {
   const dataOrdDia = ordDiaResponse.data.results;
   
   const ordem = dataOrdDia?.filter((p) => p.resultado === "Aprovado")
-  const nordem = ordem?.map((p) => {return p.id}).shift();  
+  
+  const nordem = ordem
+    ?.map((p) => {
+      return p.id;
+    })
+    .shift();
+
   console.log('ordemDia :' + nordem);
 
   const dataMateriasOrd = nordem ? await aPIFetchOrdDia.get(`${nordem}/`) : null;

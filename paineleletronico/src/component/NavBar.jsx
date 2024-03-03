@@ -15,7 +15,7 @@ const NavBar = () => {
             </div>          
             <div className='title'>
                 <h1>CÂMARA MUNICIPAL DE NOVA FRIBURGO</h1>
-                <h2>Fonte: SAPL</h2>                
+                <h2>SAPL</h2>                
             </div>                        
             <ul>
                 <li>

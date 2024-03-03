@@ -12,12 +12,12 @@
 }
 
 .parlament {
-    width: 100%;
+    width: 50%;
     
 }
 
 .som {
-    width: 50%;
+    width: 100%;
     background-color: blue;
     color: white ;
     display: flex;
@@ -27,5 +27,5 @@
 }
 
 .som h1 {
-    font-size: 1.5rem;
+    font-size: 2rem;
 }

@@ -34,11 +34,19 @@ function Provider({children}) {
       //console.log(merged);                      
 
       // Painéis
-      const numSesPlenaria = sessions?.reduce((o,p) => {return p.sessao_plenaria}, "");
+      const numSesPlenaria = sessions
+        ?.reduce((o,p) => {
+          return p.sessao_plenaria;
+        }, "");
       //console.log(numSesPlenaria)
 
       const ordem = dataOrdDia?.filter((p) => p.resultado === "Aprovado")
-      const nordem = ordem?.map((p) => {return p.id}).shift();                  
+
+      const nordem = ordem
+        ?.map((p) => {
+          return p.id;
+        })
+        .shift();                  
             
       const parlamentResponse = await aPIFetchPar.get("parlamentar/search_parlamentares");      
       const presentResponse = await aPIFetchPres.get(`?page_size=21&sessao_plenaria=${numSesPlenaria}`);      
