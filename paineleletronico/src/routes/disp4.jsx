@@ -72,7 +72,7 @@ const Disp4 = () => {
 
   useEffect(() => {
     getMaterias();    
-  }, [getMaterias]);
+  }, []);
 
   return (    
     <div className='painel'>
