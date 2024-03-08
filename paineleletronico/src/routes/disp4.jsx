@@ -55,8 +55,9 @@ const Disp4 = () => {
       return p.id;
     })
     .shift();
+    console.log('ordemDia :' + nordem);
 
-  console.log('ordemDia :' + nordem);
+    
 
   const dataMateriasOrd = nordem ? await aPIFetchOrdDia.get(`${nordem}/`) : null;
   const materiasOrd = dataMateriasOrd.data;
