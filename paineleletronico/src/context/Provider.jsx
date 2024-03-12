@@ -5,13 +5,16 @@ import aPIFetchSesPlen from '../axios/configSesPlen';
 import aPIFetchPar from '../axios/configPar';
 import aPIFetchPres from '../axios/configPres';
 import aPIFetchVot from '../axios/configVot';
+import aPIFetchExpMat from '../axios/configExpMat';
 
 
 function Provider({children}) {
   
   const [sessions, setSessions] = useState([]);  
-  const [parlament, setParlament] = useState([]); 
-  const [date, setDate] = useState("2024-03-07");
+  const [parlament, setParlament] = useState([]);
+  const [matExp, setMatExp] = useState([]);
+  const [matOrd, setMatOrd] = useState([]); 
+  const [date, setDate] = useState("2024-02-29");
   
   
   const getSessions = useCallback ( async () => {  
@@ -63,7 +66,31 @@ function Provider({children}) {
         ...screen      
       }));
 
-      setParlament(merged1);      
+      setParlament(merged1);
+      
+      // Matérias do Expediente
+      const expMatResponse = await aPIFetchExpMat.get(`?data_ordem=${date}&page_size=30`);
+      const dataExpMat = expMatResponse.data.results;
+      console.log('date: ' + date);
+
+      const matExp = dataExpMat?.filter((p) => p.resultado === "Matéria lida")
+
+      const nmatExp = matExp
+        ?.map((p) => {
+          return p.id;
+        })
+        .shift();
+      console.log('nmatExp :' + nmatExp);
+        
+      const dataMateriasExp = nmatExp ? await aPIFetchExpMat.get(`${nmatExp}/`) : null;
+      const materiasExp = dataMateriasExp.data;
+      setMatExp([materiasExp]);
+      console.log(materiasExp);  
+      
+      const dataMateriasOrd = nordem ? await aPIFetchOrdDia.get(`${nordem}/`) : null;
+      const materiasOrd = dataMateriasOrd.data;
+      setMatOrd([materiasOrd]);
+      console.log(materiasOrd);
     
     } catch (error) {
       console.log(error);
@@ -80,10 +107,14 @@ function Provider({children}) {
 
   const contextValue = {    
     sessions,    
-    parlament,    
+    parlament,
+    matExp,
+    matOrd,    
     date,
     setSessions,    
-    setParlament,    
+    setParlament,
+    setMatExp,
+    setMatOrd,    
     setDate,    
   }; 
 

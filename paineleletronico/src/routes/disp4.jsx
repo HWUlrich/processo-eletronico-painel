@@ -8,10 +8,10 @@ import aPIFetchOrdDia from '../axios/configOrdDia';
 
 const Disp4 = () => {
 
-  const [ matExp, setMatExp] = useState([]);
-  const [ matOrd, setMatOrd] = useState([]);
+  //const [ matExp, setMatExp] = useState([]);
+  //const [ matOrd, setMatOrd] = useState([]);
 
-  const { sessions, parlament, date } = useContext(Context);
+  const { sessions, parlament, matExp, matOrd, date } = useContext(Context);
   const { hours, minutes, seconds, ampm } = useTime({ format: '12-hour'});
   
   const dayToday = new Date();
@@ -20,7 +20,7 @@ const Disp4 = () => {
   const year = dayToday.getFullYear();
   const timer = (hours < 10 ? "0" + hours : hours) + " : " + (minutes < 10 ? "0" + minutes : minutes) + " " + ampm;    
 
-
+  /*
   const getMaterias = useCallback ( async () => {
 
   try {
@@ -73,7 +73,7 @@ const Disp4 = () => {
 
   useEffect(() => {
     getMaterias();    
-  }, [getMaterias]);
+  }, [getMaterias]); */
 
   return (    
     <div className='painel'>
