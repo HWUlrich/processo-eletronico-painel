@@ -45,11 +45,7 @@ function Provider({children}) {
 
       const ordem = dataOrdDia?.filter((p) => p.resultado === "Aprovado")
 
-      const nordem = ordem
-        ?.map((p) => {
-          return p.id;
-        })
-        .shift();                  
+      const nordem = ordem ? ordem?.map((p) => {return p.id}).shift() : "Matérias Todas Votadas - Sessão Terminada";                  
             
       const parlamentResponse = await aPIFetchPar.get("parlamentar/search_parlamentares");      
       const presentResponse = await aPIFetchPres.get(`?page_size=21&sessao_plenaria=${numSesPlenaria}`);      
@@ -75,11 +71,8 @@ function Provider({children}) {
 
       const matExp = dataExpMat?.filter((p) => p.resultado === "Matéria lida")
 
-      const nmatExp = matExp
-        ?.map((p) => {
-          return p.id;
-        })
-        .shift();
+      const nmatExp = matExp ? matExp?.map((p) => {return p.id}).shift() : "Matérias Lidas e Ata Aprovada";
+
       console.log('nmatExp :' + nmatExp);
         
       const dataMateriasExp = nmatExp ? await aPIFetchExpMat.get(`${nmatExp}/`) : null;
