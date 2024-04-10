@@ -13,8 +13,13 @@ function Provider({children}) {
   const [sessions, setSessions] = useState([]);  
   const [parlament, setParlament] = useState([]);
   const [matExp, setMatExp] = useState([]);
-  const [matOrd, setMatOrd] = useState([]); 
-  const [date, setDate] = useState("2024-04-09");
+  const [matOrd, setMatOrd] = useState([]);
+  const dayToday = new Date();
+  const day = dayToday.getDate();
+  const month = dayToday.getMonth() + 1;
+  const year = dayToday.getFullYear();
+  setDate(year + "-" + month < 10 ?  "0" + month : month + "-" + day < 10 ? "0" + day : day);
+  const [date, setDate] = useState();
   
   
   const getSessions = useCallback ( async () => {  
