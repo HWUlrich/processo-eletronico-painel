@@ -14,7 +14,7 @@ const Disp4 = () => {
   const month = dayToday.getMonth() + 1;
   const year = dayToday.getFullYear();
   const timer = (hours < 10 ? "0" + hours : hours) + " : " + (minutes < 10 ? "0" + minutes : minutes) + " " + ampm;   
-
+  console.log(dayToday);
 
   return (    
     <div className='painel'>
