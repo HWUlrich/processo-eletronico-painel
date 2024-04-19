@@ -22,7 +22,7 @@ const Disp4 = () => {
         <h1>{sessions.reduce((o, p) => {return p.txtTituloReuniao}, "")}</h1>             
       </div>
       <div className='data-hora'>
-          <h2>{day + " / " + month + " / " + year}</h2>       
+          <h2>{(day < 10 ? "0" + day : day) + " / " + (month < 10 ? "0" + month : month) + " / " + year}</h2>       
           <h2>{timer}</h2>
       </div>       
       <div className="materias-exp">                    
