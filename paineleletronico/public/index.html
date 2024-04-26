@@ -1,89 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome to Firebase Hosting</title>
-
-    <!-- update the version number as needed -->
-    <script defer src="/__/firebase/10.11.1/firebase-app-compat.js"></script>
-    <!-- include only the Firebase features as you need -->
-    <script defer src="/__/firebase/10.11.1/firebase-auth-compat.js"></script>
-    <script defer src="/__/firebase/10.11.1/firebase-database-compat.js"></script>
-    <script defer src="/__/firebase/10.11.1/firebase-firestore-compat.js"></script>
-    <script defer src="/__/firebase/10.11.1/firebase-functions-compat.js"></script>
-    <script defer src="/__/firebase/10.11.1/firebase-messaging-compat.js"></script>
-    <script defer src="/__/firebase/10.11.1/firebase-storage-compat.js"></script>
-    <script defer src="/__/firebase/10.11.1/firebase-analytics-compat.js"></script>
-    <script defer src="/__/firebase/10.11.1/firebase-remote-config-compat.js"></script>
-    <script defer src="/__/firebase/10.11.1/firebase-performance-compat.js"></script>
-    <!-- 
-      initialize the SDK after all desired features are loaded, set useEmulator to false
-      to avoid connecting the SDK to running emulators.
-    -->
-    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
-
-    <style media="screen">
-      body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
-      #message { background: white; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px; border-radius: 3px; }
-      #message h2 { color: #ffa100; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
-      #message h1 { font-size: 22px; font-weight: 300; color: rgba(0,0,0,0.6); margin: 0 0 16px;}
-      #message p { line-height: 140%; margin: 16px 0 24px; font-size: 14px; }
-      #message a { display: block; text-align: center; background: #039be5; text-transform: uppercase; text-decoration: none; color: white; padding: 16px; border-radius: 4px; }
-      #message, #message a { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
-      #load { color: rgba(0,0,0,0.4); text-align: center; font-size: 13px; }
-      @media (max-width: 600px) {
-        body, #message { margin-top: 0; background: white; box-shadow: none; }
-        body { border-top: 16px solid #ffa100; }
-      }
-    </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Painel Eletrônico Câmara</title>
+    <link rel="shortcut icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAACXlBMVEUAAACYmZqYmZnExMW9vr69vb7DxMWWl5eXl5jM0N7Iy9KcnaGfoKDS09Pb3N3/6ABzYyu1lBKMhF9SUlIRERErLCwCAgL//yMgJRHKrgwAAAAAAAAAAAC92m2eXQCupykFBQUBAQEFBQX//wBNPwDjuQP//wpZRgKElEHR0tNERET/////+nwlKAbzwgDh4uJCQkL///+nsK2zqI2Olzji5u+kpqe5wMK1r6b2wgDn0X61sKy8rafxvQCfqhihqQ70vAC7qKPWt7XIsbfZtADYswDLv8TWu7nP1dHa1dw/hSHP1tPW1tfp5ukAWRsvm2Qvm2XW19jP0NHf2NqNppuLu6iruIDKphGquIGMu6jd3t/WydYAWxcAi0nXytbLzM3P0NHb3N3Oz9DKy8yqrLCys7STk5TZ2dqXl5i1treur7CmmmqmpqvR0NCvr7CTlJRvb3BpamrHqhDOtzzV1eLc2tlfXl8AAAABAQGWmTOjjTSdUV6nXl9MKy0AAQEFBQUEBAQDAwPnugPivSy8ucnOxsVYVlbRsg7isBuwfI63fn+5oaPU19jR0dLR0tPmuQPQqySlipiniom6rq/l5+jg4eHh4uLb29x6iz6allLKo7XGoKjIusPm6/Ti5e/j5u/e4erZ0c/rugDnwR/m1ozf04TgzHnfzoHn0H3ezoDZyHrVwcLVqqr/xQCfqA3/xACgqQ7Sm5sAh1aoqxMAiFWqrBMAhlmoqxQAh1gAjk0Bi00CjkYAiFd3oiJDpHdGpX9yoCLTthFzoCHi4+SgxLOfxLPf4eIBhkA2lTj////DAYW3AAAAX3RSTlMABOD+/Pz+4AQBXP39XgEBCVn9/VkJAQMS+/sSAwMR+/sRAwMS+wMS+/sSAwUR+/sRBR1T/PxTHWH8/GGF/fz8/YXVz/Hxz9Vp7M1pne5U/PydW0+o+/3+/fvpLYD+LS3kzpsAAAABYktHRCskueQIAAABG0lEQVQY0wEQAe/+AAEAAl9gAwRhBQZiYwcACAAACQAKZAtlZmdoaQxqDQAOAAAPEBFrEmxtbm9wE3EUFRYAABcYchlzdHV2d3h3GncbHAAAHR55H3p7fH1+f4AggSEiAAAjJIIlg4SFhnd3dxp3GxwAACYnhyiIiYqLjI2OKV8qKwAALC2PLpCRkpOUlZYvlzAxAAAyM5g0mZqbnJ2enzWgNjcAAKE4ojmjpKWmp6ipOqo7qwAArDw9Pq2ur7Cvrq8/QEGxAABCQ0Sys7S1trW0t7hFRkcAAEhJSrm6u7y9vLu6uUpJSwAATE1Ovk+/wMHCv1C+Tk1RAABSw1NUxFVWV1hZxVRTw1IAAABaxltcx13IXcdcXsZaAAAT4l9lsJnMugAAAABJRU5ErkJggg==" type="image/x-icon">
+    <script type="module" crossorigin src="/assets/index-6242342a.js"></script>
+    <link rel="stylesheet" href="/assets/index-db0a5e80.css">
   </head>
-  <body>
-    <div id="message">
-      <h2>Welcome</h2>
-      <h1>Firebase Hosting Setup Complete</h1>
-      <p>You're seeing this because you've successfully setup Firebase Hosting. Now it's time to go build something extraordinary!</p>
-      <a target="_blank" href="https://firebase.google.com/docs/hosting/">Open Hosting Documentation</a>
-    </div>
-    <p id="load">Firebase SDK Loading&hellip;</p>
-
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        const loadEl = document.querySelector('#load');
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-        // // The Firebase SDK is initialized and available here!
-        //
-        // firebase.auth().onAuthStateChanged(user => { });
-        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
-        // firebase.firestore().doc('/foo/bar').get().then(() => { });
-        // firebase.functions().httpsCallable('yourFunction')().then(() => { });
-        // firebase.messaging().requestPermission().then(() => { });
-        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
-        // firebase.analytics(); // call to activate
-        // firebase.analytics().logEvent('tutorial_completed');
-        // firebase.performance(); // call to activate
-        //
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-
-        try {
-          let app = firebase.app();
-          let features = [
-            'auth', 
-            'database', 
-            'firestore',
-            'functions',
-            'messaging', 
-            'storage', 
-            'analytics', 
-            'remoteConfig',
-            'performance',
-          ].filter(feature => typeof app[feature] === 'function');
-          loadEl.textContent = `Firebase SDK loaded with ${features.join(', ')}`;
-        } catch (e) {
-          console.error(e);
-          loadEl.textContent = 'Error loading the Firebase SDK, check the console.';
-        }
-      });
-    </script>
+  <body class="parlamentares">
+    <div id="root"></div>
+    
   </body>
 </html>
