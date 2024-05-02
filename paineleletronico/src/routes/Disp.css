@@ -1,10 +1,10 @@
 /* Pásginas com Parlamentares, partido e voto.*/
 .parlamentares {
-    --font-size-parlament-h1: 2rem;
-    --font-size-parlament-h2: 2rem;
+    --font-size-parlament-h1: 3rem;
+    --font-size-parlament-h2: 2.5rem;
     --font-size-parlament-p: 1.5rem;
-    --font-size-parlament-3-h2: 1.3rem;
-    --font-size-parlament-4-h2: 1.2rem;
+    --font-size-parlament-3-h2: 2.5rem;
+    --font-size-parlament-4-h2: 2.5rem;
     --height-parl: 120px;
 
 }
@@ -41,13 +41,13 @@
     font-size: var(--font-size-parlament-h1);
     margin-left: 1rem;
     color: rgb(3, 45, 100);
-    font-weight: 500;    
+    font-weight: 600;    
 }
 
 .parl-2 h2 {
     font-size: var(--font-size-parlament-h2);
     color: #189583;
-    font-weight: 100;
+    font-weight: 600;
 }
 
 .parl-1 {

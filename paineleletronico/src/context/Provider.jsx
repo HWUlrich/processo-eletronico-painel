@@ -78,17 +78,17 @@ function Provider({children}) {
 
       const nmatExp = matExp ? matExp?.map((p) => {return p.id}).shift() : "Matérias Lidas e Ata Aprovada";
 
-      console.log('nmatExp :' + nmatExp);
+      //console.log('nmatExp :' + nmatExp);
         
       const dataMateriasExp = nmatExp ? await aPIFetchExpMat.get(`${nmatExp}/`) : null;
       const materiasExp = dataMateriasExp.data;
       setMatExp([materiasExp]);
-      console.log(materiasExp);  
+      //console.log(materiasExp);  
       
       const dataMateriasOrd = nordem ? await aPIFetchOrdDia.get(`${nordem}/`) : null;
       const materiasOrd = dataMateriasOrd.data;
       setMatOrd([materiasOrd]);
-      console.log(materiasOrd);
+      //console.log(materiasOrd);
     
     } catch (error) {
       console.log(error);
@@ -99,7 +99,13 @@ function Provider({children}) {
 
 
   useEffect(() => {
-    getSessions();    
+    
+    const timer = setInterval(() => {
+      getSessions();
+    }, 2000);
+    
+    //return timer;
+
   }, [getSessions]);
 
 
