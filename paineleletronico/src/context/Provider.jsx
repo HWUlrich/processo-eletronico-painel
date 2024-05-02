@@ -100,11 +100,9 @@ function Provider({children}) {
 
   useEffect(() => {
     
-    const timer = setInterval(() => {
+    const apiUpdate = setInterval(() => {
       getSessions();
-    }, 2000);
-    
-    //return timer;
+    }, 2000);    
 
   }, [getSessions]);
 

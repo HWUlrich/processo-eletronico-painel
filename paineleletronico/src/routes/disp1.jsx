@@ -34,7 +34,7 @@ const Disp1 = () => {
               <div>{parlament.parlamentar ? <h2>Presente</h2> : <h3>Ausente</h3>}</div>            
             </div> 
             <div className='parl-4'>
-              <div>{parlament.voto ? parlament.voto : "-"}</div>              
+            <h2>{parlament.voto ? parlament.voto : "-"}</h2>              
             </div>                              
           </div>                    
         )
