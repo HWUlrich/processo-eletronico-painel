@@ -82,9 +82,27 @@
     color: red;        
 }
 
-.parl-4 h2 {
+.parl-4 div h2 {
+    font-size: var(--font-size-parlament-4-h2);
+    color: #189583;    
+    font-style: italic;
+}
+
+.parl-4 div h3 {
     font-size: var(--font-size-parlament-4-h2);
     color: red;    
+    font-style: italic;
+}
+
+.parl-4 div h4 {
+    font-size: var(--font-size-parlament-4-h2);
+    color: yellow;    
+    font-style: italic;
+}
+
+.parl-4 div h5 {
+    font-size: var(--font-size-parlament-4-h2);
+    color: black;    
     font-style: italic;
 }
 

@@ -102,7 +102,7 @@ function Provider({children}) {
     
     const apiUpdate = setInterval(() => {
       getSessions();
-    }, 2000);    
+    }, 3000);    
 
   }, [getSessions]);
 
