@@ -13,7 +13,9 @@ function Provider({children}) {
   const [sessions, setSessions] = useState([]);  
   const [parlament, setParlament] = useState([]);
   const [matExp, setMatExp] = useState([]);
+  const [matExp1, setMatExp1] = useState([]);
   const [matOrd, setMatOrd] = useState([]);
+  const [matOrd1, setMatOrd1] = useState([]);
   const dayToday = new Date();
   const day = dayToday.getDate();
   const month = dayToday.getMonth() + 1;
@@ -49,8 +51,10 @@ function Provider({children}) {
       //console.log(numSesPlenaria)
 
       const ordem = dataOrdDia?.filter((p) => p.resultado === "")
+      const ordem1 = dataOrdDia?.filter((p) => p.resultado !== "")
 
-      const nordem = ordem ? ordem?.map((p) => {return p.id}).shift() : "Matérias Todas Votadas - Sessão Terminada";                  
+      const nordem = ordem ? ordem?.map((p) => {return p.id}).shift() : "Matérias Todas Votadas - Sessão Terminada";
+      const nordem1 = ordem1 ? ordem1?.map((p) => {return p.id}).pop() : "Matérias Todas Votadas - Sessão Terminada";                   
             
       const parlamentResponse = await aPIFetchPar.get("parlamentar/search_parlamentares");      
       const presentResponse = await aPIFetchPres.get(`?page_size=21&sessao_plenaria=${numSesPlenaria}`);      
@@ -75,20 +79,32 @@ function Provider({children}) {
       console.log('date: ' + date);
 
       const matExp = dataExpMat?.filter((p) => p.resultado === "")
+      const matExp1 = dataExpMat?.filter((p) => p.resultado !== "")
 
       const nmatExp = matExp ? matExp?.map((p) => {return p.id}).shift() : "Matérias Lidas e Ata Aprovada";
+      const nmatExp1 = matExp1 ? matExp1?.map((p) => {return p.id}).pop() : "Matérias Lidas e Ata Aprovada";
 
       //console.log('nmatExp :' + nmatExp);
         
       const dataMateriasExp = nmatExp ? await aPIFetchExpMat.get(`${nmatExp}/`) : null;
       const materiasExp = dataMateriasExp.data;
       setMatExp([materiasExp]);
-      //console.log(materiasExp);  
+      //console.log(materiasExp);
+      
+      const dataMateriasExp1 = nmatExp1 ? await aPIFetchExpMat.get(`${nmatExp1}/`) : null;
+      const materiasExp1 = dataMateriasExp1.data;
+      setMatExp1([materiasExp1]);
+      //console.log(materiasExp1); 
       
       const dataMateriasOrd = nordem ? await aPIFetchOrdDia.get(`${nordem}/`) : null;
       const materiasOrd = dataMateriasOrd.data;
       setMatOrd([materiasOrd]);
       //console.log(materiasOrd);
+
+      const dataMateriasOrd1 = nordem1 ? await aPIFetchOrdDia.get(`${nordem1}/`) : null;
+      const materiasOrd1 = dataMateriasOrd1.data;
+      setMatOrd1([materiasOrd1]);
+      //console.log(materiasOrd1);
     
     } catch (error) {
       console.log(error);
@@ -111,12 +127,16 @@ function Provider({children}) {
     sessions,    
     parlament,
     matExp,
-    matOrd,    
+    matExp1,
+    matOrd,
+    matOrd1,    
     date,
     setSessions,    
     setParlament,
     setMatExp,
-    setMatOrd,    
+    setMatExp1,
+    setMatOrd,
+    setMatOrd1,    
     setDate,    
   }; 
 
