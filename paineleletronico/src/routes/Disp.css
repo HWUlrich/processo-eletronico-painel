@@ -182,10 +182,12 @@
 
 .materias-exp {
     width: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .exped-result {
-    height: 100px;    
+    height: 70px;    
     display: flex;
     padding: 0 70px;
     flex-direction: row;
@@ -195,7 +197,7 @@
 
 .exped-result-mat {
     
-    height: 2.5rem;
+    height: 2.0rem;
     display: flex;
     align-items: center;
 }
@@ -236,12 +238,14 @@
 }
 
 .painel-mat-result {
-    width: 100%;   
+    width: 100%;
+    display: flex;
+    flex-direction: column;   
     
 }
 
 .materia-vot {
-    height: 200px;         
+    height: 150px;         
     background-color: #189583;
     border-radius: 5px;     
     display: flex;
@@ -253,13 +257,12 @@
 
 .materia-vot h1 {
     font-size: 2.5rem;
-    color: white
-
+    color: white;
 }
 
 .materia-vot-res h2 {
     font-size: 2rem;
-    color: white;
+    color: yellow;
 
 }
 

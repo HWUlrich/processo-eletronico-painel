@@ -6,7 +6,7 @@ import './Disp.css';
 
 const Disp4 = () => {  
 
-  const { sessions, parlament, matExp, matOrd, date } = useContext(Context);
+  const { sessions, parlament, matExp, matExp1, matOrd, matOrd1, date } = useContext(Context);
   const { hours, minutes, seconds, ampm } = useTime({ format: '12-hour'});
   
   const dayToday = new Date();
@@ -26,6 +26,16 @@ const Disp4 = () => {
           <h2>{timer}</h2>
       </div>       
       <div className="materias-exp">                    
+        {matExp1.map((sessao) => (                                                                          
+            <div className='exped-result'  key={sessao.id}>                         
+              <div className='exped-result-mat'>
+                <h1>Expediente: {sessao.__str__.slice(24, -67)}</h1>                                            
+              </div>            
+              <div className='exped-result-res'>
+                <h2>{sessao.resultado ? sessao.resultado : "Em Pauta para Leitura"}</h2>                
+              </div>                                         
+            </div>                
+        ))}
         {matExp.map((sessao) => (                                                                          
             <div className='exped-result'  key={sessao.id}>                         
               <div className='exped-result-mat'>
@@ -38,6 +48,14 @@ const Disp4 = () => {
         ))}
       </div>               
       <div className="painel-mat-result">
+        {matOrd1.map((sessao) => (                    
+          <div className='materia-vot' key={sessao.id}>
+            <h1>Votação: {sessao.__str__.slice(24, -67)}</h1>
+            <div className='materia-vot-res'>
+              <h2>{sessao.resultado ? sessao.resultado : "Aguardando Votação"}</h2>                
+            </div>                                  
+          </div>
+        ))}
         {matOrd.map((sessao) => (                    
           <div className='materia-vot' key={sessao.id}>
             <h1>Votação: {sessao.__str__.slice(24, -67)}</h1>

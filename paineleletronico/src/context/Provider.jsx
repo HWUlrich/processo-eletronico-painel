@@ -50,8 +50,8 @@ function Provider({children}) {
         }, "");
       //console.log(numSesPlenaria)
 
-      const ordem = dataOrdDia?.filter((p) => p.resultado === "")
-      const ordem1 = dataOrdDia?.filter((p) => p.resultado !== "")
+      const ordem = dataOrdDia?.filter((p) => p.resultado === "");
+      const ordem1 = dataOrdDia?.filter((p) => p.resultado !== "");
 
       const nordem = ordem ? ordem?.map((p) => {return p.id}).shift() : "Matérias Todas Votadas - Sessão Terminada";
       const nordem1 = ordem1 ? ordem1?.map((p) => {return p.id}).pop() : "Matérias Todas Votadas - Sessão Terminada";                   
@@ -78,8 +78,8 @@ function Provider({children}) {
       const dataExpMat = expMatResponse.data.results;
       console.log('date: ' + date);
 
-      const matExp = dataExpMat?.filter((p) => p.resultado === "")
-      const matExp1 = dataExpMat?.filter((p) => p.resultado !== "")
+      const matExp = dataExpMat?.filter((p) => p.resultado === "");
+      const matExp1 = dataExpMat?.filter((p) => p.resultado !== "");
 
       const nmatExp = matExp ? matExp?.map((p) => {return p.id}).shift() : "Matérias Lidas e Ata Aprovada";
       const nmatExp1 = matExp1 ? matExp1?.map((p) => {return p.id}).pop() : "Matérias Lidas e Ata Aprovada";
