@@ -57,7 +57,7 @@ function Provider({children}) {
       const nordem1 = ordem1 ? ordem1?.map((p) => {return p.id}).pop() : "Matérias Todas Votadas - Sessão Terminada";                   
             
       const parlamentResponse = await aPIFetchPar.get("parlamentar/search_parlamentares");      
-      const presentResponse = await aPIFetchPres.get(`?page_size=21&sessao_plenaria=${numSesPlenaria}`);      
+      const presentResponse = await aPIFetchPres.get(`?page_size=21&sessao_plenaria=${numSesPlenaria}`);           
       const votoResponse =  nordem ? await aPIFetchVot.get(`?ordem=${nordem}&page_size=30`) : null;
         
       const dataParlament = parlamentResponse.data.filter((data) => data.ativo === true);      
