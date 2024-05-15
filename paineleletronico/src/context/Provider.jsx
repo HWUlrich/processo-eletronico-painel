@@ -20,7 +20,8 @@ function Provider({children}) {
   const day = dayToday.getDate();
   const month = dayToday.getMonth() + 1;
   const year = dayToday.getFullYear();
-  const [date, setDate] = useState(year + "-" + (month < 10 ?  "0" + month : month) + "-" + (day < 10 ? "0" + day : day));
+  const sessionsDay = (year + "-" + (month < 10 ?  "0" + month : month) + "-" + (day < 10 ? "0" + day : day));
+  const [date, setDate] = useState('2024-05-14');
   //console.log(date);
   
   
@@ -43,7 +44,7 @@ function Provider({children}) {
       setSessions(merged);
       //console.log(merged);                      
 
-      // Painéis
+      // Painéis   
       const numSesPlenaria = sessions
         ?.reduce((o,p) => {
           return p.sessao_plenaria;
@@ -109,13 +110,13 @@ function Provider({children}) {
     } catch (error) {
       console.log(error);
       //alert ("Sem conexão com o SAPL");
+
     } 
 
     }, []);
 
 
-  useEffect(() => {
-    
+  useEffect(() => {    
     const apiUpdate = setInterval(() => {
       getSessions();
     }, 3000);    
