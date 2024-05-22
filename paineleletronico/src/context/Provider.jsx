@@ -49,7 +49,7 @@ function Provider({children}) {
         ?.reduce((o,p) => {
           return p.sessao_plenaria;
         }, "");
-      console.log(numSesPlenaria)
+      console.log("Sessão Plenária: " + numSesPlenaria)
 
       const ordem = dataOrdDia?.filter((p) => p.resultado === "");
       const ordem1 = dataOrdDia?.filter((p) => p.resultado !== "");
@@ -60,10 +60,11 @@ function Provider({children}) {
       const parlamentResponse = await aPIFetchPar.get("parlamentar/search_parlamentares");      
       const presentResponse = await aPIFetchPres.get(`?page_size=21&sessao_plenaria=${numSesPlenaria}`);           
       const votoResponse =  nordem ? await aPIFetchVot.get(`?ordem=${nordem}&page_size=30`) : null;
+      //console.log([presentResponse])
         
       const dataParlament = parlamentResponse.data.filter((data) => data.ativo === true);      
       const dataPresent = presentResponse.data.results; 
-      const dataVoto = votoResponse ? votoResponse.data.results : [];
+      const dataVoto = votoResponse ? votoResponse.data.results : null;
       //console.log(dataVoto);
       
       const merged1 = dataParlament.map((screen) => ({
@@ -73,6 +74,7 @@ function Provider({children}) {
       }));
 
       setParlament(merged1);
+      //console.log("Merged1: " + [merged1]);
       
       // Matérias do Expediente
       const expMatResponse = await aPIFetchExpMat.get(`?data_ordem=${date}&page_size=30`);
@@ -116,12 +118,13 @@ function Provider({children}) {
     }, []);
 
 
-  useEffect(() => { 
-    getSessions();   
+  useEffect(() => {
+    //getSessions(); 
+          
     const apiUpdate = setInterval(() => {
       getSessions();
-    }, 3000);    
-
+    }, 10000);    
+    
   }, []);
 
 
