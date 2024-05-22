@@ -21,7 +21,7 @@ function Provider({children}) {
   const month = dayToday.getMonth() + 1;
   const year = dayToday.getFullYear();
   const sessionsDay = (year + "-" + (month < 10 ?  "0" + month : month) + "-" + (day < 10 ? "0" + day : day));
-  const [date, setDate] = useState('2024-05-14');
+  const [date, setDate] = useState('2024-05-21');
   //console.log(date);
   
   
@@ -53,9 +53,9 @@ function Provider({children}) {
 
       const ordem = dataOrdDia?.filter((p) => p.resultado === "");
       const ordem1 = dataOrdDia?.filter((p) => p.resultado !== "");
-
-      const nordem = ordem ? ordem?.map((p) => {return p.id}).shift() : "Matérias Todas Votadas - Sessão Terminada";
-      const nordem1 = ordem1 ? ordem1?.map((p) => {return p.id}).pop() : "Matérias Todas Votadas - Sessão Terminada";                   
+      //console.log("nordem: " + [nordem]);
+      const nordem = ordem ? ordem?.map((p) => {return p.id}).shift() : [];
+      const nordem1 = ordem1 ? ordem1?.map((p) => {return p.id}).pop() : [];                   
             
       const parlamentResponse = await aPIFetchPar.get("parlamentar/search_parlamentares");      
       const presentResponse = await aPIFetchPres.get(`?page_size=21&sessao_plenaria=${numSesPlenaria}`);           
@@ -77,13 +77,13 @@ function Provider({children}) {
       // Matérias do Expediente
       const expMatResponse = await aPIFetchExpMat.get(`?data_ordem=${date}&page_size=30`);
       const dataExpMat = expMatResponse.data.results;
-      console.log('date: ' + date);
+      //console.log('date: ' + date);
 
       const matExp = dataExpMat?.filter((p) => p.resultado === "");
       const matExp1 = dataExpMat?.filter((p) => p.resultado !== "");
 
-      const nmatExp = matExp ? matExp?.map((p) => {return p.id}).shift() : "Matérias Lidas e Ata Aprovada";
-      const nmatExp1 = matExp1 ? matExp1?.map((p) => {return p.id}).pop() : "Matérias Lidas e Ata Aprovada";
+      const nmatExp = matExp ? matExp?.map((p) => {return p.id}).shift() : [];
+      const nmatExp1 = matExp1 ? matExp1?.map((p) => {return p.id}).pop() : [];
 
       //console.log('nmatExp :' + nmatExp);
         
@@ -116,12 +116,13 @@ function Provider({children}) {
     }, []);
 
 
-  useEffect(() => {    
+  useEffect(() => { 
+    getSessions();   
     const apiUpdate = setInterval(() => {
       getSessions();
     }, 3000);    
 
-  }, [getSessions]);
+  }, []);
 
 
   const contextValue = {    
