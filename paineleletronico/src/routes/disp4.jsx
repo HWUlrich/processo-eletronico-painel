@@ -25,7 +25,8 @@ const Disp4 = () => {
           <h2>{(day < 10 ? "0" + day : day) + " / " + (month < 10 ? "0" + month : month) + " / " + year}</h2>       
           <h2>{timer}</h2>
       </div>       
-      <div className="materias-exp">                    
+      <div className="materias-exp">
+        <div>                    
         {matExp1.map((sessao) => (                                                                          
             <div className='exped-result'  key={sessao.id}>                         
               <div className='exped-result-mat'>
@@ -36,6 +37,8 @@ const Disp4 = () => {
               </div>                                         
             </div>                
         ))}
+        </div>
+        <div>
         {matExp.map((sessao) => (                                                                          
             <div className='exped-result'  key={sessao.id}>                         
               <div className='exped-result-mat'>
@@ -46,8 +49,10 @@ const Disp4 = () => {
               </div>                                         
             </div>                
         ))}
+        </div>
       </div>               
       <div className="painel-mat-result">
+        <div>
         {matOrd1.map((sessao) => (                    
           <div className='materia-vot' key={sessao.id}>
             <h1>Votação: {sessao.__str__.slice(24, -67)}</h1>
@@ -56,6 +61,8 @@ const Disp4 = () => {
             </div>                                  
           </div>
         ))}
+        </div>
+        <div>
         {matOrd.map((sessao) => (                    
           <div className='materia-vot' key={sessao.id}>
             <h1>Votação: {sessao.__str__.slice(24, -67)}</h1>
@@ -63,13 +70,14 @@ const Disp4 = () => {
               <h2>{sessao.resultado ? sessao.resultado : "Aguardando Votação"}</h2>                
             </div>                                  
           </div>
-        ))} 
-          <div className='resultado-vot'>             
-            <h2>Sim: {parlament.reduce((o,p) => {p.voto === "Sim" && o++; return o}, 0)}</h2>
-            <h2>Não: {parlament.reduce((o,p) => {p.voto === "Não" && o++; return o}, 0)}</h2>
-            <h2>Abstenções: {parlament.reduce((o,p) => {p.voto === "Abstenções" && o++; return o}, 0)}</h2>
-            <h2>Não Votaram: {parlament.reduce((o,p) => {p.voto === "Não Votou" && o++; return o}, 0)}</h2>                                       
-          </div>          
+        ))}
+        </div> 
+        <div className='resultado-vot'>             
+          <h2>Sim: {parlament.reduce((o,p) => {p.voto === "Sim" && o++; return o}, 0)}</h2>
+          <h2>Não: {parlament.reduce((o,p) => {p.voto === "Não" && o++; return o}, 0)}</h2>
+          <h2>Abstenções: {parlament.reduce((o,p) => {p.voto === "Abstenções" && o++; return o}, 0)}</h2>
+          <h2>Não Votaram: {parlament.reduce((o,p) => {p.voto === "Não Votou" && o++; return o}, 0)}</h2>                                       
+        </div>          
       </div>
     </div>
   );

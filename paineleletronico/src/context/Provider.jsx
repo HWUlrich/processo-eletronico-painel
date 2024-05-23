@@ -51,11 +51,9 @@ function Provider({children}) {
         }, "");
       console.log("Sessão Plenária: " + numSesPlenaria)
 
-      const ordem = dataOrdDia?.filter((p) => p.resultado === "");
-      const ordem1 = dataOrdDia?.filter((p) => p.resultado !== "");
+      const ordem = dataOrdDia?.filter((p) => p.resultado === "");      
       //console.log("nordem: " + [nordem]);
-      const nordem = ordem ? ordem?.map((p) => {return p.id}).shift() : [];
-      const nordem1 = ordem1 ? ordem1?.map((p) => {return p.id}).pop() : [];                   
+      const nordem = ordem ? ordem?.map((p) => {return p.id}).shift() : [];                         
             
       const parlamentResponse = await aPIFetchPar.get("parlamentar/search_parlamentares");      
       const presentResponse = await aPIFetchPres.get(`?page_size=21&sessao_plenaria=${numSesPlenaria}`);           
@@ -63,7 +61,7 @@ function Provider({children}) {
       //console.log([presentResponse])
         
       const dataParlament = parlamentResponse.data.filter((data) => data.ativo === true);      
-      const dataPresent = presentResponse.data.results; 
+      const dataPresent = presentResponse ? presentResponse.data.results : null; 
       const dataVoto = votoResponse ? votoResponse.data.results : null;
       //console.log(dataVoto);
       
@@ -98,8 +96,19 @@ function Provider({children}) {
       const materiasExp1 = dataMateriasExp1.data;
       setMatExp1([materiasExp1]);
       //console.log(materiasExp1); 
+
+      const ordDiaResponse1 = await aPIFetchOrdDia.get(`?data_ordem=${date}&page_size=30`);
+      const dataOrdDia1 = ordDiaResponse1.data.results;
+
+      const ordem2 = dataOrdDia1?.filter((p) => p.resultado === "");
+      const ordem1 = dataOrdDia1?.filter((p) => p.resultado !== "");
+      console.log(ordem2);
+
+      const nordem2 = ordem2 ? ordem2?.map((p) => {return p.id}).shift() : [];
+      const nordem1 = ordem1 ? ordem1?.map((p) => {return p.id}).pop() : [];
+
       
-      const dataMateriasOrd = nordem ? await aPIFetchOrdDia.get(`${nordem}/`) : null;
+      const dataMateriasOrd = nordem2 ? await aPIFetchOrdDia.get(`${nordem2}/`) : null;
       const materiasOrd = dataMateriasOrd.data;
       setMatOrd([materiasOrd]);
       //console.log(materiasOrd);
