@@ -20,21 +20,20 @@
 }
 
 .par {
-    margin: 0;
-    padding: 0;
-    width: 100%;
+    width: 100vw;
     height: 100%;
+    margin: 0;
+    padding: 0;   
 }
 
 .parl {
-    width: 100%;
+    width: 100vw;    
     height: var(--height-parl);
-    color: red;    
     border-bottom: 1px solid gray;
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: left;    
+    justify-content: space-between;    
 }
 
 .parl-1 h1 {
@@ -51,25 +50,22 @@
 }
 
 .parl-1 {
-    width: 50%;
+    width: 50vw;
 }
 
 .parl-2 {
-    width: 20%;
+    width: 18vw;
 }
 
 .parl-3 {
-    width: 20%;
+    width: 18vw;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .parl-4 {
-    width: 10%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    width: 14vw;
 }
 
 .parl-3 div h2 {
@@ -132,7 +128,7 @@
 }
 
 .headline h1 {    
-    font-size: 2.3rem;
+    font-size: 4rem;
     color: white;
     text-align: center;
 }
@@ -187,24 +183,23 @@
 }
 
 .exped-result {
-    height: 70px;    
+    height: 100px;    
     display: flex;
-    padding: 0 70px;
+    padding: 0 100px;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
 }
 
-.exped-result-mat {
-    
-    height: 2.0rem;
+.exped-result-mat {    
+    height: 2.5rem;
     display: flex;
     align-items: center;
 }
 
 .exped-result-mat h1 {
     color: #189583 ;
-    font-size: 2rem;
+    font-size: 2.5rem;
 }
 
 .exped-result-res {
@@ -214,45 +209,40 @@
 }
 
 .exped-result-res h2 {
-    font-size: 2rem;
+    font-size: 2.5rem;
     color: red;
 }
 
 .resultado-vot {
-    height: 3.5rem;    
+    height: 6rem;    
     background-color: red;
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin: 1px;
-    padding: 0 150px;
+    padding: 0 250px;
     border-radius: 5px;
-
-
 }
 
 .resultado-vot h2 {
-    font-size: 2rem;
+    font-size: 3rem;
     color: white;
-
 }
 
 .painel-mat-result {
     width: 100%;
     display: flex;
-    flex-direction: column;   
-    
+    flex-direction: column;    
 }
 
 .materia-vot {
-    height: 150px;         
+    height: 100px;         
     background-color: #189583;
     border-radius: 5px;     
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 100px;
-   
+    padding: 0 100px;   
 }
 
 .materia-vot h1 {
@@ -261,7 +251,7 @@
 }
 
 .materia-vot-res h2 {
-    font-size: 2rem;
+    font-size: 2.5rem;
     color: yellow;
 
 }
@@ -281,6 +271,6 @@
 
 .data-hora h2 {
     color: white;
-    font-size: 2rem;
+    font-size: 3rem;
     margin: 0 200px;
 }

@@ -12,6 +12,7 @@ function Provider({children}) {
   
   const [sessions, setSessions] = useState([]);  
   const [parlament, setParlament] = useState([]);
+  const [presenca, setPresenca] = useState([]);
   const [matExp, setMatExp] = useState([]);
   const [matExp1, setMatExp1] = useState([]);
   const [matOrd, setMatOrd] = useState([]);
@@ -21,7 +22,7 @@ function Provider({children}) {
   const month = dayToday.getMonth() + 1;
   const year = dayToday.getFullYear();
   const sessionsDay = (year + "-" + (month < 10 ?  "0" + month : month) + "-" + (day < 10 ? "0" + day : day));
-  const [date, setDate] = useState(sessionsDay);
+  const [date, setDate] = useState('2024-05-14');
   //console.log(date);
   
   
@@ -39,8 +40,7 @@ function Provider({children}) {
       const merged = dataOrdDia.map((screen) => ({        
         ...dataSesPlen.find((o) => o.codReuniao === screen.sessao_plenaria),              
         ...screen      
-      }));
-      
+      }));      
       setSessions(merged);
       //console.log(merged);                      
 
@@ -49,32 +49,43 @@ function Provider({children}) {
         ?.reduce((o,p) => {
           return p.sessao_plenaria;
         }, "");
-      console.log("Sessão Plenária: " + numSesPlenaria)
+      //console.log("Sessão Plenária: " + numSesPlenaria);
+
+      const numSesPlen = sessions.map((p) => p.sessao_plenaria);
+      const numSespLenar = numSesPlen.sort((a, b) => a - b);
+      const numSesPlenaria3 = numSespLenar.shift();
+      console.log(numSesPlenaria3);
 
       const ordem = dataOrdDia?.filter((p) => p.resultado === "");      
       //console.log("nordem: " + [nordem]);
       const nordem = ordem ? ordem?.map((p) => {return p.id}).shift() : [];                         
             
       const parlamentResponse = await aPIFetchPar.get("parlamentar/search_parlamentares");      
-      const presentResponse = await aPIFetchPres.get(`?page_size=21&sessao_plenaria=${numSesPlenaria}`);           
+      const presentResponse = await aPIFetchPres.get(`?page_size=21&sessao_plenaria=${numSesPlenaria3}`);           
       const votoResponse =  nordem ? await aPIFetchVot.get(`?ordem=${nordem}&page_size=30`) : null;
       //console.log([presentResponse])
         
       const dataParlament = parlamentResponse.data.filter((data) => data.ativo === true);      
-      const dataPresent = presentResponse ? presentResponse.data.results : null; 
+      const dataPresent = presentResponse.data.results; 
       const dataVoto = votoResponse ? votoResponse.data.results : null;
-      //console.log(dataVoto);
+      //console.log(dataPresent);
       
       const merged1 = dataParlament.map((screen) => ({
-        ...dataPresent.find((o) => o.parlamentar === screen.id),
+        //...dataPresent.find((o) => o.parlamentar === screen.id),        
         ...dataVoto.find((o) => o.parlamentar === screen.id),
         ...screen      
       }));
-
       setParlament(merged1);
-      //console.log("Merged1: " + [merged1]);
+      //console.log(parlament);
       
-      // Matérias do Expediente
+      const merged2 = dataParlament.map((screen) => ({
+        ...dataPresent.find((o) => o.parlamentar === screen.id),        
+        ...screen        
+      }));
+      setPresenca(merged2);
+      //console.log(presenca);
+      
+      //Matérias do Expediente
       const expMatResponse = await aPIFetchExpMat.get(`?data_ordem=${date}&page_size=30`);
       const dataExpMat = expMatResponse.data.results;
       //console.log('date: ' + date);
@@ -84,7 +95,6 @@ function Provider({children}) {
 
       const nmatExp = matExp ? matExp?.map((p) => {return p.id}).shift() : [];
       const nmatExp1 = matExp1 ? matExp1?.map((p) => {return p.id}).pop() : [];
-
       //console.log('nmatExp :' + nmatExp);
         
       const dataMateriasExp = nmatExp ? await aPIFetchExpMat.get(`${nmatExp}/`) : null;
@@ -97,16 +107,16 @@ function Provider({children}) {
       setMatExp1([materiasExp1]);
       //console.log(materiasExp1); 
 
+      //Matérias da Ordem do Dia
       const ordDiaResponse1 = await aPIFetchOrdDia.get(`?data_ordem=${date}&page_size=30`);
       const dataOrdDia1 = ordDiaResponse1.data.results;
 
       const ordem2 = dataOrdDia1?.filter((p) => p.resultado === "");
       const ordem1 = dataOrdDia1?.filter((p) => p.resultado !== "");
-      console.log(ordem2);
+      //console.log(ordem2);
 
       const nordem2 = ordem2 ? ordem2?.map((p) => {return p.id}).shift() : [];
       const nordem1 = ordem1 ? ordem1?.map((p) => {return p.id}).pop() : [];
-
       
       const dataMateriasOrd = nordem2 ? await aPIFetchOrdDia.get(`${nordem2}/`) : null;
       const materiasOrd = dataMateriasOrd.data;
@@ -124,22 +134,23 @@ function Provider({children}) {
 
     } 
 
-    }, []);
+  }, [sessions, date]);
 
 
   useEffect(() => {
-    //getSessions(); 
+    getSessions(); 
           
     const apiUpdate = setInterval(() => {
       getSessions();
-    }, 10000);    
+    }, 5000);    
     
-  }, []);
+  }, [getSessions]);
 
 
   const contextValue = {    
     sessions,    
     parlament,
+    presenca,
     matExp,
     matExp1,
     matOrd,
@@ -147,6 +158,7 @@ function Provider({children}) {
     date,
     setSessions,    
     setParlament,
+    setPresenca,
     setMatExp,
     setMatExp1,
     setMatOrd,
