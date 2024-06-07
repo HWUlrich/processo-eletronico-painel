@@ -202,6 +202,12 @@
     font-size: 2.5rem;
 }
 
+.exped-result-mat1 h1 {
+    color: #189583 ;
+    font-size: 3rem;
+    font-weight: 800;
+}
+
 .exped-result-res {
     height: 2.5rem;
     display: flex;
@@ -211,6 +217,12 @@
 .exped-result-res h2 {
     font-size: 2.5rem;
     color: red;
+}
+
+.exped-result-res1 h2 {
+    font-size: 3rem;
+    color: red;
+    font-weight: 800;
 }
 
 .resultado-vot {
@@ -250,9 +262,22 @@
     color: white;
 }
 
+.materia-vot1 h1 {
+    font-size: 3rem;
+    color: white;
+    font-weight: 800;
+}
+
 .materia-vot-res h2 {
     font-size: 2.5rem;
     color: yellow;
+
+}
+
+.materia-vot-res1 h2 {
+    font-size: 3rem;
+    color: yellow;
+    font-weight: 800;
 
 }
 

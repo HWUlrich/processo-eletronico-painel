@@ -41,17 +41,15 @@ const Disp4 = () => {
         <div>
         {matExp.map((sessao) => (                                                                          
             <div className='exped-result'  key={sessao.id}>                         
-              <div className='exped-result-mat'>
+              <div className='exped-result-mat1'>
                 <h1>Expediente: {sessao.__str__.slice(24, -67)}</h1>                                            
               </div>            
-              <div className='exped-result-res'>
+              <div className='exped-result-res1'>
                 <h2>{sessao.resultado ? sessao.resultado : "Em Pauta para Leitura"}</h2>                
               </div>                                         
             </div>                
         ))}
         </div>
-      </div>               
-      <div className="painel-mat-result">
         <div>
         {matOrd1.map((sessao) => (                    
           <div className='materia-vot' key={sessao.id}>
@@ -64,14 +62,16 @@ const Disp4 = () => {
         </div>
         <div>
         {matOrd.map((sessao) => (                    
-          <div className='materia-vot' key={sessao.id}>
+          <div className='materia-vot1' key={sessao.id}>
             <h1>Votação: {sessao.__str__.slice(24, -67)}</h1>
-            <div className='materia-vot-res'>
+            <div className='materia-vot-res1'>
               <h2>{sessao.resultado ? sessao.resultado : "Aguardando Votação"}</h2>                
             </div>                                  
           </div>
         ))}
         </div> 
+      </div>               
+      <div className="painel-mat-result">        
         <div className='resultado-vot'>             
           <h2>Sim:{parlament.reduce((o,p) => {p.voto === "Sim" && o++; return " " + o}, 0)}</h2>
           <h2>Não:{parlament.reduce((o,p) => {p.voto === "Não" && o++; return " " + o}, 0)}</h2>
