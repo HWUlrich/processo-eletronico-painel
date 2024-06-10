@@ -73,10 +73,10 @@ const Disp4 = () => {
       </div>               
       <div className="painel-mat-result">        
         <div className='resultado-vot'>             
-          <h2>Sim:{parlament.reduce((o,p) => {p.voto === "Sim" && o++; return " " + o}, 0)}</h2>
-          <h2>Não:{parlament.reduce((o,p) => {p.voto === "Não" && o++; return " " + o}, 0)}</h2>
-          <h2>Abstenções:{parlament.reduce((o,p) => {p.voto === "Abstenção" && o++; return " " + o}, 0)}</h2>
-          <h2>Não Votaram:{parlament.reduce((o,p) => {p.voto === "Não Votou" && o++; return " " + o}, 0)}</h2>                                       
+          <h2>Sim:  {parlament.reduce((o,p) => {p.voto === "Sim" && o++; return o}, 0)}</h2>
+          <h2>Não:  {parlament.reduce((o,p) => {p.voto === "Não" && o++; return o}, 0)}</h2>
+          <h2>Abstenções:  {parlament.reduce((o,p) => {p.voto === "Abstenção" && o++; return o}, 0)}</h2>
+          <h2>Não Votaram:  {parlament.reduce((o,p) => {p.voto === "Não Votou" && o++; return o}, 0)}</h2>                                       
         </div>          
       </div>
     </div>
