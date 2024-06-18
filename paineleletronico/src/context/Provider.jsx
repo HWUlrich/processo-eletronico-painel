@@ -22,7 +22,7 @@ function Provider({children}) {
   const month = dayToday.getMonth() + 1;
   const year = dayToday.getFullYear();
   const sessionsDay = (year + "-" + (month < 10 ?  "0" + month : month) + "-" + (day < 10 ? "0" + day : day));
-  const [date, setDate] = useState('2024-05-14');
+  const [date, setDate] = useState('2024-06-18');
   //console.log(date);
   
   
@@ -139,11 +139,11 @@ function Provider({children}) {
 
   useEffect(() => {
     getSessions(); 
-          
+    /*      
     const apiUpdate = setInterval(() => {
       getSessions();
-    }, 5000);    
-    
+    }, 10000);    
+    */
   }, [getSessions]);
 
 
