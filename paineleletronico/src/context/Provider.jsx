@@ -28,8 +28,7 @@ function Provider({children}) {
   
   const getSessions = useCallback ( async () => {  
 
-    try {     
-      
+    try {      
       // Ordem do dia
       const ordDiaResponse = await aPIFetchOrdDia.get(`?data_ordem=${date}&page_size=30`);      
       const sesPlenResponse = await aPIFetchSesPlen.get(`?data_inicio=${date}&page_size=30`);      
@@ -44,11 +43,13 @@ function Provider({children}) {
       setSessions(merged);
       //console.log(merged);                      
 
-      // Painéis   
+      // Painéis
+      /*
       const numSesPlenaria = sessions
         ?.reduce((o,p) => {
           return p.sessao_plenaria;
         }, "");
+      */  
       //console.log("Sessão Plenária: " + numSesPlenaria);
 
       const numSesPlen = sessions.map((p) => p.sessao_plenaria);
@@ -63,8 +64,8 @@ function Provider({children}) {
       const parlamentResponse = await aPIFetchPar.get("parlamentar/search_parlamentares");      
       const presentResponse = await aPIFetchPres.get(`?page_size=21&sessao_plenaria=${numSesPlenaria3}`);           
       const votoResponse =  nordem ? await aPIFetchVot.get(`?ordem=${nordem}&page_size=30`) : null;
-      //console.log([presentResponse])
-        
+      //console.log([presentResponse])  
+            
       const dataParlament = parlamentResponse.data.filter((data) => data.ativo === true);      
       const dataPresent = presentResponse.data.results; 
       const dataVoto = votoResponse ? votoResponse.data.results : null;
@@ -108,20 +109,13 @@ function Provider({children}) {
       //console.log(materiasExp1); 
 
       //Matérias da Ordem do Dia
-      const ordDiaResponse1 = await aPIFetchOrdDia.get(`?data_ordem=${date}&page_size=30`);
-      const dataOrdDia1 = ordDiaResponse1.data.results;
-
-      const ordem2 = dataOrdDia1?.filter((p) => p.resultado === "");
-      const ordem1 = dataOrdDia1?.filter((p) => p.resultado !== "");
-      //console.log(ordem2);
-
-      const nordem2 = ordem2 ? ordem2?.map((p) => {return p.id}).shift() : [];
+      const ordem1 = dataOrdDia?.filter((p) => p.resultado !== "");         
       const nordem1 = ordem1 ? ordem1?.map((p) => {return p.id}).pop() : [];
       
-      const dataMateriasOrd = nordem2 ? await aPIFetchOrdDia.get(`${nordem2}/`) : null;
+      const dataMateriasOrd = nordem ? await aPIFetchOrdDia.get(`${nordem}/`) : null;
       const materiasOrd = dataMateriasOrd.data;
       setMatOrd([materiasOrd]);
-      //console.log(materiasOrd);
+      console.log(materiasOrd);
 
       const dataMateriasOrd1 = nordem1 ? await aPIFetchOrdDia.get(`${nordem1}/`) : null;
       const materiasOrd1 = dataMateriasOrd1.data;
