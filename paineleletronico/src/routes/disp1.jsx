@@ -4,7 +4,6 @@ import Context from '../context/MyContext';
 
 
 const Disp1 = () => {
-  
   // altera a tabela de estilos
   const dispStyleParl = () => {
     document.body.classList.toggle('parlamentares');
@@ -19,7 +18,6 @@ const Disp1 = () => {
   const endIndex = startIndex + itensPerPage;  
   const currentItens = presenca?.slice(startIndex, endIndex);
   const currentItens1 = parlament?.slice(startIndex, endIndex);  
-  console.log(currentItens);  
 
   return (
     <div className='par'>            

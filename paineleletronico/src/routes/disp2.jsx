@@ -16,8 +16,7 @@ const [ currentPage ] = useState(1);
 const startIndex = currentPage * itensPerPage;
 const endIndex = startIndex + itensPerPage;  
 const currentItens = presenca?.slice(startIndex, endIndex);
-const currentItens1 = parlament?.slice(startIndex, endIndex);  
-console.log(currentItens);
+const currentItens1 = parlament?.slice(startIndex, endIndex);
 
 return (
   <div className='par'>            
