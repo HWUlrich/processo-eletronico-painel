@@ -22,12 +22,7 @@ function Provider({children}) {
   const month = dayToday.getMonth() + 1;
   const year = dayToday.getFullYear();
   const sessionsDay = (year + "-" + (month < 10 ?  "0" + month : month) + "-" + (day < 10 ? "0" + day : day));
-<<<<<<< HEAD
   const [date, setDate] = useState('2024-06-18');
-=======
-  const [date, setDate] = useState('2024-06-20');
-  //console.log(date);
->>>>>>> b8526b6a38950c9c57198a6bc5756c5d4de5b4f1
   
   
   const getSessions = useCallback ( async () => {  
@@ -76,13 +71,14 @@ function Provider({children}) {
       
       //Matérias do Expediente
       const expMatResponse = await aPIFetchExpMat.get(`?data_ordem=${date}&page_size=30`);
-      const dataExpMat = expMatResponse.data.results
+      const dataExpMat = expMatResponse.data.results;
 
       const matExp = dataExpMat?.filter((p) => p.resultado === "");
       const matExp1 = dataExpMat?.filter((p) => p.resultado !== "");
 
-      const nmatExp = matExp ? matExp?.map((p) => {return p.id}).shift() : [];
+      const nmatExp = matExp ? matExp?.map((p) => {return p.id}).shift() : [];      
       const nmatExp1 = matExp1 ? matExp1?.map((p) => {return p.id}).pop() : [];
+      const nmatExp2 = matExp ? matExp?.map((p) => {return p.id}).pop() : []; //<<<<<<<<<< Votação da ATA 
         
       const dataMateriasExp = nmatExp ? await aPIFetchExpMat.get(`${nmatExp}/`) : null;
       const materiasExp = dataMateriasExp.data;
@@ -92,13 +88,19 @@ function Provider({children}) {
       const materiasExp1 = dataMateriasExp1.data;
       setMatExp1([materiasExp1]);
 
+      //const dataMateriasExp2 = nmatExp ? await aPIFetchExpMat.get(`${nmatExp2}/`) : null;
+      //const materiasExp2 = dataMateriasExp2.data; //<<<<<<<<<< Votação da ATA 
+
       //Matérias da Ordem do Dia
       const ordem1 = dataOrdDia?.filter((p) => p.resultado !== "");         
       const nordem1 = ordem1 ? ordem1?.map((p) => {return p.id}).pop() : [];
       
       const dataMateriasOrd = nordem ? await aPIFetchOrdDia.get(`${nordem}/`) : null;
-      const materiasOrd = dataMateriasOrd.data;
+      const materiasOrd = dataMateriasOrd.data;      
+
+      //const merged3 = [...materiasExp2, ...materiasOrd];
       setMatOrd([materiasOrd]);
+      //console.log([merged3]);
 
       const dataMateriasOrd1 = nordem1 ? await aPIFetchOrdDia.get(`${nordem1}/`) : null;
       const materiasOrd1 = dataMateriasOrd1.data;
