@@ -51,15 +51,14 @@ function Provider({children}) {
       const parlamentResponse = await aPIFetchPar.get("parlamentar/search_parlamentares");      
       const presentResponse = await aPIFetchPres.get(`?page_size=21&sessao_plenaria=${numSesPlenaria}`);           
       const votoResponse =  nordem ? await aPIFetchVot.get(`?ordem=${nordem}&page_size=30`) : null;
-      const votoAta =  nmatExp ? await aPIFetchVot.get(`?ordem=${nmatExp}&page_size=30`) : null;
+      const votoAta =  nmatExp ? await aPIFetchVot.get(`?ordem=${nmatExp}`) : null;
             
       const dataParlament = parlamentResponse.data.filter((data) => data.ativo === true);      
       const dataPresent = presentResponse.data.results; 
       const dataVoto = votoResponse ? votoResponse.data.results : null;
-      const dataVotoAta = votoAta ? votoResponse.data.results : null;
+      const dataVotoAta = votoAta ? votoAta.data.results : null;
       
       const merged1 = dataParlament.map((screen) => ({
-        //...dataPresent.find((o) => o.parlamentar === screen.id),
         ...dataVotoAta.find((o) => o.parlamentar === screen.id),
         ...dataVoto.find((o) => o.parlamentar === screen.id),
         ...screen      
@@ -95,12 +94,9 @@ function Provider({children}) {
       const nordem1 = ordem1 ? ordem1?.map((p) => {return p.id}).pop() : [];
       
       const dataMateriasOrd = nordem ? await aPIFetchOrdDia.get(`${nordem}/`) : null;
-      const materiasOrd = dataMateriasOrd.data;      
-
-      //const merged3 = [...materiasExp2, ...materiasOrd];
+      const materiasOrd = dataMateriasOrd.data;     
       setMatOrd([materiasOrd]);
-      //console.log([merged3]);
-
+      
       const dataMateriasOrd1 = nordem1 ? await aPIFetchOrdDia.get(`${nordem1}/`) : null;
       const materiasOrd1 = dataMateriasOrd1.data;
       setMatOrd1([materiasOrd1]);

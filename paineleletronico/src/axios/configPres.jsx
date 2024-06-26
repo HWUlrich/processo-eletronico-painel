@@ -6,7 +6,7 @@ const aPIFetchPres = axios.create({
     //timeout: 8000,
     headers: {       
         "content-language": "pt-br",         
-        "content-type": "application/json",          
+        "content-type": "application/json",         
     }
 });
 
