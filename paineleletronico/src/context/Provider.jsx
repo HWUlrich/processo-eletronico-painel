@@ -22,7 +22,7 @@ function Provider({children}) {
   const month = dayToday.getMonth() + 1;
   const year = dayToday.getFullYear();
   const sessionsDay = (year + "-" + (month < 10 ?  "0" + month : month) + "-" + (day < 10 ? "0" + day : day));
-  const [date, setDate] = useState('2024-06-18');
+  const [date, setDate] = useState('2024-06-25');
   
   
   const getSessions = useCallback ( async () => {  
@@ -50,14 +50,17 @@ function Provider({children}) {
             
       const parlamentResponse = await aPIFetchPar.get("parlamentar/search_parlamentares");      
       const presentResponse = await aPIFetchPres.get(`?page_size=21&sessao_plenaria=${numSesPlenaria}`);           
-      const votoResponse =  nordem ? await aPIFetchVot.get(`?ordem=${nordem}&page_size=30`) : null; 
+      const votoResponse =  nordem ? await aPIFetchVot.get(`?ordem=${nordem}&page_size=30`) : null;
+      const votoAta =  nmatExp ? await aPIFetchVot.get(`?ordem=${nmatExp}&page_size=30`) : null;
             
       const dataParlament = parlamentResponse.data.filter((data) => data.ativo === true);      
       const dataPresent = presentResponse.data.results; 
       const dataVoto = votoResponse ? votoResponse.data.results : null;
+      const dataVotoAta = votoAta ? votoResponse.data.results : null;
       
       const merged1 = dataParlament.map((screen) => ({
-        //...dataPresent.find((o) => o.parlamentar === screen.id),        
+        //...dataPresent.find((o) => o.parlamentar === screen.id),
+        ...dataVotoAta.find((o) => o.parlamentar === screen.id),
         ...dataVoto.find((o) => o.parlamentar === screen.id),
         ...screen      
       }));
@@ -78,8 +81,7 @@ function Provider({children}) {
 
       const nmatExp = matExp ? matExp?.map((p) => {return p.id}).shift() : [];      
       const nmatExp1 = matExp1 ? matExp1?.map((p) => {return p.id}).pop() : [];
-      const nmatExp2 = matExp ? matExp?.map((p) => {return p.id}).pop() : []; //<<<<<<<<<< Votação da ATA 
-        
+              
       const dataMateriasExp = nmatExp ? await aPIFetchExpMat.get(`${nmatExp}/`) : null;
       const materiasExp = dataMateriasExp.data;
       setMatExp([materiasExp]);
@@ -87,9 +89,6 @@ function Provider({children}) {
       const dataMateriasExp1 = nmatExp1 ? await aPIFetchExpMat.get(`${nmatExp1}/`) : null;
       const materiasExp1 = dataMateriasExp1.data;
       setMatExp1([materiasExp1]);
-
-      //const dataMateriasExp2 = nmatExp ? await aPIFetchExpMat.get(`${nmatExp2}/`) : null;
-      //const materiasExp2 = dataMateriasExp2.data; //<<<<<<<<<< Votação da ATA 
 
       //Matérias da Ordem do Dia
       const ordem1 = dataOrdDia?.filter((p) => p.resultado !== "");         
