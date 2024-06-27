@@ -12,6 +12,7 @@ function Provider({children}) {
   
   const [sessions, setSessions] = useState([]);  
   const [parlament, setParlament] = useState([]);
+  //const [votoAta, setVotoAta] = useState([]);
   const [presenca, setPresenca] = useState([]);
   const [matExp, setMatExp] = useState([]);
   const [matExp1, setMatExp1] = useState([]);
@@ -22,7 +23,7 @@ function Provider({children}) {
   const month = dayToday.getMonth() + 1;
   const year = dayToday.getFullYear();
   const sessionsDay = (year + "-" + (month < 10 ?  "0" + month : month) + "-" + (day < 10 ? "0" + day : day));
-  const [date, setDate] = useState('2024-06-25');
+  const [date, setDate] = useState('2024-06-27');
   
   
   const getSessions = useCallback ( async () => {  
@@ -46,20 +47,19 @@ function Provider({children}) {
       const numSesPlenaria = numSespLenar.shift();
 
       const ordem = dataOrdDia?.filter((p) => p.resultado === "");      
-      const nordem = ordem ? ordem?.map((p) => {return p.id}).shift() : [];                         
+      const nordem = ordem ? ordem?.map((p) => {return p.id}).shift() : null;                         
             
       const parlamentResponse = await aPIFetchPar.get("parlamentar/search_parlamentares");      
       const presentResponse = await aPIFetchPres.get(`?page_size=21&sessao_plenaria=${numSesPlenaria}`);           
       const votoResponse =  nordem ? await aPIFetchVot.get(`?ordem=${nordem}&page_size=30`) : null;
-      const votoAta =  nmatExp ? await aPIFetchVot.get(`?ordem=${nmatExp}`) : null;
+      //const votoAta =  nmatExp ? await aPIFetchVot.get(`?ordem=${nmatExp}`) : null;
             
       const dataParlament = parlamentResponse.data.filter((data) => data.ativo === true);      
       const dataPresent = presentResponse.data.results; 
       const dataVoto = votoResponse ? votoResponse.data.results : null;
-      const dataVotoAta = votoAta ? votoAta.data.results : null;
+      //const dataVotoAta = votoAta ? votoAta.data.results : null;
       
       const merged1 = dataParlament.map((screen) => ({
-        ...dataVotoAta.find((o) => o.parlamentar === screen.id),
         ...dataVoto.find((o) => o.parlamentar === screen.id),
         ...screen      
       }));
@@ -70,6 +70,12 @@ function Provider({children}) {
         ...screen        
       }));
       setPresenca(merged2);
+      /*
+      const merged3 = dataParlament.map((screen) => ({
+        ...dataVotoAta.find((o) => o.parlamentar === screen.id),
+        ...screen      
+      })); */
+      //setVotoAta(merged3);
       
       //Matérias do Expediente
       const expMatResponse = await aPIFetchExpMat.get(`?data_ordem=${date}&page_size=30`);
@@ -78,8 +84,8 @@ function Provider({children}) {
       const matExp = dataExpMat?.filter((p) => p.resultado === "");
       const matExp1 = dataExpMat?.filter((p) => p.resultado !== "");
 
-      const nmatExp = matExp ? matExp?.map((p) => {return p.id}).shift() : [];      
-      const nmatExp1 = matExp1 ? matExp1?.map((p) => {return p.id}).pop() : [];
+      const nmatExp = matExp ? matExp?.map((p) => {return p.id}).shift() : null;      
+      const nmatExp1 = matExp1 ? matExp1?.map((p) => {return p.id}).pop() : null;
               
       const dataMateriasExp = nmatExp ? await aPIFetchExpMat.get(`${nmatExp}/`) : null;
       const materiasExp = dataMateriasExp.data;
@@ -91,7 +97,7 @@ function Provider({children}) {
 
       //Matérias da Ordem do Dia
       const ordem1 = dataOrdDia?.filter((p) => p.resultado !== "");         
-      const nordem1 = ordem1 ? ordem1?.map((p) => {return p.id}).pop() : [];
+      const nordem1 = ordem1 ? ordem1?.map((p) => {return p.id}).pop() : null;
       
       const dataMateriasOrd = nordem ? await aPIFetchOrdDia.get(`${nordem}/`) : null;
       const materiasOrd = dataMateriasOrd.data;     
@@ -114,6 +120,7 @@ function Provider({children}) {
   const contextValue = {    
     sessions,    
     parlament,
+    //votoAta,
     presenca,
     matExp,
     matExp1,
@@ -122,6 +129,7 @@ function Provider({children}) {
     date,
     setSessions,    
     setParlament,
+    //setVotoAta,
     setPresenca,
     setMatExp,
     setMatExp1,
