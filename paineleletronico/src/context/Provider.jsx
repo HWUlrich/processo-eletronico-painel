@@ -6,6 +6,7 @@ import aPIFetchPar from '../axios/configPar';
 import aPIFetchPres from '../axios/configPres';
 import aPIFetchVot from '../axios/configVot';
 import aPIFetchExpMat from '../axios/configExpMat';
+import aPIFetchRetPauta from '../axios/configRetPauta';
 
 
 function Provider({children}) {
@@ -30,10 +31,12 @@ function Provider({children}) {
     try {      
       // Ordem do dia
       const ordDiaResponse = await aPIFetchOrdDia.get(`?data_ordem=${date}&page_size=30`);      
-      const sesPlenResponse = await aPIFetchSesPlen.get(`?data_inicio=${date}&page_size=30`);      
+      const sesPlenResponse = await aPIFetchSesPlen.get(`?data_inicio=${date}&page_size=30`);
+      const retPautaResponse = await aPIFetchRetPauta.get(`?data=${date}&page_size=30`);      
                  
       const dataOrdDia = ordDiaResponse.data.results;       
       const dataSesPlen = sesPlenResponse.data.results;
+      const dataRetPauta = retPautaResponse.data.results;
            
       const merged = dataOrdDia.map((screen) => ({        
         ...dataSesPlen.find((o) => o.codReuniao === screen.sessao_plenaria),              
@@ -81,7 +84,7 @@ function Provider({children}) {
       const nordem1 = ordem1 ? ordem1?.map((p) => {return p.id}).pop() : null;
 
       const idExpOrd = [...nmatExp, ...nordem].shift();
-      console.log([idExpOrd]);
+      console.log(idExpOrd);
       
       const votoResponse =  nordem ? await aPIFetchVot.get(`?ordem=${idExpOrd}&page_size=30`) : null;
       const dataVoto = votoResponse ? votoResponse.data.results : null;      
