@@ -77,9 +77,10 @@ function Provider({children}) {
       const materiasExp1 = dataMateriasExp1.data;
       setMatExp1([materiasExp1]);
 
-      const ordem = dataOrdDia?.filter((p) => p.resultado === "");
+      const ordem = dataOrdDia?.filter((p) => p.resultado === "");      
       const ordem1 = dataOrdDia?.filter((p) => p.resultado !== "");
 
+      const retPauta = dataRetPauta?.map((p) => {return p.ordem});
       const nordem = ordem ? ordem?.map((p) => {return p.id}).shift() : null;
       const nordem1 = ordem1 ? ordem1?.map((p) => {return p.id}).pop() : null;
 
