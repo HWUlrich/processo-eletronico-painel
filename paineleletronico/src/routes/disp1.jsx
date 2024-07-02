@@ -2,22 +2,30 @@ import { useState, useContext } from 'react';
 import './Disp.css';
 import Context from '../context/MyContext';
 
-
 const Disp1 = () => {
   // altera a tabela de estilos
   const dispStyleParl = () => {
     document.body.classList.toggle('parlamentares');
   }
 
-  const { presenca, parlament } = useContext(Context);
+  const { presenca, presencaExp, parlament } = useContext(Context);
   
   const [ itensPerPage ] = useState(7);
-  const [ currentPage ] = useState(0);  
- 
+  const [ currentPage ] = useState(0);
+  
   const startIndex = currentPage * itensPerPage;
   const endIndex = startIndex + itensPerPage;  
-  const currentItens = presenca?.slice(startIndex, endIndex);
-  const currentItens1 = parlament?.slice(startIndex, endIndex);  
+  const currentItens0 = presencaExp?.slice(startIndex, endIndex);
+  const currentItens1 = presenca?.slice(startIndex, endIndex);
+  const currentItens2 = parlament?.slice(startIndex, endIndex);
+  
+  const currentItens = () => {    
+    if(presencaExp.length !== 0 && presenca.length === 0) {
+      return currentItens0;
+    } else if(presencaExp.length !== 0 && presenca.length !== 0) {
+      return currentItens1;       
+    }
+  };
 
   return (
     <div className='par'>            
@@ -33,7 +41,7 @@ const Disp1 = () => {
               <div>{parlament.parlamentar ? <h2>Presente</h2> : <h3>Ausente</h3>}</div>            
             </div>
             <div>
-              {currentItens1?.map((parlament1) => (
+              {currentItens2?.map((parlament1) => (
               <div className='parl-4'key={parlament1.id}>                               
                 <div>{parlament1.voto === "Sim" && parlament1.parlamentar === parlament.parlamentar ? <h2>Sim</h2> : ""}</div>
                 <div>{parlament1.voto === "Não" && parlament1.parlamentar === parlament.parlamentar ? <h3>Não</h3> : ""}</div>

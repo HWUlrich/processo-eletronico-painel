@@ -3,10 +3,11 @@ import Context from './MyContext';
 import aPIFetchOrdDia from '../axios/configOrdDia';
 import aPIFetchSesPlen from '../axios/configSesPlen';
 import aPIFetchPar from '../axios/configPar';
-import aPIFetchPres from '../axios/configPres';
+import aPIFetchPres from '../axios/configPres'; // Presença na ordem do dia.
 import aPIFetchVot from '../axios/configVot';
 import aPIFetchExpMat from '../axios/configExpMat';
 import aPIFetchRetPauta from '../axios/configRetPauta';
+import aPIFetchSesPlePres from '../axios/configSesPlePres'; // Presença no Expediente.
 
 
 function Provider({children}) {
@@ -14,6 +15,7 @@ function Provider({children}) {
   const [sessions, setSessions] = useState([]);  
   const [parlament, setParlament] = useState([]);  
   const [presenca, setPresenca] = useState([]);
+  const [presencaExp, setPresencaExp] = useState([]);
   const [matExp, setMatExp] = useState([]);
   const [matExp1, setMatExp1] = useState([]);
   const [matOrd, setMatOrd] = useState([]);
@@ -49,15 +51,23 @@ function Provider({children}) {
       const numSesPlenaria = numSespLenar.shift();                               
             
       const parlamentResponse = await aPIFetchPar.get("parlamentar/search_parlamentares");      
-      const presentResponse = await aPIFetchPres.get(`?page_size=21&sessao_plenaria=${numSesPlenaria}`);            
+      const presentResponse = await aPIFetchPres.get(`?page_size=21&sessao_plenaria=${numSesPlenaria}`);
+      const presentExpResponse = await aPIFetchSesPlePres.get(`?page_size=21&sessao_plenaria=${numSesPlenaria}`);            
       const dataParlament = parlamentResponse.data.filter((data) => data.ativo === true);      
       const dataPresent = presentResponse.data.results;
+      const dataPresentExp = presentExpResponse.data.results;
 
-      const merged1 = dataParlament.map((screen) => ({
+      const merged0 = dataParlament.map((screen) => ({
         ...dataPresent.find((o) => o.parlamentar === screen.id),        
         ...screen        
       }));
-      setPresenca(merged1);
+      setPresenca(merged0);
+
+      const merged1 = dataParlament.map((screen) => ({
+        ...dataPresentExp.find((o) => o.parlamentar === screen.id),        
+        ...screen        
+      }));
+      setPresencaExp(merged1);
 
       //Matérias do Expediente
       const expMatResponse = await aPIFetchExpMat.get(`?data_ordem=${date}&page_size=30`);
@@ -119,6 +129,7 @@ function Provider({children}) {
     sessions,    
     parlament,    
     presenca,
+    presencaExp,
     matExp,
     matExp1,
     matOrd,
@@ -127,6 +138,7 @@ function Provider({children}) {
     setSessions,    
     setParlament,    
     setPresenca,
+    setPresencaExp,
     setMatExp,
     setMatExp1,
     setMatOrd,
