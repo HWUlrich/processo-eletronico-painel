@@ -25,7 +25,7 @@ function Provider({children}) {
   const month = dayToday.getMonth() + 1;
   const year = dayToday.getFullYear();
   const sessionsDay = (year + "-" + (month < 10 ?  "0" + month : month) + "-" + (day < 10 ? "0" + day : day));
-  const [date, setDate] = useState('2024-06-27');
+  const [date, setDate] = useState('2024-07-02');
   
   
   const getSessions = useCallback ( async () => {  
@@ -91,11 +91,14 @@ function Provider({children}) {
       const ordem1 = dataOrdDia?.filter((p) => p.resultado !== "");
 
       const retPauta = dataRetPauta?.map((p) => {return p.ordem});
+      const matOrdem = ordem ? ordem?.map((p) => {return p.id}) : null;
+      const pautaOrdem = [...retPauta, ...matOrdem];
+      const preordem = pautaOrdem.filter((p, o) => p - o !== 0); 
       const nordem = ordem ? ordem?.map((p) => {return p.id}).shift() : null;
       const nordem1 = ordem1 ? ordem1?.map((p) => {return p.id}).pop() : null;
 
       const idExpOrd = [...nmatExp, ...nordem].shift();
-      console.log(idExpOrd);
+      //console.log(idExpOrd);
       
       const votoResponse =  nordem ? await aPIFetchVot.get(`?ordem=${idExpOrd}&page_size=30`) : null;
       const dataVoto = votoResponse ? votoResponse.data.results : null;      
