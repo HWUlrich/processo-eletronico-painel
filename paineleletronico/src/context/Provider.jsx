@@ -48,7 +48,8 @@ function Provider({children}) {
       
       const numSesPlen = sessions.map((p) => p.sessao_plenaria);
       const numSespLenar = numSesPlen.sort((a, b) => a - b);
-      const numSesPlenaria = numSespLenar.shift();                               
+      const numSesPlenaria = numSespLenar.shift();
+      console.log(numSesPlenaria);                           
             
       const parlamentResponse = await aPIFetchPar.get("parlamentar/search_parlamentares");      
       const presentResponse = await aPIFetchPres.get(`?page_size=21&sessao_plenaria=${numSesPlenaria}`);

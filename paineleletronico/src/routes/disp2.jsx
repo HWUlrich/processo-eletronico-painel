@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useCallback } from 'react';
 import './Disp.css';
 import Context from '../context/MyContext';
 
@@ -48,6 +48,6 @@ const Disp2 = () => {
       ))}
     </div>
   );
-}
+};
 
 export default Disp2;

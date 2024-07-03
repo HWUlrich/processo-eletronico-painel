@@ -48,6 +48,6 @@ const Disp3 = () => {
       ))}
     </div>
   );
-}
+};
 
 export default Disp3;
