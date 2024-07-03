@@ -93,8 +93,9 @@ function Provider({children}) {
       const retPauta = dataRetPauta?.map((p) => {return p.ordem});
       const matOrdem = ordem ? ordem?.map((p) => {return p.id}) : null;
       const pautaOrdem = [...retPauta, ...matOrdem];
-      const preordem = pautaOrdem.filter((p, o) => p - o !== 0); 
-      const nordem = ordem ? ordem?.map((p) => {return p.id}).shift() : null;
+
+      const preordem = pautaOrdem.filter((p, o) => pautaOrdem.indexOf(p) !== o); 
+      const nordem = ordem ? preordem?.map((p) => {return p.id}).shift() : null;
       const nordem1 = ordem1 ? ordem1?.map((p) => {return p.id}).pop() : null;
 
       const idExpOrd = [...nmatExp, ...nordem].shift();
