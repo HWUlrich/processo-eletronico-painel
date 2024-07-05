@@ -90,17 +90,17 @@ function Provider({children}) {
 
       const ordem = dataOrdDia?.filter((p) => p.resultado === "");      
       const ordem1 = dataOrdDia?.filter((p) => p.resultado !== "");
-
+      console.log(ordem1);
       const retPauta = dataRetPauta?.map((p) => {return p.ordem});
-      const matOrdem = ordem ? ordem?.map((p) => {return p.id}) : null;
-      const pautaOrdem = [...retPauta, ...matOrdem];
+      const matOrdem = ordem ? ordem?.map((p) => {return p.id}) : null;     
 
-      const preordem = pautaOrdem.filter((p, o) => pautaOrdem.indexOf(p) !== o); 
-      const nordem = ordem ? preordem?.map((p) => {return p.id}).shift() : null;
+      const preordem = matOrdem.filter( item => !retPauta.includes(item));
+      // let result = array1.filter(item => !array2.includes(item)); 
+      const nordem = ordem ? preordem.shift() : null;
       const nordem1 = ordem1 ? ordem1?.map((p) => {return p.id}).pop() : null;
 
       const idExpOrd = [...nmatExp, ...nordem].shift();
-      //console.log(idExpOrd);
+      console.log(idExpOrd);
       
       const votoResponse =  nordem ? await aPIFetchVot.get(`?ordem=${idExpOrd}&page_size=30`) : null;
       const dataVoto = votoResponse ? votoResponse.data.results : null;      
