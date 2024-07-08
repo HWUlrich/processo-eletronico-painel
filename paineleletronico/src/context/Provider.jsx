@@ -25,7 +25,7 @@ function Provider({children}) {
   const month = dayToday.getMonth() + 1;
   const year = dayToday.getFullYear();
   const sessionsDay = (year + "-" + (month < 10 ?  "0" + month : month) + "-" + (day < 10 ? "0" + day : day));
-  const [date, setDate] = useState('2024-07-02');
+  const [date, setDate] = useState('2024-05-14');
   
   
   const getSessions = useCallback ( async () => {  
@@ -88,21 +88,21 @@ function Provider({children}) {
       const materiasExp1 = dataMateriasExp1.data;
       setMatExp1([materiasExp1]);
 
+      //Matérias da Ordem do Dia
       const ordem = dataOrdDia?.filter((p) => p.resultado === "");      
       const ordem1 = dataOrdDia?.filter((p) => p.resultado !== "");
-      console.log(ordem1);
+      //console.log(ordem1);
       const retPauta = dataRetPauta?.map((p) => {return p.ordem});
       const matOrdem = ordem ? ordem?.map((p) => {return p.id}) : null;     
 
       const preordem = matOrdem.filter( item => !retPauta.includes(item));
-      // let result = array1.filter(item => !array2.includes(item)); 
       const nordem = ordem ? preordem.shift() : null;
       const nordem1 = ordem1 ? ordem1?.map((p) => {return p.id}).pop() : null;
 
       const idExpOrd = [...nmatExp, ...nordem].shift();
       console.log(idExpOrd);
       
-      const votoResponse =  nordem ? await aPIFetchVot.get(`?ordem=${idExpOrd}&page_size=30`) : null;
+      const votoResponse =  idExpOrd ? await aPIFetchVot.get(`?ordem=${idExpOrd}&page_size=30`) : null;
       const dataVoto = votoResponse ? votoResponse.data.results : null;      
       
       const merged2 = dataParlament.map((screen) => ({
