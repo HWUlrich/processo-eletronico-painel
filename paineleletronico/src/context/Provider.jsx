@@ -103,13 +103,13 @@ function Provider({children}) {
       console.log(idExpOrd);
       
       const votoResponse =  idExpOrd ? await aPIFetchVot.get(`?ordem=${idExpOrd}&page_size=30`) : null;
-      const dataVoto = votoResponse ? votoResponse.data.results : null;      
+      const dataVoto = votoResponse ? votoResponse.data.results : null;
       
       const merged2 = dataParlament.map((screen) => ({
-        ...dataVoto.find((o) => o.parlamentar === screen.id),        
-        ...screen      
+        ...dataVoto.find((o) => o.parlamentar === screen.id),
+        ...screen
       }));
-      setParlament(merged2);     
+      setParlament(merged2);
 
       //Matérias da Ordem do Dia     
       const dataMateriasOrd = nordem ? await aPIFetchOrdDia.get(`${nordem}/`) : null;
