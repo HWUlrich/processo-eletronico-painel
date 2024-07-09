@@ -110,7 +110,7 @@ function Provider({children}) {
         ...screen      
       }));
       setParlament(merged2);     
-
+      
       //Matérias da Ordem do Dia     
       const dataMateriasOrd = nordem ? await aPIFetchOrdDia.get(`${nordem}/`) : null;
       const materiasOrd = dataMateriasOrd.data;     
