@@ -25,7 +25,7 @@ function Provider({children}) {
   const month = dayToday.getMonth() + 1;
   const year = dayToday.getFullYear();
   const sessionsDay = (year + "-" + (month < 10 ?  "0" + month : month) + "-" + (day < 10 ? "0" + day : day));
-  const [date, setDate] = useState('2024-05-14');
+  const [date, setDate] = useState('2024-07-09');
   
   
   const getSessions = useCallback ( async () => {  
@@ -78,7 +78,7 @@ function Provider({children}) {
       const matExp1 = dataExpMat?.filter((p) => p.resultado !== "");
 
       const nmatExp = matExp ? matExp?.map((p) => {return p.id}).shift() : null;      
-      const nmatExp1 = matExp1 ? matExp1?.map((p) => {return p.id}).pop() : null;
+      const nmatExp1 = matExp1 ? matExp1?.map((p) => {return p.id}).pop() : [];
               
       const dataMateriasExp = nmatExp ? await aPIFetchExpMat.get(`${nmatExp}/`) : null;
       const materiasExp = dataMateriasExp.data;
@@ -95,14 +95,14 @@ function Provider({children}) {
       const retPauta = dataRetPauta?.map((p) => {return p.ordem});
       const matOrdem = ordem ? ordem?.map((p) => {return p.id}) : null;     
 
-      const preordem = matOrdem.filter( item => !retPauta.includes(item));
+      const preordem = retPauta ? matOrdem.filter( item => !retPauta.includes(item)) : matOrdem;
       const nordem = ordem ? preordem.shift() : null;
       const nordem1 = ordem1 ? ordem1?.map((p) => {return p.id}).pop() : null;
 
-      const idExpOrd = [...nmatExp, ...nordem].shift();
+      const idExpOrd = [...nmatExp, ...nordem].shift(); //É preciso que todas as matérias estejam com o resultado diferente de zero, a fim de manter a sequência.
       console.log(idExpOrd);
       
-      const votoResponse =  idExpOrd ? await aPIFetchVot.get(`?ordem=${idExpOrd}&page_size=30`) : null;
+      const votoResponse =  await aPIFetchVot.get(`?ordem=${idExpOrd}&page_size=30`);
       const dataVoto = votoResponse ? votoResponse.data.results : null;      
       
       const merged2 = dataParlament.map((screen) => ({
