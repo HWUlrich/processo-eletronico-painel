@@ -7,7 +7,7 @@ import './Disp.css';
 const Disp4 = () => {  
 
   const { sessions, parlament, matExp, matExp1, matOrd, matOrd1, date } = useContext(Context);
-  const { hours, minutes, seconds, ampm } = useTime({ format: '12-hour'});
+  const { hours, minutes, seconds, ampm } = useTime({ format: '24-hour'});
   
   const dayToday = new Date();
   const day = dayToday.getDate();
