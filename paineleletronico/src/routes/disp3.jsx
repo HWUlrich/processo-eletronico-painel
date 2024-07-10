@@ -19,7 +19,7 @@ const Disp3 = () => {
   const currentItens1 = presenca?.slice(startIndex, endIndex);
   const currentItens2 = parlament?.slice(startIndex, endIndex);
   
-  const currentItens = presencaExp.length !== 0 && presenca.length === 0 ? currentItens0 : currentItens1;
+  const currentItens = presencaExp.length != 0 && presenca.length == 0 ? currentItens0 : currentItens1;
 
   return (
     <div className='par'>            
