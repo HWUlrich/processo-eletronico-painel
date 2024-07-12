@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-const aPIFetchExpMat = axios.create({
-    baseURL: "https://sapl.novafriburgo.rj.leg.br/api/sessao/expedientemateria/",
+const aPIFetchRetPauta = axios.create({
+    baseURL: "https://sapl.novafriburgo.rj.leg.br/api/sessao/retiradapauta/",
     //timeout: 8000,
     headers: {
         "content-language": "pt-br",         
@@ -9,4 +9,4 @@ const aPIFetchExpMat = axios.create({
     }
 });
 
-export default aPIFetchExpMat;
+export default aPIFetchRetPauta;

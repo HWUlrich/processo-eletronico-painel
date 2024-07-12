@@ -1,48 +1,54 @@
 'use client'
-import styles from "./page.module.css";
-import { useState, useContext } from 'react';
+import { useState, useContext, useCallback } from 'react';
+import './page.module.css'
 import Context from './context/MyContext';
 
-
 const Disp1 = () => {
-  
-  // altera a folha de estilos
+  // altera a tabela de estilos
   const dispStyleParl = () => {
     document.body.classList.toggle('parlamentares');
   }
 
-  const { parlament } = useContext(Context);
+  const { presenca, presencaExp, parlament } = useContext(Context);
   
   const [ itensPerPage ] = useState(7);
-  const [ currentPage ] = useState(0); 
- 
+  const [ currentPage ] = useState(0);
+  
   const startIndex = currentPage * itensPerPage;
-  const endIndex = startIndex + itensPerPage;
-  const currentItens = parlament.slice(startIndex, endIndex);  
+  const endIndex = startIndex + itensPerPage;  
+  const currentItens0 = presencaExp?.slice(startIndex, endIndex);
+  const currentItens1 = presenca?.slice(startIndex, endIndex);
+  const currentItens2 = parlament?.slice(startIndex, endIndex);
+  
+  const currentItens = presencaExp.length != 0 && presenca.length == 0 ? currentItens0 : currentItens1;
 
   return (
-    <div className={styles.par}>            
-      {        
-        currentItens?.map((parlament) => (                     
-          <div className={styles.parl} key={parlament.id}>                         
-            <div className={styles.parl-1}>
-              <h1>{parlament.nome_parlamentar}</h1> 
+    <div className='par'>            
+      {currentItens.map((parlament) => (                     
+          <div className="parl" key={parlament.id}>                         
+            <div className='parl-1'>
+              <h1>{parlament.nome_parlamentar}</h1>
             </div>                           
-            <div className={styles.parl-2}>
+            <div className='parl-2'>
               <h2>{parlament.partido}</h2>
+            </div>            
+            <div id='presParl' className='parl-3'>
+              <div>{parlament.parlamentar ? <h2>Presente</h2> : <h3>Ausente</h3>}</div>            
             </div>
-            <div id={styles.presParl} className={styles.parl-3}>             
-              <div>{parlament.parlamentar?<h2>Presente</h2>:<h3>Ausente</h3>}</div>            
-            </div> 
-            <div className={styles.parl-4}>
-              <h2>{parlament.voto?parlament.voto:"-"}</h2>
-            </div>                              
-          </div>                    
-        )
-        )
-      } 
+            <div>
+              {currentItens2?.map((parlament1) => (
+              <div className='parl-4'key={parlament1.id}>                               
+                <div>{parlament1.voto === "Sim" && parlament1.parlamentar === parlament.parlamentar ? <h2>Sim</h2> : ""}</div>
+                <div>{parlament1.voto === "Não" && parlament1.parlamentar === parlament.parlamentar ? <h3>Não</h3> : ""}</div>
+                <div>{parlament1.voto === "Abstenção" && parlament1.parlamentar === parlament.parlamentar ? <h4>Abstenção</h4> : ""}</div>
+                <div>{parlament1.voto === "Não Votou" && parlament1.parlamentar === parlament.parlamentar ? <h5>Não Votou</h5> : ""}</div>              
+              </div>            
+              ))}
+            </div>                                       
+          </div>
+      ))}
     </div>
   );
-}
+};
 
 export default Disp1;
