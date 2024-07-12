@@ -1,7 +1,7 @@
 'use client'
-import './mesaDir.css';
-import Parlament from '../component/Parlament';
-import Disp4 from './disp4';
+import '../page.module.css'
+import Parlament from '../components/Parlament';
+import Disp4 from '../disp4/page';
 
 
 const MesaDir = () => {

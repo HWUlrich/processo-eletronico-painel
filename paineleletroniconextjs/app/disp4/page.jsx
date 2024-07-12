@@ -2,7 +2,7 @@
 import { useContext } from 'react';
 import { useTime } from 'react-timer-hook';
 import Context from '../context/MyContext';
-import './page.module.css'
+import '../page.module.css'
 
 const Disp4 = () => {  
 
