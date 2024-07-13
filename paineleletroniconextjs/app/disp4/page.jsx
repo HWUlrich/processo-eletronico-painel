@@ -1,6 +1,5 @@
 'use client'
-import { useContext } from 'react';
-import { useTime } from 'react-timer-hook';
+import { useContext, useTime } from 'react';
 import Context from '../context/MyContext';
 import '../page.module.css'
 
@@ -14,7 +13,6 @@ const Disp4 = () => {
   const month = dayToday.getMonth() + 1;
   const year = dayToday.getFullYear();
   const timer = (hours < 10 ? "0" + hours : hours) + " : " + (minutes < 10 ? "0" + minutes : minutes) + " " + ampm;   
-  //console.log(dayToday);
 
   return (    
     <div className='painel'>
