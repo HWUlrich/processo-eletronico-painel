@@ -25,7 +25,7 @@ function Provider({children}) {
   const month = dayToday.getMonth() + 1;
   const year = dayToday.getFullYear();
   const sessionsDay = (year + "-" + (month < 10 ?  "0" + month : month) + "-" + (day < 10 ? "0" + day : day));
-  const [date, setDate] = useState('2024-07-09');
+  const [date, setDate] = useState('2024-08-01');
   
   
   const getSessions = useCallback ( async () => {  
@@ -91,18 +91,20 @@ function Provider({children}) {
       //Matérias da Ordem do Dia
       const ordem = sessions?.filter((p) => p.resultado === "");      
       const ordem1 = sessions?.filter((p) => p.resultado !== "");
-      //console.log(ordem1);
+      console.log(ordem);
       const retPauta = dataRetPauta?.map((p) => {return p.ordem});
-      const matOrdem = ordem ? ordem?.map((p) => {return p.id}) : [];     
+      const matOrdem = ordem ? ordem?.map((p) => {return p.id}) : [];
+      console.log(matOrdem);     
 
       const preordem = retPauta ? matOrdem.filter( item => !retPauta.includes(item)) : matOrdem;
       const nordem = preordem.shift();
       const nordem1 = ordem1 ? ordem1?.map((p) => {return p.id}).pop() : [];
+      console.log(nordem);
 
-      const idExpOrd = [...nmatExp, ...nordem].shift(); //É preciso que todas as matérias estejam com o resultado diferente de zero, a fim de manter a sequência.
+      const idExpOrd = [...nmatExp, ...nordem]; //É preciso que todas as matérias estejam com o resultado diferente de zero, a fim de manter a sequência.
       console.log(idExpOrd);
       
-      const votoResponse =  await aPIFetchVot.get(`?ordem=${idExpOrd}&page_size=30`);
+      const votoResponse =  await aPIFetchVot.get(`?ordem=${idExpOrd.shift()}&page_size=30`);
       const dataVoto = votoResponse.data.results;      
       
       const merged2 = dataParlament.map((screen) => ({
