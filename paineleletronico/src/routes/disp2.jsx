@@ -43,10 +43,10 @@ const Disp2 = () => {
             <div>
               {currentItens2?.map((parlament1) => (
               <div className='parl-4'key={parlament1.id}>                               
-                <div>{parlament1.voto === "Sim" && parlament1.parlamentar === parlament.parlamentar ? <h2>Sim</h2> : ""}</div>
-                <div>{parlament1.voto === "Não" && parlament1.parlamentar === parlament.parlamentar ? <h3>Não</h3> : ""}</div>
-                <div>{parlament1.voto === "Abstenção" && parlament1.parlamentar === parlament.parlamentar ? <h4>Abstenção</h4> : ""}</div>
-                <div>{parlament1.voto === "Não Votou" && parlament1.parlamentar === parlament.parlamentar ? <h5>Não Votou</h5> : ""}</div>              
+                <div>{parlament1.voto === "Sim" && parlament1.parlamentar === parlament.parlamentar ? <h2>Sim</h2> : null}</div>
+                <div>{parlament1.voto === "Não" && parlament1.parlamentar === parlament.parlamentar ? <h3>Não</h3> : null}</div>
+                <div>{parlament1.voto === "Abstenção" && parlament1.parlamentar === parlament.parlamentar ? <h4>Abstenção</h4> : null}</div>
+                <div>{parlament1.voto === "Não Votou" && parlament1.parlamentar === parlament.parlamentar ? <h5>Não Votou</h5> : null}</div>              
               </div>            
               ))}
             </div>                                       
