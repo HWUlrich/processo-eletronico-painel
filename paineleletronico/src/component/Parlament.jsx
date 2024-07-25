@@ -21,11 +21,17 @@ const Parlament = () => {
     const currentItens1 = presenca?.slice(startIndex, endIndex);
     const currentItens2 = parlament?.slice(startIndex, endIndex);
   
-    const currentItens = presencaExp.length !== 0 && presenca.length === 0 ? currentItens0 : currentItens1;  
+    const currentItens = () => {
+      if(presencaExp) {
+        return currentItens0;
+      } else if(presencaExp & presenca) {
+        return currentItens1;
+      }
+    };
   
     return (
       <div className='parlament'>            
-        {currentItens?.map((parlament) => (                     
+        {currentItens().map((parlament) => (                     
             <div className="parlament-0" key={parlament.id}>                         
               <div className='parlament-1'>
                 <h1>{parlament.nome_parlamentar}</h1>
