@@ -91,6 +91,7 @@ function Provider({children}) {
       //Matérias da Ordem do Dia
       const ordem = sessions?.filter((p) => p.resultado === "");      
       const ordem1 = sessions?.filter((p) => p.resultado !== "");
+
       console.log(ordem);
       const retPauta = dataRetPauta?.map((p) => {return p.ordem});
       const matOrdem = ordem ? ordem?.map((p) => {return p.id}) : [];
@@ -101,7 +102,7 @@ function Provider({children}) {
       const nordem1 = ordem1 ? ordem1?.map((p) => {return p.id}).pop() : [];
       console.log(nordem);
 
-      const idExpOrd = [...nmatExp, ...nordem]; //É preciso que todas as matérias estejam com o resultado diferente de zero, a fim de manter a sequência.
+      const idExpOrd = [...nmatExp, ...nordem]; //É preciso que todas as matérias estejam com a chave: 'resultado' diferente de zero, a fim de manter a sequência.
       console.log(idExpOrd);
       
       const votoResponse =  await aPIFetchVot.get(`?ordem=${idExpOrd.shift()}&page_size=30`);
