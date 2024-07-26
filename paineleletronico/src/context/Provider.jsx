@@ -77,8 +77,8 @@ function Provider({children}) {
       const matExp = dataExpMat?.filter((p) => p.resultado === "");
       const matExp1 = dataExpMat?.filter((p) => p.resultado !== "");
 
-      const nmatExp = matExp ? matExp?.map((p) => {return p.id}).shift() : [];      
-      const nmatExp1 = matExp1 ? matExp1?.map((p) => {return p.id}).pop() : [];
+      const nmatExp = matExp ? matExp?.map((p) => {return p.id}).shift() : null;      
+      const nmatExp1 = matExp1 ? matExp1?.map((p) => {return p.id}).pop() : null;
               
       const dataMateriasExp = nmatExp ? await aPIFetchExpMat.get(`${nmatExp}/`) : null;
       const materiasExp = dataMateriasExp.data;
@@ -93,12 +93,12 @@ function Provider({children}) {
       const ordem1 = sessions?.filter((p) => p.resultado !== "");
       console.log(ordem);
       const retPauta = dataRetPauta?.map((p) => {return p.ordem});
-      const matOrdem = ordem ? ordem?.map((p) => {return p.id}) : [];
+      const matOrdem = ordem ? ordem?.map((p) => {return p.id}) : null;
       console.log(matOrdem);     
 
       const preordem = retPauta ? matOrdem.filter( item => !retPauta.includes(item)) : matOrdem;
       const nordem = preordem.shift();
-      const nordem1 = ordem1 ? ordem1?.map((p) => {return p.id}).pop() : [];
+      const nordem1 = ordem1 ? ordem1?.map((p) => {return p.id}).pop() : null;
       console.log(nordem);
 
       const idExpOrd = () => {
@@ -122,11 +122,11 @@ function Provider({children}) {
       //Matérias da Ordem do Dia     
       const dataMateriasOrd = nordem ? await aPIFetchOrdDia.get(`${nordem}/`) : null;
       const materiasOrd = dataMateriasOrd.data;     
-      setMatOrd([materiasOrd]);
+      setMatOrd(materiasOrd);
       
       const dataMateriasOrd1 = nordem1 ? await aPIFetchOrdDia.get(`${nordem1}/`) : null;
       const materiasOrd1 = dataMateriasOrd1.data;
-      setMatOrd1([materiasOrd1]);
+      setMatOrd1(materiasOrd1);
 
     } catch (error) {
       console.log(error);
