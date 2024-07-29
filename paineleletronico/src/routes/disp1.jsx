@@ -18,6 +18,8 @@ const Disp1 = () => {
   const currentItens0 = presencaExp?.slice(startIndex, endIndex);
   const currentItens1 = presenca?.slice(startIndex, endIndex);
   const currentItens2 = parlament?.slice(startIndex, endIndex);
+
+  const display = useCallback (() => {
   
   const currentItens = () => {
     if(presencaExp) {
@@ -54,6 +56,9 @@ const Disp1 = () => {
       ))}
     </div>
   );
+  }, [presencaExp, presenca, currentItens0, currentItens1, currentItens2]);
+
+  return (display());
 };
 
 export default Disp1;

@@ -109,7 +109,7 @@ function Provider({children}) {
         if(nmatExp) {
           return nmatExp;
         } else {
-          return ordem().shift();
+          return ordem();
         }
       }; //É preciso que todas as matérias estejam com o resultado diferente de zero, a fim de manter a sequência.
       console.log(idExpOrd());
@@ -135,7 +135,7 @@ function Provider({children}) {
       console.log(ordem1);     
       
       //Matérias da Ordem do Dia     
-      const dataMateriasOrd = await aPIFetchOrdDia.get(`${ordem().shift()}/`);
+      const dataMateriasOrd = await aPIFetchOrdDia.get(`${ordem()}/`);
       const materiasOrd = dataMateriasOrd.data;     
       setMatOrd(materiasOrd);
       
