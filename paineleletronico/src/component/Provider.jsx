@@ -89,27 +89,23 @@ function Provider({children}) {
       setMatExp1([materiasExp1]);
 
       //Matérias da Ordem do Dia
-      const ordem = (x, y, z, t, k) => {
-        x = sessions?.filter((p) => p.resultado === "");
-        y = x?.map((p) => {return p.id});
-        z = dataRetPauta?.map((p) => {return p.ordem});
-        t = sessions?.filter((p) => p.resultado !== "");
-        k = t?.map((p) => {return p.id});
+      const ordem = sessions?.filter((p) => p.resultado === "");      
+      const ordem1 = sessions?.filter((p) => p.resultado !== "");
+      console.log(ordem);
+      const retPauta = dataRetPauta?.map((p) => {return p.ordem});
+      const matOrdem = ordem ? ordem?.map((p) => {return p.id}) : null;
+      console.log(matOrdem);     
 
-        if(x & z) {
-          return y.filter( item => !z.includes(item));          
-        } else if (x) {
-          return y;
-        } else {
-          return k.pop();
-        }
-      }     
+      const preordem = retPauta ? matOrdem.filter( item => !retPauta.includes(item)) : matOrdem;
+      const nordem = preordem.shift();
+      const nordem1 = ordem1 ? ordem1?.map((p) => {return p.id}).pop() : null;
+      console.log(nordem);
 
       const idExpOrd = () => {
         if(nmatExp) {
           return nmatExp;
         } else {
-          return ordem().shift();
+          return nordem;
         }
       }; //É preciso que todas as matérias estejam com o resultado diferente de zero, a fim de manter a sequência.
       console.log(idExpOrd());
@@ -121,25 +117,14 @@ function Provider({children}) {
         ...dataVoto.find((o) => o.parlamentar === screen.id),        
         ...screen      
       }));
-      setParlament(merged2);
-
-      const ordem1 = (a) => {
-        a = sessions?.filter((p) => p.resultado !== "");      
-
-        if(a) {
-          return a?.map((p) => {return p.id}).pop();
-        } else {
-          return null;
-        }
-      }
-      console.log(ordem1);     
+      setParlament(merged2);     
       
       //Matérias da Ordem do Dia     
-      const dataMateriasOrd = await aPIFetchOrdDia.get(`${ordem().shift()}/`);
+      const dataMateriasOrd = nordem ? await aPIFetchOrdDia.get(`${nordem}/`) : null;
       const materiasOrd = dataMateriasOrd.data;     
       setMatOrd(materiasOrd);
       
-      const dataMateriasOrd1 = ordem1() ? await aPIFetchOrdDia.get(`${ordem1()}/`) : null;
+      const dataMateriasOrd1 = nordem1 ? await aPIFetchOrdDia.get(`${nordem1}/`) : null;
       const materiasOrd1 = dataMateriasOrd1.data;
       setMatOrd1(materiasOrd1);
 
