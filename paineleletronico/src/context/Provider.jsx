@@ -97,19 +97,19 @@ function Provider({children}) {
         k = t?.map((p) => {return p.id});
 
         if(x & z) {
-          return y.filter( item => !z.includes(item));          
+          return [y.filter( item => !z.includes(item))].shift();          
         } else if (x) {
-          return y;
+          return [y].shift();
         } else {
-          return k.pop();
+          return [k.pop()];
         }
-      }     
+      }    
 
       const idExpOrd = () => {
         if(nmatExp) {
           return nmatExp;
         } else {
-          return ordem().shift();
+          return ordem();
         }
       }; //É preciso que todas as matérias estejam com o resultado diferente de zero, a fim de manter a sequência.
       console.log('ordem: ' + idExpOrd());
