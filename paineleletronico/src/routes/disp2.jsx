@@ -29,7 +29,7 @@ const Disp2 = () => {
 
   return (
     <div className='par'>            
-      {currentItens().map((parlament) => (                     
+      {(presenca ? currentItens1 : currentItens0).map((parlament) => (                     
           <div className="parl" key={parlament.id}>                         
             <div className='parl-1'>
               <h1>{parlament.nome_parlamentar}</h1>

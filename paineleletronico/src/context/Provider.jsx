@@ -109,10 +109,10 @@ function Provider({children}) {
         if(nmatExp) {
           return nmatExp;
         } else {
-          return ordem();
+          return ordem().shift();
         }
       }; //É preciso que todas as matérias estejam com o resultado diferente de zero, a fim de manter a sequência.
-      console.log(idExpOrd());
+      console.log('ordem: ' + idExpOrd());
       
       const votoResponse =  await aPIFetchVot.get(`?ordem=${idExpOrd()}&page_size=30`);
       const dataVoto = votoResponse.data.results;      
@@ -123,23 +123,16 @@ function Provider({children}) {
       }));
       setParlament(merged2);
 
-      const ordem1 = (a) => {
-        a = sessions?.filter((p) => p.resultado !== "");      
-
-        if(a) {
-          return a?.map((p) => {return p.id}).pop();
-        } else {
-          return null;
-        }
-      }
-      console.log(ordem1);     
+      const ordem1 = sessions?.filter((p) => p.resultado !== "");
+      const nordem1 = ordem1 ? ordem1?.map((p) => {return p.id}).pop() : null;
+      console.log('ordem1: ' + ordem1);     
       
       //Matérias da Ordem do Dia     
       const dataMateriasOrd = await aPIFetchOrdDia.get(`${ordem()}/`);
       const materiasOrd = dataMateriasOrd.data;     
       setMatOrd(materiasOrd);
       
-      const dataMateriasOrd1 = ordem1() ? await aPIFetchOrdDia.get(`${ordem1()}/`) : null;
+      const dataMateriasOrd1 = ordem1 ? await aPIFetchOrdDia.get(`${nordem1}/`) : null;
       const materiasOrd1 = dataMateriasOrd1.data;
       setMatOrd1(materiasOrd1);
 
