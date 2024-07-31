@@ -24,6 +24,8 @@ const Disp3 = () => {
       return currentItens0;
     } else if(presencaExp & presenca) {
       return currentItens1;
+    } else {
+      return null;
     }
   };
 

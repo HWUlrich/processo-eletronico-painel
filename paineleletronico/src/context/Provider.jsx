@@ -144,7 +144,19 @@ function Provider({children}) {
 
   useEffect(() => {
     getSessions(); 
-  }, [getSessions]);
+
+  }, [getSessions]); 
+
+/*   useEffect(() => {
+    const test = async ()=> {
+      return getSessions();
+    }
+  
+    return () => {
+      test();
+    }
+  }, [getSessions]) */
+  
 
   const contextValue = {    
     sessions,    
