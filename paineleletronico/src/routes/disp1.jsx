@@ -1,4 +1,4 @@
-import { useState, useContext, useCallback } from 'react';
+import { useState, useContext, useCallback, useEffect } from 'react';
 import './Disp.css';
 import Context from '../context/MyContext';
 
@@ -35,7 +35,7 @@ const Disp1 = () => {
 
     return (
       <div className='par'>            
-        {currentItens()?.map((parlament) => (                     
+        {(presenca ? currentItens1 : currentItens0)?.map((parlament) => (                     
             <div className="parl" key={parlament.id}>                         
               <div className='parl-1'>
                 <h1>{parlament.nome_parlamentar}</h1>
@@ -61,6 +61,10 @@ const Disp1 = () => {
       </div>
     );
     }, [presenca, presencaExp, currentItens0, currentItens1, currentItens2]);
+  
+  useEffect(() => {
+    display();
+  }, [display]);
 
 return (display());
 

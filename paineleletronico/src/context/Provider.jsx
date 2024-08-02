@@ -147,17 +147,6 @@ function Provider({children}) {
 
   }, [getSessions]); 
 
-/*   useEffect(() => {
-    const test = async ()=> {
-      return getSessions();
-    }
-  
-    return () => {
-      test();
-    }
-  }, [getSessions]) */
-  
-
   const contextValue = {    
     sessions,    
     parlament,    
