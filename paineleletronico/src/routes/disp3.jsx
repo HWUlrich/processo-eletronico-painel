@@ -20,18 +20,7 @@ const Disp3 = () => {
   const currentItens2 = parlament?.slice(startIndex, endIndex);
 
   
-  const display = useCallback (() => {    
-    
-    
-    const currentItens = () => {
-      if(presencaExp) {
-        return currentItens0;
-      } else if(presencaExp.lenght & presenca.lenght) {
-        return currentItens1;
-      } else {
-        return null;
-      }
-    };
+  const display = useCallback (() => {     
 
     return (
       <div className='par'>            
@@ -60,11 +49,11 @@ const Disp3 = () => {
         ))}
       </div>
     );
-    }, [presenca, presencaExp, currentItens0, currentItens1, currentItens2]);
+    }, [presenca, currentItens0, currentItens1, currentItens2]);
 
-    useEffect(() => {
-      display();
-    }, [display]);
+  useEffect(() => {
+    display();
+  }, [display]);
 
 return (display());
 

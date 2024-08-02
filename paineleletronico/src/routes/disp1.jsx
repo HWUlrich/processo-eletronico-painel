@@ -21,17 +21,6 @@ const Disp1 = () => {
 
 
   const display = useCallback (() => {    
-    
-    console.log('teste', presenca, presencaExp)
-    const currentItens = () => {
-      if(presencaExp) {
-        return currentItens0;
-      } else if(presencaExp.lenght & presenca.lenght) {
-        return currentItens1;
-      } else {
-        return null;
-      }
-    };
 
     return (
       <div className='par'>            
@@ -60,7 +49,7 @@ const Disp1 = () => {
         ))}
       </div>
     );
-    }, [presenca, presencaExp, currentItens0, currentItens1, currentItens2]);
+    }, [presenca, currentItens0, currentItens1, currentItens2]);
   
   useEffect(() => {
     display();
