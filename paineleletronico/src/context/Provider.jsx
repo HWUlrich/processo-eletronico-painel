@@ -103,7 +103,7 @@ function Provider({children}) {
         } else {
           return [k.pop()];
         }
-      }    
+      };  
 
       const idExpOrd = () => {
         if(nmatExp) {
@@ -143,8 +143,7 @@ function Provider({children}) {
   }, [sessions, date]);
 
   useEffect(() => {
-    getSessions(); 
-
+    getSessions();
   }, [getSessions]); 
 
   const contextValue = {    
