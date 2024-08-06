@@ -89,50 +89,44 @@ function Provider({children}) {
       setMatExp1([materiasExp1]);
 
       //Matérias da Ordem do Dia
-      const ordem = (x, y, z, t, k) => {
-        x = sessions?.filter((p) => p.resultado === "");
-        y = x?.map((p) => {return p.id});
-        z = dataRetPauta?.map((p) => {return p.ordem});
-        t = sessions?.filter((p) => p.resultado !== "");
-        k = t?.map((p) => {return p.id});
+      const ordem = sessions?.filter((p) => p.resultado === "");      
+      const ordem1 = sessions?.filter((p) => p.resultado !== "");
+      console.log(ordem);
+      const retPauta = dataRetPauta?.map((p) => {return p.ordem});
+      const matOrdem = ordem ? ordem?.map((p) => {return p.id}) : null;
+      console.log(matOrdem);     
 
-        if(x & z) {
-          return [y.filter( item => !z.includes(item))].shift();          
-        } else if (x) {
-          return [y].shift();
-        } else {
-          return [k.pop()];
-        }
-      };  
+      const preordem = retPauta ? matOrdem.filter( item => !retPauta.includes(item)) : matOrdem;
+      const nordem = preordem.shift();
+      const nordem1 = ordem1 ? ordem1?.map((p) => {return p.id}).pop() : null;
+      console.log(nordem);
 
       const idExpOrd = () => {
         if(nmatExp) {
           return nmatExp;
         } else {
-          return ordem();
+          return nordem;
         }
       }; //É preciso que todas as matérias estejam com o resultado diferente de zero, a fim de manter a sequência.
-      console.log('ordem: ' + idExpOrd());
+      console.log(idExpOrd());
       
       const votoResponse =  await aPIFetchVot.get(`?ordem=${idExpOrd()}&page_size=30`);
       const dataVoto = votoResponse.data.results;      
       
       const merged2 = dataParlament.map((screen) => ({
+        //...dataPresentExp.find((o) => o.parlamentar === screen.id),
+        ...dataPresent.find((o) => o.parlamentar === screen.id),
         ...dataVoto.find((o) => o.parlamentar === screen.id),        
         ...screen      
       }));
-      setParlament(merged2);
-
-      const ordem1 = sessions?.filter((p) => p.resultado !== "");
-      const nordem1 = ordem1 ? ordem1?.map((p) => {return p.id}).pop() : null;
-      console.log('ordem1: ' + ordem1);     
+      setParlament(merged2);     
       
       //Matérias da Ordem do Dia     
-      const dataMateriasOrd = await aPIFetchOrdDia.get(`${ordem()}/`);
+      const dataMateriasOrd = nordem ? await aPIFetchOrdDia.get(`${nordem}/`) : null;
       const materiasOrd = dataMateriasOrd.data;     
       setMatOrd(materiasOrd);
       
-      const dataMateriasOrd1 = ordem1 ? await aPIFetchOrdDia.get(`${nordem1}/`) : null;
+      const dataMateriasOrd1 = nordem1 ? await aPIFetchOrdDia.get(`${nordem1}/`) : null;
       const materiasOrd1 = dataMateriasOrd1.data;
       setMatOrd1(materiasOrd1);
 
@@ -143,8 +137,8 @@ function Provider({children}) {
   }, [sessions, date]);
 
   useEffect(() => {
-    getSessions();
-  }, [getSessions]); 
+    getSessions(); 
+  }, [getSessions]);
 
   const contextValue = {    
     sessions,    
