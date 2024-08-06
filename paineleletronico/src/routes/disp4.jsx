@@ -1,4 +1,4 @@
-import { useCallback, useContext, useEffect } from 'react';
+import { useCallback, useContext } from 'react';
 import { useTime } from 'react-timer-hook';
 import Context from '../context/MyContext';
 import './Disp.css';
@@ -83,10 +83,6 @@ const Disp4 = () => {
       </div>
     );
   }, [matExp, matOrd, parlament]);
-
-  useEffect(() => {
-    display();
-  }, [display]);
 
 return display();
 

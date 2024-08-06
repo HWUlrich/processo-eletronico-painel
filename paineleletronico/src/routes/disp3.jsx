@@ -1,4 +1,4 @@
-import { useState, useContext, useCallback, useEffect } from 'react';
+import { useState, useContext, useCallback } from 'react';
 import './Disp.css';
 import Context from '../context/MyContext';
 
@@ -17,18 +17,15 @@ const Disp3 = () => {
   const endIndex = startIndex + itensPerPage;  
   const currentItens0 = presencaExp?.slice(startIndex, endIndex);
   const currentItens1 = presenca?.slice(startIndex, endIndex);
-  const currentItens2 = parlament?.slice(startIndex, endIndex);
-
-  
-  const display = useCallback (() => {
+  const currentItens2 = parlament?.slice(startIndex, endIndex);  
     
-    const currentItens = () => {
-      if(presencaExp.length !== 0 & presenca.length === 0) {
-        return currentItens0;
-      } else {
-        return currentItens1;
-      }
-    };
+  const currentItens = useCallback(() => {
+    if(presencaExp.length > 0 & presenca.length === 0) {
+      return currentItens0;
+    } else {
+      return currentItens1;
+    }
+  }, [presencaExp, presenca, currentItens0, currentItens1]);
 
     return (
       <div className='par'>            
@@ -57,14 +54,6 @@ const Disp3 = () => {
         ))}
       </div>
     );
-    }, [presenca, presencaExp, currentItens0, currentItens1, currentItens2]);
-
-  useEffect(() => {
-    display();
-  }, [display]);
-
-return (display());
-
 };
 
 export default Disp3;

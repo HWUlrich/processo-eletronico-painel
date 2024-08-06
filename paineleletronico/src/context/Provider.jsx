@@ -25,7 +25,7 @@ function Provider({children}) {
   const month = dayToday.getMonth() + 1;
   const year = dayToday.getFullYear();
   const sessionsDay = (year + "-" + (month < 10 ?  "0" + month : month) + "-" + (day < 10 ? "0" + day : day));
-  const [date, setDate] = useState('2024-08-06');
+  const [date, setDate] = useState('2024-08-08');
   
   
   const getSessions = useCallback ( async () => {  
