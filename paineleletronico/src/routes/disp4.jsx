@@ -4,6 +4,7 @@ import Context from '../context/MyContext';
 import './Disp.css';
 
 
+
 const Disp4 = () => {  
 
   const { sessions, parlament, matExp, matExp1, matOrd, matOrd1, date } = useContext(Context);
@@ -50,7 +51,7 @@ const Disp4 = () => {
                 </div>                                         
               </div>                
           ))}
-          </div>
+          </div>          
           <div>
           {matOrd1.map((sessao) => (                    
             <div className='materia-vot' key={sessao.id}>
@@ -82,7 +83,7 @@ const Disp4 = () => {
         </div>
       </div>
     );
-  }, [matExp, matOrd, parlament]);
+  }, [matExp, matOrd, parlament, ampm, hours, matExp1, matOrd1, minutes, sessions]);
 
 return display();
 

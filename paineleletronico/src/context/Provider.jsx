@@ -89,23 +89,22 @@ function Provider({children}) {
       setMatExp1([materiasExp1]);
 
       //Matérias da Ordem do Dia
-      const ordem = sessions?.filter((p) => p.resultado === "");      
-      const ordem1 = sessions?.filter((p) => p.resultado !== "");
+      const ordem = dataOrdDia?.filter((p) => p.resultado === "");      
+      const ordem1 = dataOrdDia?.filter((p) => p.resultado !== "");
       console.log(ordem);
       const retPauta = dataRetPauta?.map((p) => {return p.ordem});
       const matOrdem = ordem ? ordem?.map((p) => {return p.id}) : null;
       console.log(matOrdem);     
 
-      const preordem = retPauta ? matOrdem.filter( item => !retPauta.includes(item)) : matOrdem;
-      const nordem = preordem.shift();
+      const preordem = retPauta ? matOrdem.filter( item => !retPauta.includes(item)) : matOrdem.shift();      
       const nordem1 = ordem1 ? ordem1?.map((p) => {return p.id}).pop() : null;
-      console.log(nordem);
+      console.log(preordem);
 
       const idExpOrd = () => {
-        if(nmatExp) {
+        if(nmatExp.length > 0) {
           return nmatExp;
         } else {
-          return nordem;
+          return preordem;
         }
       }; //É preciso que todas as matérias estejam com o resultado diferente de zero, a fim de manter a sequência.
       console.log(idExpOrd());
@@ -123,7 +122,7 @@ function Provider({children}) {
       setParlament(merged2);     
       
       //Matérias da Ordem do Dia     
-      const dataMateriasOrd = nordem ? await aPIFetchOrdDia.get(`${nordem}/`) : null;
+      const dataMateriasOrd = preordem ? await aPIFetchOrdDia.get(`${preordem}/`) : null;
       const materiasOrd = dataMateriasOrd.data;     
       setMatOrd(materiasOrd);
       
