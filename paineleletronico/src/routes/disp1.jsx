@@ -40,7 +40,7 @@ const Disp1 = () => {
               <div id='presParl' className='parl-3'>
                 <div>{parlament.parlamentar ? <h2>Presente</h2> : <h3>Ausente</h3>}</div>            
               </div>
-              <div>
+              <div className='parl-4-0'>
                 {currentItens2?.map((parlament1) => (
                 <div className='parl-4'key={parlament1.id}>                               
                   <div>{parlament1.voto === "Sim" && parlament1.parlamentar === parlament.parlamentar ? <h2>Sim</h2> : null}</div>

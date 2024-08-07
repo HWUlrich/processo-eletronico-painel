@@ -64,10 +64,6 @@
     justify-content: center;
 }
 
-.parl-4 {
-    width: 14vw;
-}
-
 .parl-3 div h2 {
     font-size: var(--font-size-parlament-3-h2);
     color: #189583;        
@@ -76,6 +72,11 @@
 .parl-3 div h3 {
     font-size: var(--font-size-parlament-3-h2);
     color: red;        
+}
+
+.parl-4-0 {
+    width: 14vw;
+    height: 2rem;
 }
 
 .parl-4 div h2 {

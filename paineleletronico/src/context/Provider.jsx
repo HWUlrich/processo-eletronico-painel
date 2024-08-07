@@ -111,7 +111,8 @@ function Provider({children}) {
       console.log(idExpOrd());
       
       const votoResponse =  await aPIFetchVot.get(`?ordem=${idExpOrd()}&page_size=30`);
-      const dataVoto = votoResponse.data.results;      
+      const dataVoto = votoResponse.data.results;
+      console.log('voto', dataVoto);      
       
       const merged2 = dataParlament.map((screen) => ({
         //...dataPresentExp.find((o) => o.parlamentar === screen.id),
