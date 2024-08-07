@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback, useContext } from 'react';
-import Context from './MyContext';
+import Context from '../context/MyContext';
+import '../routes/Disp.css';
 import aPIFetchOrdDia from '../axios/configOrdDia';
 
 
@@ -30,7 +31,6 @@ const MatOrdDia = () => {
         const dataMateriasOrd1 = nordem1 ? await aPIFetchOrdDia.get(`${nordem1}/`) : null;
         const materiasOrd1 = dataMateriasOrd1.data;
         setMatOrd1(materiasOrd1);
-
         
         } catch (error) {
             console.log(error);
@@ -62,8 +62,6 @@ return (
         </div>
     </div> 
 )
-
-    
-
-
 }
+
+export default MatOrdDia;

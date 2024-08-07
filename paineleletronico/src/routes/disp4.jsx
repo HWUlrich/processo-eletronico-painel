@@ -2,6 +2,7 @@ import { useCallback, useContext } from 'react';
 import { useTime } from 'react-timer-hook';
 import Context from '../context/MyContext';
 import './Disp.css';
+import MatOrdDia from '../component/matOrdDia';
 
 
 
@@ -53,6 +54,7 @@ const Disp4 = () => {
           ))}
           </div>          
           <div>
+            <MatOrdDia />
           {matOrd1.map((sessao) => (                    
             <div className='materia-vot' key={sessao.id}>
               <h1>Votação: {sessao.__str__.slice(24, -67)}</h1>
