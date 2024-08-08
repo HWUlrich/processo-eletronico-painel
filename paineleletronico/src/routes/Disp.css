@@ -74,6 +74,12 @@
     color: red;        
 }
 
+.parl-4 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .parl-4-0 {
     width: 14vw;
     height: 2rem;

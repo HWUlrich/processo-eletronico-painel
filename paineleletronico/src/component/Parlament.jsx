@@ -12,9 +12,7 @@ const Parlament = () => {
   const { presenca, presencaExp, parlament } = useContext(Context);
   
   const [ itensPerPage ] = useState(21);
-  const [ currentPage ] = useState(0);
-  
-  const display = useCallback (() => {
+  const [ currentPage ] = useState(0);  
     
   const startIndex = currentPage * itensPerPage;
   const endIndex = startIndex + itensPerPage;  
@@ -22,13 +20,13 @@ const Parlament = () => {
   const currentItens1 = presenca?.slice(startIndex, endIndex);
   const currentItens2 = parlament?.slice(startIndex, endIndex);
 
-  const currentItens = () => {
+  const currentItens = useCallback(() => {
     if(presencaExp.length !== 0 & presenca.length === 0) {
       return currentItens0;
     } else {
       return currentItens1;
     }
-  };
+  }, [presencaExp, presenca, currentItens0, currentItens1]);
 
     return (
       <div className='par'>            
@@ -43,7 +41,7 @@ const Parlament = () => {
               <div id='presParl' className='parl-3'>
                 <div>{parlament.parlamentar ? <h2>Presente</h2> : <h3>Ausente</h3>}</div>            
               </div>
-              <div>
+              <div className='parl-4-0'>
                 {currentItens2?.map((parlament1) => (
                 <div className='parl-4'key={parlament1.id}>                               
                   <div>{parlament1.voto === "Sim" && parlament1.parlamentar === parlament.parlamentar ? <h2>Sim</h2> : null}</div>
@@ -57,14 +55,6 @@ const Parlament = () => {
         ))}
       </div>
     );
-    }, [presenca, presencaExp, parlament]);
-  
-  useEffect(() => {
-    display();
-  }, [display]);
-
-return (display());
-
 };
 
 export default Parlament;

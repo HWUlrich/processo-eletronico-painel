@@ -68,22 +68,13 @@ function Provider({children}) {
 
       //Matérias da Ordem do Dia
       const ordem = dataOrdDia?.filter((p) => p.resultado === "");      
-      console.log(ordem);
+      console.log('ordem: ', ordem);
       const retPauta = dataRetPauta?.map((p) => {return p.ordem});
       const matOrdem = ordem ? ordem?.map((p) => {return p.id}) : null;
       console.log(matOrdem);     
 
       const nordem = retPauta ? matOrdem.filter( item => !retPauta.includes(item)) : matOrdem.shift();      
-      console.log(nordem);
-
-      const idExpOrd = () => {
-        if(nmatExp.length > 0) {
-          return nmatExp;
-        } else {
-          return nordem;
-        }
-      }; //É preciso que todas as matérias estejam com o resultado diferente de zero, a fim de manter a sequência.
-      console.log(idExpOrd());
+      console.log('nordem: ', [nordem]);      
       
       const votoResponse =  await aPIFetchVot.get(`?ordem=${nordem}&page_size=30`);
       const dataVoto = votoResponse.data.results;
@@ -95,7 +86,8 @@ function Provider({children}) {
         ...dataVoto.find((o) => o.parlamentar === screen.id),        
         ...screen      
       }));
-      setParlament(merged2);      
+      setParlament(merged2);
+      console.log('merged2', merged2)     
 
     } catch (error) {
       console.log(error);
