@@ -11,7 +11,7 @@ const MatOrdDia = () => {
 
     const { date } = useContext(Context);
 
-    const matOrdemDia = async () => {
+    const matOrdemDia = useCallback ( async () => {
 
         try{
         const ordDiaResponse = await aPIFetchOrdDia.get(`?data_ordem=${date}&page_size=30`);
@@ -36,11 +36,15 @@ const MatOrdDia = () => {
             console.log(error);
         }
 
-    };
+    }, [date]);
+
+    useEffect (() => {
+      matOrdemDia();
+    }, [matOrdemDia])
 
 return (
     <div>
-        <div>
+        <div className="materias-exp">
         {matOrd1.map((sessao) => (                    
             <div className='materia-vot' key={sessao.id}>
               <h1>Votação: {sessao.__str__.slice(24, -67)}</h1>

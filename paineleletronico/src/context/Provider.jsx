@@ -5,7 +5,7 @@ import aPIFetchSesPlen from '../axios/configSesPlen';
 import aPIFetchPar from '../axios/configPar';
 import aPIFetchPres from '../axios/configPres'; // Presença na ordem do dia.
 import aPIFetchVot from '../axios/configVot';
-import aPIFetchExpMat from '../axios/configExpMat';
+//import aPIFetchExpMat from '../axios/configExpMat';
 import aPIFetchRetPauta from '../axios/configRetPauta';
 import aPIFetchSesPlePres from '../axios/configSesPlePres'; // Presença no Expediente.
 
@@ -16,10 +16,10 @@ function Provider({children}) {
   const [parlament, setParlament] = useState([]);  
   const [presenca, setPresenca] = useState([]);
   const [presencaExp, setPresencaExp] = useState([]);
-  const [matExp, setMatExp] = useState([]);
-  const [matExp1, setMatExp1] = useState([]);
-  const [matOrd, setMatOrd] = useState([]);
-  const [matOrd1, setMatOrd1] = useState([]);
+  //const [matExp, setMatExp] = useState([]);
+  //const [matExp1, setMatExp1] = useState([]);
+  //const [matOrd, setMatOrd] = useState([]);
+  //const [matOrd1, setMatOrd1] = useState([]);
   const dayToday = new Date();
   const day = dayToday.getDate();
   const month = dayToday.getMonth() + 1;
@@ -70,7 +70,7 @@ function Provider({children}) {
       }));
       setPresencaExp(merged1);
 
-      //Matérias do Expediente
+      /*Matérias do Expediente
       const expMatResponse = await aPIFetchExpMat.get(`?data_ordem=${date}&page_size=30`);
       const dataExpMat = expMatResponse.data.results;
 
@@ -86,18 +86,18 @@ function Provider({children}) {
       
       const dataMateriasExp1 = nmatExp1 ? await aPIFetchExpMat.get(`${nmatExp1}/`) : null;
       const materiasExp1 = dataMateriasExp1.data;
-      setMatExp1([materiasExp1]);
+      setMatExp1([materiasExp1]); */
 
       //Matérias da Ordem do Dia
       const ordem = dataOrdDia?.filter((p) => p.resultado === "");      
-      const ordem1 = dataOrdDia?.filter((p) => p.resultado !== "");
+      //const ordem1 = dataOrdDia?.filter((p) => p.resultado !== "");
       console.log(ordem);
       const retPauta = dataRetPauta?.map((p) => {return p.ordem});
       const matOrdem = ordem ? ordem?.map((p) => {return p.id}) : null;
       console.log(matOrdem);     
 
       const preordem = retPauta ? matOrdem.filter( item => !retPauta.includes(item)) : matOrdem.shift();      
-      const nordem1 = ordem1 ? ordem1?.map((p) => {return p.id}).pop() : null;
+      //const nordem1 = ordem1 ? ordem1?.map((p) => {return p.id}).pop() : null;
       console.log(preordem);
 
       const idExpOrd = () => {
@@ -109,7 +109,7 @@ function Provider({children}) {
       }; //É preciso que todas as matérias estejam com o resultado diferente de zero, a fim de manter a sequência.
       console.log(idExpOrd());
       
-      const votoResponse =  await aPIFetchVot.get(`?ordem=${idExpOrd()}&page_size=30`);
+      const votoResponse =  await aPIFetchVot.get(`?ordem=${preordem}&page_size=30`);
       const dataVoto = votoResponse.data.results;
       console.log('voto', dataVoto);      
       
@@ -121,14 +121,14 @@ function Provider({children}) {
       }));
       setParlament(merged2);     
       
-      //Matérias da Ordem do Dia     
+      /*Matérias da Ordem do Dia     
       const dataMateriasOrd = preordem ? await aPIFetchOrdDia.get(`${preordem}/`) : null;
       const materiasOrd = dataMateriasOrd.data;     
       setMatOrd(materiasOrd);
       
       const dataMateriasOrd1 = nordem1 ? await aPIFetchOrdDia.get(`${nordem1}/`) : null;
       const materiasOrd1 = dataMateriasOrd1.data;
-      setMatOrd1(materiasOrd1);
+      setMatOrd1(materiasOrd1); */
 
     } catch (error) {
       console.log(error);
@@ -145,19 +145,13 @@ function Provider({children}) {
     parlament,    
     presenca,
     presencaExp,
-    matExp,
-    matExp1,
-    matOrd,
-    matOrd1,    
+        
     date,
     setSessions,    
     setParlament,    
     setPresenca,
     setPresencaExp,
-    setMatExp,
-    setMatExp1,
-    setMatOrd,
-    setMatOrd1,    
+        
     setDate,    
   }; 
 
