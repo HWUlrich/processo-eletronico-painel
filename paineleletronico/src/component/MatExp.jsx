@@ -34,8 +34,8 @@ const MatExp = () => {
 
     useEffect (() => {
         matExped();
-    }, [matExped])
-
+    }, [matExped])    
+    
     return (
         <div className="materias-exp">
             <div>                    
@@ -61,10 +61,9 @@ const MatExp = () => {
                     </div>                                         
                 </div>                
             ))}
-            </div>
+            </div>          
         </div>
     )
-
-}
+};
 
 export default MatExp;
