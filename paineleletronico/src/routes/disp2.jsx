@@ -1,4 +1,4 @@
-import { useState, useContext, useCallback } from 'react';
+import { useState, useContext, useCallback, useEffect } from 'react';
 import './Disp.css';
 import Context from '../context/MyContext';
 
@@ -26,6 +26,10 @@ const Disp2 = () => {
       return currentItens1;
     }
   }, [presencaExp, presenca, currentItens0, currentItens1]);
+
+  useEffect (() => {
+    currentItens();
+  }, [currentItens])
     
     return (
       <div className='par'>            

@@ -13,6 +13,7 @@ const MatExp = () => {
 
     const matExped = useCallback ( async () => {
 
+        try{
         const expMatResponse = await aPIFetchExpMat.get(`?data_ordem=${date}&page_size=30`);
         const dataExpMat = expMatResponse.data.results;
 
@@ -30,7 +31,11 @@ const MatExp = () => {
         const materiasExp1 = dataMateriasExp1.data;
         setMatExp1([materiasExp1]);
 
-    }, [date]);
+        } catch (error) {
+            console.log(error);
+        }
+
+    }, [date, matExp, matExp1]);
 
     useEffect (() => {
         matExped();

@@ -2,6 +2,7 @@ import axios from 'axios';
 
 const aPIFetchPar = axios.create({
     baseURL: "https://sapl.novafriburgo.rj.leg.br/api/parlamentares/",
+    method: 'GET',
     //timeout: 8000,
     headers: {       
         "content-language": "pt-br",         

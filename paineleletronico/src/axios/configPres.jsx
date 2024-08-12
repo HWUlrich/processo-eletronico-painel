@@ -3,6 +3,7 @@ import axios from 'axios';
 // https://sapl.novafriburgo.rj.leg.br/api/sessao/presencaordemdia/
 const aPIFetchPres = axios.create({
     baseURL: "https://sapl.novafriburgo.rj.leg.br/api/sessao/presencaordemdia/",
+    method: 'GET',
     //timeout: 8000,
     headers: {       
         "content-language": "pt-br",         
