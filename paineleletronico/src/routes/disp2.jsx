@@ -20,7 +20,7 @@ const Disp2 = () => {
   const currentItens2 = parlament?.slice(startIndex, endIndex);  
     
   const currentItens = useCallback (() => {
-    if(presencaExp.length !== 0 & presenca.length === 0) {
+    if(presencaExp.length !== 0 && presenca.length === 0) {
       return currentItens0;
     } else {
       return currentItens1;
