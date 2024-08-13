@@ -44,7 +44,7 @@ const MatExp = () => {
     return (
         <div className="materias-exp">
             <div>                    
-            {matExp1.map((sessao) => (                                                                          
+            {matExp1?.map((sessao) => (                                                                          
                 <div className='exped-result'  key={sessao.id}>                         
                     <div className='exped-result-mat'>
                         <h1>Expediente: {sessao.__str__.slice(24, -67)}</h1>                                            
@@ -56,7 +56,7 @@ const MatExp = () => {
             ))}
             </div>
             <div>
-            {matExp.map((sessao) => (                                                                          
+            {matExp?.map((sessao) => (                                                                          
                 <div className='exped-result'  key={sessao.id}>                         
                     <div className='exped-result-mat1'>
                         <h1>Expediente: {sessao.__str__.slice(24, -67)}</h1>                                            

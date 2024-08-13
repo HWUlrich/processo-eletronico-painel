@@ -17,10 +17,10 @@ const Disp1 = () => {
   const endIndex = startIndex + itensPerPage;  
   const currentItens0 = presencaExp?.slice(startIndex, endIndex);
   const currentItens1 = presenca?.slice(startIndex, endIndex);
-  const currentItens2 = parlament?.slice(startIndex, endIndex);  
-    
+  const currentItens2 = parlament?.slice(startIndex, endIndex);
+
   const currentItens = useCallback (() => {
-    if(presencaExp.length > 0 & presenca.length === 0) {
+    if(presencaExp.length !== 0 & presenca.length === 0) {
       return currentItens0;
     } else {
       return currentItens1;

@@ -23,18 +23,14 @@ const MatOrdDia = () => {
         const nordem = ordem ? ordem?.map((p) => {return p.id}).shift() : null;
         const nordem1 = ordem1 ? ordem1?.map((p) => {return p.id}).pop() : null;
         
-        console.log(ordem);
-
         const dataMateriasOrd = nordem ? await aPIFetchOrdDia.get(`${nordem}/`) : null;
         const materiasOrd = dataMateriasOrd.data;     
-        setMatOrd(materiasOrd);
-        console.log('matOrd', matOrd);
+        setMatOrd([materiasOrd]);        
         console.log('materiasOrd', materiasOrd);
         
         const dataMateriasOrd1 = nordem1 ? await aPIFetchOrdDia.get(`${nordem1}/`) : null;
         const materiasOrd1 = dataMateriasOrd1.data;
-        setMatOrd1(materiasOrd1);
-        console.log('matOrd1', matOrd1);
+        setMatOrd1([materiasOrd1]);        
         console.log('materiasOrd1', materiasOrd);
         
         } catch (error) {
@@ -50,7 +46,7 @@ const MatOrdDia = () => {
 return (
     <div  className="materias-exp">
         <div>
-        {matOrd1.map((sessao) => (                    
+        {matOrd1?.map((sessao) => (                    
             <div className='materia-vot' key={sessao.id}>
               <h1>Votação: {sessao.__str__.slice(24, -67)}</h1>
               <div className='materia-vot-res'>
@@ -60,7 +56,7 @@ return (
         ))}
         </div>          
         <div>
-          {matOrd.map((sessao) => (                    
+          {matOrd?.map((sessao) => (                    
             <div className='materia-vot1' key={sessao.id}>
               <h1>Votação: {sessao.__str__.slice(24, -67)}</h1>
               <div className='materia-vot-res1'>
