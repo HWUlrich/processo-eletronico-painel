@@ -18,7 +18,7 @@ const Disp1 = () => {
   const currentItens0 = presencaExp?.slice(startIndex, endIndex);
   const currentItens1 = presenca?.slice(startIndex, endIndex);
   const currentItens2 = parlament?.slice(startIndex, endIndex);
-  console.log('presenca', presenca);
+  console.log('currentItens1', currentItens1);
   /*const currentItens = useCallback (() => {
     if(presenca.length === 0 ) {
       return currentItens0;
