@@ -21,7 +21,7 @@ function Provider({children}) {
   const month = dayToday.getMonth() + 1;
   const year = dayToday.getFullYear();
   const sessionsDay = (year + "-" + (month < 10 ?  "0" + month : month) + "-" + (day < 10 ? "0" + day : day));
-  const [date, setDate] = useState('2024-08-13');
+  const [date, setDate] = useState('2024-08-15');
   
   
   const getSessions = useCallback ( async () => {  
@@ -81,7 +81,7 @@ function Provider({children}) {
       console.log('voto', dataVoto);      
       
       const merged2 = dataParlament.map((screen) => ({
-        //...dataPresentExp.find((o) => o.parlamentar === screen.id),
+        ...dataPresentExp.find((o) => o.parlamentar === screen.id),
         ...dataPresent.find((o) => o.parlamentar === screen.id),
         ...dataVoto.find((o) => o.parlamentar === screen.id),        
         ...screen      
