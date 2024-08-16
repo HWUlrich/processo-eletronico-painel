@@ -15,7 +15,7 @@ function Provider({children}) {
   const [parlament, setParlament] = useState([]);  
   const [presenca, setPresenca] = useState([]);
   const [presencaExp, setPresencaExp] = useState([]);
-
+  
   const dayToday = new Date();
   const day = dayToday.getDate();
   const month = dayToday.getMonth() + 1;
@@ -35,7 +35,7 @@ function Provider({children}) {
       const dataOrdDia = ordDiaResponse.data.results;       
       const dataSesPlen = sesPlenResponse.data.results;
       const dataRetPauta = retPautaResponse.data.results;
-           
+                 
       const merged = dataOrdDia.map((screen) => ({        
         ...dataSesPlen.find((o) => o.codReuniao === screen.sessao_plenaria),              
         ...screen      
@@ -73,7 +73,7 @@ function Provider({children}) {
       const matOrdem = ordem ? ordem?.map((p) => {return p.id}) : null;
       console.log(matOrdem);     
 
-      const nordem = retPauta ? matOrdem.filter( item => !retPauta.includes(item)) : matOrdem;      
+      const nordem = retPauta ? matOrdem.filter( item => !retPauta.includes(item)) : matOrdem;           
       console.log('nordem: ', [nordem]);      
       
       const votoResponse =  await aPIFetchVot.get(`?ordem=${nordem.shift()}&page_size=30`);
@@ -109,7 +109,7 @@ function Provider({children}) {
     setParlament,    
     setPresenca,
     setPresencaExp,        
-    setDate,    
+    setDate  
   }; 
 
   return (

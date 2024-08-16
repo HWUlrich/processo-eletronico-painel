@@ -18,22 +18,22 @@ const Disp3 = () => {
   const currentItens0 = presencaExp?.slice(startIndex, endIndex);
   const currentItens1 = presenca?.slice(startIndex, endIndex);
   const currentItens2 = parlament?.slice(startIndex, endIndex);  
-  /*  
-  const currentItens = useCallback(() => {
-    if(presencaExp.length === 0 && presenca.length !== 0) {
-      return currentItens0;
-    } else {
+    
+  const currentItens = useCallback (() => {
+    if(presenca) {
       return currentItens1;
+    } else {
+      return currentItens0;
     }
-  }, [presencaExp, presenca, currentItens0, currentItens1]);
+  }, [presencaExp, presenca, parlament]);
 
   useEffect (() => {
     currentItens();
-  }, [currentItens]) */
+  }, [currentItens])
 
     return (
       <div className='par'>            
-        {(currentItens1 ? currentItens1 : currentItens0)?.map((parlament) => (                     
+        {currentItens()?.map((parlament) => (                     
             <div className="parl" key={parlament.id}>                         
               <div className='parl-1'>
                 <h1>{parlament.nome_parlamentar}</h1>
