@@ -15,13 +15,14 @@ function Provider({children}) {
   const [parlament, setParlament] = useState([]);  
   const [presenca, setPresenca] = useState([]);
   const [presencaExp, setPresencaExp] = useState([]);
+  const [retPautaOrd, setRetPautaOrd] = useState([]);
   
   const dayToday = new Date();
   const day = dayToday.getDate();
   const month = dayToday.getMonth() + 1;
   const year = dayToday.getFullYear();
   const sessionsDay = (year + "-" + (month < 10 ?  "0" + month : month) + "-" + (day < 10 ? "0" + day : day));
-  const [date, setDate] = useState('2024-08-15');
+  const [date, setDate] = useState('2024-08-06');
   
   
   const getSessions = useCallback ( async () => {  
@@ -71,7 +72,7 @@ function Provider({children}) {
       console.log('ordem: ', ordem);
       const retPauta = dataRetPauta?.map((p) => {return p.ordem});
       const matOrdem = ordem ? ordem?.map((p) => {return p.id}) : null;
-      console.log(matOrdem);     
+      setRetPautaOrd(retPauta);     
 
       const nordem = retPauta ? matOrdem.filter( item => !retPauta.includes(item)) : matOrdem;           
       console.log('nordem: ', [nordem]);      
@@ -105,11 +106,13 @@ function Provider({children}) {
     presenca,
     presencaExp,        
     date,
+    retPautaOrd,
     setSessions,    
     setParlament,    
     setPresenca,
     setPresencaExp,        
-    setDate  
+    setDate,
+    setRetPautaOrd  
   }; 
 
   return (

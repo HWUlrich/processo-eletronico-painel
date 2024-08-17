@@ -9,7 +9,7 @@ const MatOrdDia = () => {
     const [matOrd, setMatOrd] = useState([]);
     const [matOrd1, setMatOrd1] = useState([]);
 
-    const { date } = useContext(Context);
+    const { date, retPautaOrd } = useContext(Context);
 
     const matOrdemDia = useCallback ( async () => {
 
@@ -20,10 +20,11 @@ const MatOrdDia = () => {
         const ordem = dataOrdDia?.filter((p) => p.resultado === "");
         const ordem1 = dataOrdDia?.filter((p) => p.resultado !== "");
 
-        const nordem = ordem ? ordem?.map((p) => {return p.id}).shift() : null;
+        const matOrdem = ordem ? ordem?.map((p) => {return p.id}) : null;
+        const nordem = retPautaOrd ? matOrdem.filter( item => !retPautaOrd.includes(item)) : matOrdem;
         const nordem1 = ordem1 ? ordem1?.map((p) => {return p.id}).pop() : null;
         
-        const dataMateriasOrd = nordem ? await aPIFetchOrdDia.get(`${nordem}/`) : null;
+        const dataMateriasOrd = nordem ? await aPIFetchOrdDia.get(`${nordem.shift()}/`) : null;
         const materiasOrd = dataMateriasOrd.data;     
         setMatOrd([materiasOrd]);        
         console.log('materiasOrd', materiasOrd);
