@@ -8,7 +8,7 @@ const Disp2 = () => {
     document.body.classList.toggle('parlamentares');
   }
 
-  const { presenca, presencaExp, parlament } = useContext(Context);
+  const { presenca, presencaExp, parlament, dataPre, dataPreExp } = useContext(Context);
 
   const [ itensPerPage ] = useState(7);
   const [ currentPage ] = useState(1); 
@@ -20,12 +20,12 @@ const Disp2 = () => {
   const currentItens2 = parlament?.slice(startIndex, endIndex);  
     
   const currentItens = useCallback (() => {
-    if(presenca) {
+    if(dataPre.length > 0) {
       return currentItens1;
     } else {
       return currentItens0;
     }
-  }, [presencaExp, presenca, parlament]);
+  }, [dataPre, dataPreExp]);
 
   useEffect (() => {
     currentItens();

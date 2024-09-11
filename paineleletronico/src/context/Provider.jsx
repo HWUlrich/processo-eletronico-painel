@@ -14,7 +14,9 @@ function Provider({children}) {
   const [sessions, setSessions] = useState([]);  
   const [parlament, setParlament] = useState([]);  
   const [presenca, setPresenca] = useState([]);
+  const [dataPre, setDataPre] = useState([]);
   const [presencaExp, setPresencaExp] = useState([]);
+  const [dataPreExp, setDataPreExp] = useState([]);
   const [retPautaOrd, setRetPautaOrd] = useState([]);
   
   const dayToday = new Date();
@@ -22,7 +24,7 @@ function Provider({children}) {
   const month = dayToday.getMonth() + 1;
   const year = dayToday.getFullYear();
   const sessionsDay = (year + "-" + (month < 10 ?  "0" + month : month) + "-" + (day < 10 ? "0" + day : day));
-  const [date, setDate] = useState('2024-08-227');
+  const [date, setDate] = useState('2024-09-10');
   
   
   const getSessions = useCallback ( async () => {  
@@ -53,17 +55,19 @@ function Provider({children}) {
       const presentExpResponse = await aPIFetchSesPlePres.get(`?page_size=21&sessao_plenaria=${numSesPlenaria}`);            
       const dataParlament = parlamentResponse.data.filter((data) => data.ativo === true);      
       const dataPresent = presentResponse.data.results;
+      setDataPre(dataPresent);
       const dataPresentExp = presentExpResponse.data.results;
+      setDataPreExp(dataPresentExp);
 
       const merged0 = dataParlament.map((screen) => ({
         ...dataPresent.find((o) => o.parlamentar === screen.id),        
-        ...screen        
+        ...screen
       }));
       setPresenca(merged0);
 
       const merged1 = dataParlament.map((screen) => ({
         ...dataPresentExp.find((o) => o.parlamentar === screen.id),        
-        ...screen        
+        ...screen
       }));
       setPresencaExp(merged1);    
 
@@ -104,13 +108,17 @@ function Provider({children}) {
     sessions,    
     parlament,    
     presenca,
-    presencaExp,        
+    dataPre,
+    presencaExp,
+    dataPreExp,        
     date,
     retPautaOrd,
     setSessions,    
     setParlament,    
     setPresenca,
-    setPresencaExp,        
+    setDataPre,
+    setPresencaExp,
+    setDataPreExp,        
     setDate,
     setRetPautaOrd  
   }; 
