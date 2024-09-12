@@ -27,7 +27,7 @@ const Disp4 = () => {
         </div>
         <div className='data-hora'>
             <h2>{(day < 10 ? "0" + day : day) + " / " + (month < 10 ? "0" + month : month) + " / " + year}</h2>       
-            <h2>{timer}</h2>
+            <h2>{timer}h</h2>
         </div>       
         <div className="materias-exp">
           <MatExp />
