@@ -1,10 +1,4 @@
-.par {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-}
-
-.parl {
+.parla {
     margin: 0;
     padding: 0;
     width: 100%;
@@ -16,53 +10,53 @@
     justify-content: left;    
 }
 
-.parl-1 h1 {
-    font-size: 1.2rem;
+.parla-1 h1 {
+    font-size: 1rem;
     margin-left: 1rem;
     color: rgb(3, 45, 100);
     font-weight: 500;    
 }
 
-.parl-2 h2 {
-    font-size: 1.2rem;
+.parla-2 h2 {
+    font-size: 1rem;
     font-weight: 900;
     color: #189583;
 }
 
-.parl-1 {
+.parla-1 {
     width: 40%;
 }
 
-.parl-2 {
+.parla-2 {
     width: 20%;
 }
 
-.parl-3 {
-    width: 20%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.parl-4 {
+.parla-3 {
     width: 20%;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.parl-3 div h2 {
-    font-size: 1.2rem;
+.parla-4 {
+    width: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.parla-3 div h2 {
+    font-size: 1rem;
     color: #189583;        
 }
 
-.parl-3 div h3 {
-    font-size: 1.2rem;
+.parla-3 div h3 {
+    font-size: 1rem;
     color: red;
 }
 
-.parl-4 h2 {
-    font-size: 1.2rem;
+.parla-4 h2 {
+    font-size: 1rem;
     color: red;    
     font-style: italic;
 }
