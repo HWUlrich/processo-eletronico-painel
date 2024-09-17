@@ -1,0 +1,204 @@
+.painel {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.headline {
+    width: 100%;
+    height: 300px;
+    margin: 1px;
+    border-radius: 10px;
+    background-color: #189583;    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.headline h1 {    
+    font-size: 3rem;
+    color: white;
+    text-align: center;
+}
+
+.headline h2 {    
+    font-size: 2rem;
+    color: white;
+    text-align: center;
+}
+
+.painel-0 {
+    width: 100%;
+    height: 70px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.painel-1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60%;
+    height: 100%;    
+}
+
+.painel-1 h1 {
+    font-size: 1.2rem;
+    color: #189583;
+}
+
+.painel-2 {
+    width: 40%;
+    height: 30px;
+    margin: 0;
+    padding: 2%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.painel-2 h2 {
+    font-size: 1.2rem;
+    color: red;
+}
+
+.materias-exp {
+    width: 100%;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+}
+
+.exped-result {
+    height: 100px;    
+    display: flex;
+    padding: 0 100px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.exped-result-mat {    
+    height: 2rem;
+    display: flex;
+    align-items: center;
+}
+
+.exped-result-mat h1 {
+    color: #189583 ;
+    font-size: 2rem;
+}
+
+.exped-result-mat1 h1 {
+    color: #189583 ;
+    font-size: 2rem;    
+}
+
+.exped-result-res {
+    height: 2rem;
+    display: flex;
+    align-items: center;
+}
+
+.exped-result-res h2 {
+    font-size: 2rem;
+    color: red;
+}
+
+.exped-result-res1 h2 {
+    font-size: 2rem;
+    color: red;
+    font-weight: 800;
+}
+
+.resultado-vot {
+    height: 5.5rem;    
+    background-color: rgb(255, 0, 0);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 1px;
+    padding: 0 250px;
+    border-radius: 5px;
+}
+
+.resultado-vot h2 {
+    font-size: 2rem;
+    color: white;
+}
+
+.painel-mat-result {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;    
+}
+
+.materia-vot {
+    height: 100px;         
+    background-color: #189583;
+    border-radius: 5px;     
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 100px;   
+}
+
+.materia-vot h1 {
+    font-size: 2rem;
+    color: white;
+}
+
+.materia-vot1 {
+    height: 100px;         
+    background-color: #189583;
+    border-radius: 5px;     
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 100px;   
+}
+
+.materia-vot1 h1 {
+    font-size: 2rem;
+    color: white;    
+}
+
+.materia-vot-res h2 {
+    font-size: 2rem;
+    color: yellow;
+
+}
+
+.materia-vot-res1 h2 {
+    font-size: 2rem;
+    color: yellow;
+}
+
+.data-hora {
+    width: 100%;
+    height: 150px;
+    margin: 1px;
+    border-radius: 10px;
+    background-color: #189583;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    
+}
+
+.data-hora h2 {
+    color: white;
+    font-size: 2rem;
+    margin: 0 200px;
+}

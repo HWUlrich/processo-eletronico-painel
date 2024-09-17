@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import "./NavBar.css";
 import Logo from '../public/images/brasaoLogo.png';
 import Disp1 from '../routes/Disp1';
-import MesaDir from '../routes/mesaDir';
+import MesaDir from '../routes/MesaDir';
 
 
 const NavBar = () => {  

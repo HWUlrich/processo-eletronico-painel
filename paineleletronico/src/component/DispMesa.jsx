@@ -1,7 +1,7 @@
 import { useCallback, useContext } from 'react';
 import { useTime } from 'react-timer-hook';
 import Context from '../context/MyContext';
-import '../routes/Disp.css'
+import './DispMesa.css'
 import MatOrdDia from './MatOrdDia';
 import MatExp from './MatExp';
 
