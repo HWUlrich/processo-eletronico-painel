@@ -3,11 +3,7 @@ import './Disp.css';
 import Context from '../context/MyContext';
 
 const Disp2 = () => {
-  // altera a tabela de estilos
-  const dispStyleParl = () => {
-    document.body.classList.toggle('parlamentares');
-  }
-
+  
   const { presenca, presencaExp, parlament, dataPre, dataPreExp } = useContext(Context);
 
   const [ itensPerPage ] = useState(7);

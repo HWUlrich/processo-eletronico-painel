@@ -1,9 +1,9 @@
 import { useCallback, useContext } from 'react';
 import { useTime } from 'react-timer-hook';
 import Context from '../context/MyContext';
-import './Disp.css';
-import MatOrdDia from '../component/MatOrdDia';
-import MatExp from '../component/MatExp';
+import '../routes/Disp.css'
+import MatOrdDia from './MatOrdDia';
+import MatExp from './MatExp';
 
 
 

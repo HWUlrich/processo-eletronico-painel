@@ -9,7 +9,7 @@ const Parlament = () => {
     document.body.classList.toggle('parlamentares');
   };
 
-  const { presenca, presencaExp, parlament } = useContext(Context);
+  const { presenca, presencaExp, parlament, dataPre, dataPreExp } = useContext(Context);
   
   const [ itensPerPage ] = useState(21);
   const [ currentPage ] = useState(0);  
@@ -20,14 +20,18 @@ const Parlament = () => {
   const currentItens1 = presenca?.slice(startIndex, endIndex);
   const currentItens2 = parlament?.slice(startIndex, endIndex);
 
-  const currentItens = useCallback(() => {
-    if(presencaExp.length !== 0 & presenca.length === 0) {
-      return currentItens0;
-    } else {
+  const currentItens = useCallback (() => {
+    if(dataPre.length > 0) {
       return currentItens1;
+    } else {
+      return currentItens0;
     }
-  }, [presencaExp, presenca, currentItens0, currentItens1]);
+  }, [dataPre, dataPreExp]);
 
+  useEffect (() => {
+    currentItens();
+  }, [currentItens])
+  
     return (
       <div className='par'>            
         {currentItens()?.map((parlament) => (                     

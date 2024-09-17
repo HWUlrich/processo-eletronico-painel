@@ -1,13 +1,13 @@
-import './mesaDir.css';
+import './MesaDir.css';
 import Parlament from '../component/Parlament';
-import Disp4 from './disp4';
+import DispMesa from '../component/DispMesa';
 
 
 const MesaDir = () => {
   
   // altera a tabela de estilos
   const dispStyleMesa = () => {
-    document.body.classList.toggle('mesa-dir');
+    document.body.classList.toggle('mesa-1');
   }  
   
   return (    
@@ -15,12 +15,12 @@ const MesaDir = () => {
       <div className='mesa-1'>
         <div className='parlament'>
         <Parlament />
-        </div>        
-        <div className='som'> 
+        </div>
+        <DispMesa />             
+      </div>
+      <div className='som'> 
         <h1>Controle de Som</h1>
-        </div>        
-      </div>     
-      <Disp4 />          
+      </div>                
     </div>
   );
 }

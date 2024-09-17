@@ -6,9 +6,9 @@ import {createBrowserRouter, RouterProvider} from 'react-router-dom';
 import Provider from './context/Provider.jsx';
 
 // Páginas
-import Disp1 from './routes/disp1.jsx'; 
-import Disp2 from './routes/disp2.jsx';
-import Disp3 from './routes/disp3.jsx';
+import Disp1 from './routes/Disp1.jsx'; 
+import Disp2 from './routes/Disp2.jsx';
+import Disp3 from './routes/Disp3.jsx';
 import Disp4 from './routes/disp4.jsx';
 import MesaDir from './routes/mesaDir.jsx';
 
@@ -20,24 +20,24 @@ const router = createBrowserRouter([
              </Provider>,
     children: [
       {
-        path: '/disp1',
+        path: '/Disp1',
         element: <Disp1 />
       },
       {
-        path: '/disp2',
+        path: '/Disp2',
         element: <Disp2 />
       },
       {
-        path: '/disp3',
+        path: '/Disp3',
         element: <Disp3 />
 
       },
       {
-        path: '/disp4',
+        path: '/Disp4',
         element: <Disp4 />        
       },
       {
-        path: '/mesaDir',
+        path: '/MesaDir',
         element: <MesaDir />        
       }
     ]
