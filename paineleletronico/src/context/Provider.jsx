@@ -24,7 +24,7 @@ function Provider({children}) {
   const month = dayToday.getMonth() + 1;
   const year = dayToday.getFullYear();
   const sessionsDay = (year + "-" + (month < 10 ?  "0" + month : month) + "-" + (day < 10 ? "0" + day : day));
-  const [date, setDate] = useState(sessionsDay);
+  const [date, setDate] = useState('2025-02-13');
   
   
   const getSessions = useCallback ( async () => {  
@@ -52,6 +52,7 @@ function Provider({children}) {
             
       const parlamentResponse = await aPIFetchPar.get("parlamentar/search_parlamentares");      
       const presentResponse = await aPIFetchPres.get(`?page_size=21&sessao_plenaria=${numSesPlenaria}`);
+      console.log('Presença', presentResponse);
       const presentExpResponse = await aPIFetchSesPlePres.get(`?page_size=21&sessao_plenaria=${numSesPlenaria}`);            
       const dataParlament = parlamentResponse.data.filter((data) => data.ativo === true);      
       const dataPresent = presentResponse.data.results;
@@ -60,13 +61,13 @@ function Provider({children}) {
       setDataPreExp(dataPresentExp);
 
       const merged0 = dataParlament.map((screen) => ({
-        ...dataPresent.find((o) => o.parlamentar === screen.id),        
+        ...dataPresent.filter((o) => o.parlamentar === screen.id),        
         ...screen
       }));
       setPresenca(merged0);
 
       const merged1 = dataParlament.map((screen) => ({
-        ...dataPresentExp.find((o) => o.parlamentar === screen.id),        
+        ...dataPresentExp.filter((o) => o.parlamentar === screen.id),        
         ...screen
       }));
       setPresencaExp(merged1);    
@@ -86,9 +87,9 @@ function Provider({children}) {
       console.log('voto', dataVoto);      
       
       const merged2 = dataParlament.map((screen) => ({
-        ...dataPresentExp.find((o) => o.parlamentar === screen.id),
-        ...dataPresent.find((o) => o.parlamentar === screen.id),
-        ...dataVoto.find((o) => o.parlamentar === screen.id),        
+        ...dataPresentExp.filter((o) => o.parlamentar === screen.id),
+        ...dataPresent.filter((o) => o.parlamentar === screen.id),
+        ...dataVoto.filter((o) => o.parlamentar === screen.id),        
         ...screen      
       }));
       setParlament(merged2);
